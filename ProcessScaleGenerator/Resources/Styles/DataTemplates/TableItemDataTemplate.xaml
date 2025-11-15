@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:elements="clr-namespace:ToyotaProcessManager.MVVM.View.Components.Elements">
+
+    <DataTemplate x:Key="TableItemData">
+
+        <VerticalStackLayout>
+
+            <Border
+                Padding="10,5,10,5"
+                BackgroundColor="#424242"
+                StrokeShape="14"
+                StrokeThickness="0">
+
+                <Label
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Name}"
+                    VerticalOptions="Center" />
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProcessScaleGenerator.View.Pages.Main.ShowTable.ShowTableView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    x:Name="Root"
+    Title="ShowTableView"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid Padding="10" RowDefinitions="Auto,*">
+
+        <Border BackgroundColor="Tomato" Style="{StaticResource Border.Base}">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="24,24,0,0" />
+            </Border.StrokeShape>
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+
+                <buttons:IconButton
+                    BackgroundColorCode="{StaticResource Tertiary}"
+                    Event="{Binding SwitchToRegisterCommand}"
+                    FontSize="20"
+                    TextContent="Registros"
+                    Unicode="{StaticResource FAS_AddressBook}" />
+
+                <buttons:IconButton
+                    Grid.Column="1"
+                    BackgroundColorCode="{StaticResource Tertiary}"
+                    Event="{Binding SwitchToCreateTablesCommand}"
+                    FontSize="20"
+                    TextContent="Criar tabela"
+                    Unicode="{StaticResource FAS_Table}" />
+
+                <Border Grid.Column="2" StrokeThickness="0">
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="40"
+                        HorizontalOptions="Center"
+                        Text="Vizualizar tabelas"
+                        VerticalOptions="Center" />
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
+        <Grid Grid.Row="1">
+
+            <Border BackgroundColor="{StaticResource Tertiary}" Style="{StaticResource Border.Base}">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0,0,24,24" />
+                </Border.StrokeShape>
+
+                <ScrollView>
+
+                    <VerticalStackLayout x:Name="MainContainer" />
+
+                </ScrollView>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

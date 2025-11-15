@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons;assembly=ProcessScaleGenerator.View"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View">
+
+    <DataTemplate x:Key="TablePreviewData">
+
+        <Border
+            BackgroundColor="#242424"
+            StrokeShape="8"
+            StrokeThickness="0">
+
+            <Grid
+                Padding="5"
+                ColumnDefinitions="*,*,2*,0.7*,0.7*"
+                ColumnSpacing="5">
+
+                <Border
+                    BackgroundColor="#424242"
+                    StrokeShape="8"
+                    StrokeThickness="0">
+
+                    <Label Text="{Binding HiddenProcessCount}" />
+
+                </Border>
+
+                <Border
+                    Grid.Column="1"
+                    BackgroundColor="#424242"
+                    StrokeShape="8"
+                    StrokeThickness="0">
+
+                    <Label Text="{Binding HiddenEmployersCount}" />
+
+                </Border>
+
+                <Border
+                    Grid.Column="2"
+                    BackgroundColor="#424242"
+                    StrokeShape="8"
+                    StrokeThickness="0">
+
+                    <Label Text="{Binding CreationDate}" />
+
+                </Border>
+
+                <buttons:IconButton
+                    Grid.Column="3"
+                    BackgroundColorCode="Transparent"
+                    FontSize="20"
+                    Unicode="Eye" />
+
+                <buttons:IconButton
+                    Grid.Column="4"
+                    BackgroundColorCode="Transparent"
+                    FontSize="20"
+                    Unicode="Trash" />
+
+
+            </Grid>
+
+        </Border>
+
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="TableItemDataTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="TableGrupData">
+
+        <Border
+            Padding="10"
+            BackgroundColor="#323232"
+            StrokeShape="24"
+            StrokeThickness="0">
+
+            <Grid RowDefinitions="Auto,Auto,*">
+
+                <elements:CircularIcon
+                    ColorCode="{Binding Process.Icon.ColorCode}"
+                    IconSize="130"
+                    Unicode="{Binding Process.Icon.Unicode}" />
+
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Process.Title}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+
+                <CollectionView
+                    Grid.Row="2"
+                    HorizontalOptions="Fill"
+                    ItemTemplate="{StaticResource TableItemData}"
+                    ItemsSource="{Binding Employees}"
+                    SelectionMode="None"
+                    VerticalOptions="Fill"
+                    VerticalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="7" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+
+                </CollectionView>
+
+            </Grid>
+
+        </Border>
+
+    </DataTemplate>
+
+</ResourceDictionary>

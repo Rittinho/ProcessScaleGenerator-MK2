@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="ProcessScaleGenerator.View.Modal.Description.EmployeeDescriptionModal"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Padding="-20"
+    BackgroundColor="#343434">
+
+    <VerticalStackLayout>
+
+        <!--  Conteudo  -->
+        <ScrollView>
+
+            <VerticalStackLayout>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="50"
+                    HorizontalOptions="Center"
+                    Text="{Binding Name}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+                <Label
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="{Binding Position}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <!--  Botão de editar  -->
+        <buttons:IconButton
+            Grid.Row="1"
+            BackgroundColorCode="#4DA3FF"
+            Event="{Binding CloseShowCommand}"
+            FontSize="20"
+            HorizontalOptions="End"
+            TextContent="Voltar"
+            Unicode="{StaticResource FAS_RotateLeft}" />
+
+    </VerticalStackLayout>
+
+</toolkit:Popup>

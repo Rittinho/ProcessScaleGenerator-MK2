@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="ProcessScaleGenerator.View.Modal.Forms.IconSelecterModal"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    xmlns:local="clr-namespace:ProcessScaleGenerator.Shared.ValueObjects;assembly=ProcessScaleGenerator.Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="Root"
+    Padding="-20"
+    x:TypeArguments="local:IconParameters"
+    BackgroundColor="#424242"
+    MaximumWidthRequest="1080">
+
+    <Grid
+        ColumnDefinitions="*,3*"
+        ColumnSpacing="20"
+        RowDefinitions="Auto,*,Auto"
+        RowSpacing="20">
+
+        <!--  Titulos  -->
+        <Label
+            Grid.ColumnSpan="2"
+            FontAttributes="Bold"
+            FontSize="60"
+            HorizontalOptions="Center"
+            Text="Customização de icone"
+            TextColor="White"
+            VerticalOptions="Center" />
+
+        <!--  Icon preview  -->
+        <elements:CircularIcon
+            Grid.RowSpan="3"
+            ColorCode="{Binding SelectedColorCode}"
+            IconSize="270"
+            Unicode="{Binding SelectedUnicode}" />
+
+        <!--  Listas de icones e cores  -->
+        <Border
+            Grid.Row="1"
+            Grid.Column="1"
+            BackgroundColor="#424242"
+            StrokeShape="24"
+            StrokeThickness="0">
+
+            <Grid RowDefinitions="*,auto" RowSpacing="10">
+
+                <!--  Lista de icones  -->
+                <CollectionView
+                    x:Name="IconCollection"
+                    HorizontalOptions="Fill"
+                    ItemTemplate="{DynamicResource DotIconData}"
+                    ItemsSource="{Binding IconList}"
+                    SelectionChangedCommand="{Binding IconSelectionChangedCommand}"
+                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference IconCollection}}"
+                    SelectionMode="Single"
+                    VerticalOptions="Fill"
+                    VerticalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            Orientation="Vertical"
+                            Span="12"
+                            VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+
+
+                </CollectionView>
+
+                <!--  Container de cores  -->
+                <Border
+                    Grid.Row="1"
+                    Padding="10"
+                    Stroke="#4DA3FF"
+                    StrokeShape="24"
+                    StrokeThickness="5">
+
+                    <!--  Lista de cores  -->
+                    <CollectionView
+                        HorizontalOptions="Fill"
+                        ItemsSource="{Binding ColorsList}"
+                        MaximumWidthRequest="1200"
+                        SelectionChanged="SelectColor"
+                        SelectionMode="Single"
+                        VerticalOptions="Fill">
+
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="12" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <Border
+                                    BackgroundColor="{Binding .}"
+                                    HeightRequest="60"
+                                    StrokeShape="14"
+                                    StrokeThickness="4"
+                                    WidthRequest="60">
+                                    <VisualStateManager.VisualStateGroups>
+
+                                        <VisualStateGroup Name="CommonStates">
+
+                                            <VisualState Name="Normal">
+
+                                                <VisualState.Setters>
+                                                    <Setter Property="StrokeThickness" Value="0" />
+                                                </VisualState.Setters>
+
+                                            </VisualState>
+
+                                            <VisualState Name="Selected">
+
+                                                <VisualState.Setters>
+                                                    <Setter Property="StrokeThickness" Value="5" />
+                                                    <Setter Property="Stroke" Value="#4DA3FF" />
+                                                </VisualState.Setters>
+
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+
+                                    </VisualStateManager.VisualStateGroups>
+                                </Border>
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
+        <!--  Botões  -->
+
+        <HorizontalStackLayout
+            Grid.Row="3"
+            Grid.Column="1"
+            HorizontalOptions="End"
+            Spacing="8">
+
+            <buttons:IconButton
+                BackgroundColorCode="#FF4C4C"
+                Event="{Binding Source={x:Reference Root}, Path=CancelButtonCommand}"
+                FontSize="20"
+                TextContent="Cancelar"
+                Unicode="{StaticResource FAS_CircleXmark}" />
+
+            <buttons:IconButton
+                BackgroundColorCode="#4CAF50"
+                Event="{Binding Source={x:Reference Root}, Path=SaveButtonCommand}"
+                FontSize="20"
+                TextContent="Salvar"
+                Unicode="{StaticResource FAS_CircleCheck}" />
+
+            <buttons:IconButton />
+
+        </HorizontalStackLayout>
+
+    </Grid>
+
+</toolkit:Popup>

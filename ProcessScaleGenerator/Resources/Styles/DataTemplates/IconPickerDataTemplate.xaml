@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <DataTemplate x:Key="DotIconData">
+
+        <Border
+            BackgroundColor="#282828"
+            HeightRequest="55"
+            StrokeShape="14"
+            StrokeThickness="0"
+            WidthRequest="55">
+            <Label
+                FontFamily="FAS"
+                FontSize="20"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding .}"
+                TextColor="White"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <VisualStateManager.VisualStateGroups>
+
+                <VisualStateGroup Name="CommonStates">
+
+                    <VisualState Name="Normal">
+
+                        <VisualState.Setters>
+                            <Setter Property="StrokeThickness" Value="0" />
+                        </VisualState.Setters>
+
+                    </VisualState>
+
+                    <VisualState Name="Selected">
+
+                        <VisualState.Setters>
+                            <Setter Property="StrokeThickness" Value="5" />
+                            <Setter Property="Stroke" Value="#4DA3FF" />
+                        </VisualState.Setters>
+
+                    </VisualState>
+
+                </VisualStateGroup>
+
+            </VisualStateManager.VisualStateGroups>
+        </Border>
+
+    </DataTemplate>
+
+</ResourceDictionary>

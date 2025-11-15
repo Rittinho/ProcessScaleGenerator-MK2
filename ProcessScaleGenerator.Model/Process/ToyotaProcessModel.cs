@@ -1,0 +1,60 @@
+﻿using ProcessScaleGenerator.Shared.Injections.Contract;
+using ProcessScaleGenerator.Shared.ValueObjects;
+
+namespace ProcessScaleGenerator.Model.Process;
+
+public class ToyotaProcessModel
+{
+    private readonly IRepositoryServices _repositoryServices;
+
+    public ToyotaProcessModel(IRepositoryServices repositoryServices)
+    {
+        _repositoryServices = repositoryServices;
+    }
+
+    public List<ToyotaProcess> GetAllProcesses() => _repositoryServices.GetAllProcesses();
+    public ToyotaProcess GetFirstProcess() => _repositoryServices.GetFirstProcess();
+    public ToyotaProcess GetLastProcess() => _repositoryServices.GetLastProcess();
+    public List<ToyotaProcess> GetProcessByName(string name) => _repositoryServices.GetProcessByName(name);
+
+    public void CreateProcess(ToyotaProcess toyotaProcess)
+    {
+        if (toyotaProcess == null)
+            throw new Exception("Valor nulo!");
+
+        if (CheckSameProcess(toyotaProcess))
+            throw new Exception("Já existe esse processo!");
+
+        _repositoryServices.SaveNewProcess(toyotaProcess);
+    }
+    public void UpdateProcess(ToyotaProcess oldToyotaProcess, ToyotaProcess newToyotaProcess)
+    {
+        if (oldToyotaProcess == null)
+            throw new Exception("Valor nulo!");
+
+        if (newToyotaProcess == null)
+            throw new Exception("Valor nulo!");
+
+        if (CheckSameProcess(newToyotaProcess))
+            throw new Exception("Já existe esse processo!");
+
+        _repositoryServices.RemoveProcess(oldToyotaProcess);
+        _repositoryServices.SaveNewProcess(newToyotaProcess);
+    }
+    public bool DeleteProcess(ToyotaProcess toyotaProcess)
+    {
+        if (toyotaProcess == null)
+            return false;
+
+        return _repositoryServices.RemoveProcess(toyotaProcess);
+    }
+
+    public bool CheckSameProcess(ToyotaProcess toyotaProcess)
+    {
+        foreach (var process in _repositoryServices.GetAllProcesses())
+            if (process.Title == toyotaProcess.Title)
+                return true;
+
+        return false;
+    }
+}

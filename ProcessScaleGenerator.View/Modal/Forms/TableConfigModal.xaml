@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="ProcessScaleGenerator.View.Modal.Forms.TableConfigModal"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    xmlns:local="clr-namespace:ProcessScaleGenerator.Shared.ValueObjects;assembly=ProcessScaleGenerator.Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="Root"
+    Padding="-20"
+    x:TypeArguments="local:ToyotaTableConfiguration"
+    BackgroundColor="#222222"
+    MinimumWidthRequest="1140">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <Border BackgroundColor="{StaticResource ToyotaBlue}" Style="{StaticResource Border.Radius24}">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="24,24,0,0" />
+            </Border.StrokeShape>
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="Ocultar da tabela" />
+
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            BackgroundColor="{StaticResource Tertiary}"
+            Style="{StaticResource Border.Radius24}">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,24,24" />
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions="*,Auto" RowSpacing="10">
+
+                <Grid ColumnDefinitions="*,1.5*,Auto" ColumnSpacing="10">
+
+                    <Border
+                        Padding="10,10,10,0"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Style="{StaticResource Border.Radius24}">
+
+                        <Grid RowDefinitions="Auto,*" RowSpacing="10">
+
+                            <buttons:SearchBar SearchText="{Binding SearchProcessText, Mode=TwoWay}" />
+
+                            <CollectionView
+                                Grid.Row="1"
+                                HorizontalOptions="Fill"
+                                ItemTemplate="{StaticResource ToastProcessSelectStyle}"
+                                ItemsSource="{Binding FiltredProcessList}"
+                                SelectionMode="Multiple"
+                                VerticalOptions="Fill"
+                                VerticalScrollBarVisibility="Never">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout
+                                        Orientation="Vertical"
+                                        Span="1"
+                                        VerticalItemSpacing="5" />
+                                </CollectionView.ItemsLayout>
+
+                            </CollectionView>
+
+                        </Grid>
+
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        Padding="10,10,10,0"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Style="{StaticResource Border.Radius24}">
+
+                        <Grid RowDefinitions="Auto,*" RowSpacing="10">
+
+                            <buttons:SearchBar SearchText="{Binding SearchEmployeeText, Mode=TwoWay}" />
+
+                            <CollectionView
+                                Grid.Row="1"
+                                HorizontalOptions="Fill"
+                                ItemTemplate="{StaticResource ToastEmployeeSelectStyle}"
+                                ItemsSource="{Binding FiltredEmployeeList}"
+                                SelectionMode="Multiple"
+                                VerticalOptions="Fill"
+                                VerticalScrollBarVisibility="Never">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout
+                                        Orientation="Vertical"
+                                        Span="1"
+                                        VerticalItemSpacing="5" />
+                                </CollectionView.ItemsLayout>
+
+                            </CollectionView>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+
+                <HorizontalStackLayout
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="End"
+                    Spacing="10">
+
+                    <buttons:IconButton
+                        BackgroundColorCode="#FF4C4C"
+                        Event="{Binding Source={x:Reference Root}, Path=CancelButtonCommand}"
+                        FontSize="20"
+                        TextContent="Cancelar"
+                        Unicode="{StaticResource FAS_CircleXmark}" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="#4CAF50"
+                        Event="{Binding Source={x:Reference Root}, Path=CancelButtonCommand}"
+                        FontSize="20"
+                        TextContent="Salvar"
+                        Unicode="{StaticResource FAS_CircleCheck}" />
+
+                </HorizontalStackLayout>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</toolkit:Popup>

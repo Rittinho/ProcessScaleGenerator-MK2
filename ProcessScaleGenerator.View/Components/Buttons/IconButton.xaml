@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ProcessScaleGenerator.View.Components.Buttons.IconButton"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="Root">
+
+    <Border BackgroundColor="{Binding Path=BackgroundColorCode, Source={x:Reference Root}}" Style="{StaticResource Border.Radius14}">
+
+        <HorizontalStackLayout Spacing="10">
+
+            <Label
+                FontFamily="FAS"
+                FontSize="{Binding Path=FontSize, Source={x:Reference Root}}"
+                HorizontalOptions="Center"
+                Text="{Binding Path=Unicode, Source={x:Reference Root}}"
+                TextColor="{Binding Path=FontColorCode, Source={x:Reference Root}}"
+                VerticalOptions="Center" />
+
+            <Label
+                FontSize="{Binding Path=FontSize, Source={x:Reference Root}}"
+                HorizontalOptions="Center"
+                Text="{Binding Path=TextContent, Source={x:Reference Root}}"
+                TextColor="{Binding Path=FontColorCode, Source={x:Reference Root}}"
+                VerticalOptions="Center" />
+
+        </HorizontalStackLayout>
+
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding Path=Event, Source={x:Reference Root}}" />
+        </Border.GestureRecognizers>
+
+    </Border>
+
+</ContentView>

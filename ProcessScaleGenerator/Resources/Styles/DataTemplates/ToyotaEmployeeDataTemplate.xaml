@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View"
+    xmlns:vm="clr-namespace:ProcessScaleGenerator.ViewModel.Pages.Main.Register;assembly=ProcessScaleGenerator.ViewModel">
+
+    <DataTemplate x:Key="ToastEmployeeStyle">
+
+        <VerticalStackLayout>
+
+            <Border
+                Padding="10,5,10,5"
+                BackgroundColor="{StaticResource Primary}"
+                Style="{StaticResource Border.Radius14}">
+
+                <Grid ColumnDefinitions="*,Auto,Auto,Auto">
+
+                    <!--  Name  -->
+                    <Border
+                        Margin="5,0,5,0"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            HorizontalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding Name}"
+                            VerticalOptions="Center" />
+
+                    </Border>
+
+                    <!--  Show-Button  -->
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        Command="{Binding Path=ShowEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        CornerRadius="9999"
+                        FontFamily="FAS"
+                        FontSize="20"
+                        Text="{DynamicResource FAS_Eye}"
+                        TextColor="{StaticResource PrimaryDarkText}" />
+
+                    <!--  Update-Button  -->
+                    <Button
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        Command="{Binding Path=UpdateEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        CornerRadius="9999"
+                        FontFamily="FAS"
+                        FontSize="20"
+                        Text="{DynamicResource FAS_Pen}"
+                        TextColor="{StaticResource PrimaryDarkText}" />
+
+                    <!--  Delete-Button  -->
+                    <Button
+                        Grid.Column="3"
+                        BackgroundColor="Transparent"
+                        Command="{Binding Path=DeleteEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        CornerRadius="9999"
+                        FontFamily="FAS"
+                        FontSize="20"
+                        Text="{DynamicResource FAS_Trash}"
+                        TextColor="{StaticResource PrimaryDarkText}" />
+
+                </Grid>
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </DataTemplate>
+
+    <DataTemplate x:Key="ToastEmployeeSelectStyle">
+
+        <VerticalStackLayout>
+
+            <Border
+                Padding="10,5,10,5"
+                BackgroundColor="{StaticResource Primary}"
+                Style="{StaticResource Border.Radius14}">
+
+                <Grid ColumnDefinitions="2*,*,Auto">
+
+                    <!--  Name  -->
+                    <Border
+                        Margin="5,0,5,0"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            HorizontalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding Name}"
+                            VerticalOptions="Center" />
+
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        Margin="5,0,5,0"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            HorizontalOptions="Center"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding Position}"
+                            VerticalOptions="Center" />
+
+                    </Border>
+
+                    <!--  Show-Button  -->
+                    <Button
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        Command="{Binding Path=ShowEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        CornerRadius="9999"
+                        FontFamily="FAS"
+                        FontSize="20"
+                        Text="{DynamicResource FAS_Eye}"
+                        TextColor="White" />
+
+                </Grid>
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </DataTemplate>
+
+</ResourceDictionary>

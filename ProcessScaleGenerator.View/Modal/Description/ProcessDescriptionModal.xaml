@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="ProcessScaleGenerator.View.Modal.Description.ProcessDescriptionModal"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Padding="-20"
+    BackgroundColor="#343434">
+
+    <Grid RowDefinitions="*,Auto" RowSpacing="20">
+
+        <!--  Conteudo  -->
+        <Grid ColumnDefinitions="Auto,2.5*">
+
+            <elements:CircularIcon
+                Grid.RowSpan="2"
+                ColorCode="{Binding Icon.ColorCode}"
+                IconSize="250"
+                Unicode="{Binding Icon.Unicode}" />
+
+            <ScrollView Grid.Column="1" Padding="20">
+
+                <VerticalStackLayout HorizontalOptions="Center">
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="50"
+                        HorizontalOptions="Center"
+                        Text="{Binding Title}"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="{Binding Description}"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+        </Grid>
+
+        <!--  Back button  -->
+        <buttons:IconButton
+            Grid.Row="1"
+            BackgroundColorCode="#4DA3FF"
+            Event="{Binding CloseShowCommand}"
+            FontSize="20"
+            HorizontalOptions="End"
+            TextContent="Voltar"
+            Unicode="{StaticResource FAS_RotateLeft}" />
+
+    </Grid>
+
+</toolkit:Popup>

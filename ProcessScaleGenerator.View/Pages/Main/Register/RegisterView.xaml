@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProcessScaleGenerator.View.Pages.Main.Register.RegisterView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    x:Name="Root"
+    Title="RegisterView"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid Padding="10" RowDefinitions="Auto,*">
+
+        <Border BackgroundColor="{StaticResource ToyotaRed}" StrokeThickness="0">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="24,24,0,0" />
+            </Border.StrokeShape>
+
+            <Grid
+                Padding="10"
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="10">
+
+                <Border StrokeThickness="0">
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="40"
+                        HorizontalOptions="Center"
+                        Text="Registros"
+                        VerticalOptions="Center" />
+                </Border>
+
+                <buttons:IconButton
+                    Grid.Column="1"
+                    BackgroundColorCode="{StaticResource Tertiary}"
+                    Event="{Binding SwitchToCreateTablesCommand}"
+                    FontSize="20"
+                    TextContent="Criar tabela"
+                    Unicode="{StaticResource FAS_Table}" />
+
+
+                <buttons:IconButton
+                    Grid.Column="2"
+                    BackgroundColorCode="{StaticResource Tertiary}"
+                    Event="{Binding SwitchToShowTablesCommand}"
+                    FontSize="20"
+                    TextContent="Ver tabelas"
+                    Unicode="{StaticResource FAS_Eye}" />
+
+            </Grid>
+
+        </Border>
+
+        <Grid Grid.Row="1">
+
+            <!--  Process  -->
+            <Border
+                BackgroundColor="{StaticResource Tertiary}"
+                IsVisible="{Binding IsInProcessPanel}"
+                Style="{StaticResource Border.Radius24}">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0,0,24,24" />
+                </Border.StrokeShape>
+
+                <Grid ColumnDefinitions="*,2*" ColumnSpacing="10">
+
+                    <Border BackgroundColor="{StaticResource ToyotaRed}" Style="{StaticResource Border.Radius14}">
+
+                        <Grid RowDefinitions="Auto,*" RowSpacing="10">
+
+                            <buttons:SearchBar SearchText="{Binding SearchProcessText, Mode=TwoWay}" />
+
+                            <CollectionView
+                                Grid.Row="1"
+                                HorizontalOptions="Fill"
+                                ItemTemplate="{StaticResource ToastProcessStyle}"
+                                ItemsSource="{Binding FiltredProcessList}"
+                                SelectionMode="None"
+                                VerticalOptions="Fill"
+                                VerticalScrollBarVisibility="Never">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout
+                                        Orientation="Vertical"
+                                        Span="1"
+                                        VerticalItemSpacing="5" />
+                                </CollectionView.ItemsLayout>
+
+                            </CollectionView>
+
+                        </Grid>
+
+                    </Border>
+
+                    <Grid
+                        Grid.Column="1"
+                        RowDefinitions="*,auto"
+                        RowSpacing="10">
+
+                        <Border BackgroundColor="{StaticResource Primary}" Style="{StaticResource Border.Radius24}">
+
+                            <ScrollView>
+
+                                <VerticalStackLayout Padding="10" Spacing="10">
+
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="60"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Criar processo" />
+
+                                    <Grid ColumnDefinitions="Auto,*">
+
+                                        <Border Padding="30" StrokeThickness="0">
+
+                                            <AbsoluteLayout HeightRequest="170" WidthRequest="170">
+
+                                                <elements:CircularIcon
+                                                    AbsoluteLayout.LayoutBounds="1,1,1,1"
+                                                    AbsoluteLayout.LayoutFlags="All"
+                                                    ColorCode="{Binding Icon.ColorCode}"
+                                                    IconSize="170"
+                                                    Unicode="{Binding Icon.Unicode}" />
+
+                                                <Border
+                                                    Padding="5"
+                                                    AbsoluteLayout.LayoutBounds="1,0.0,0.3,0.3"
+                                                    AbsoluteLayout.LayoutFlags="All"
+                                                    BackgroundColor="{StaticResource Tertiary}"
+                                                    HorizontalOptions="Center"
+                                                    Style="{StaticResource Border.Circle}"
+                                                    VerticalOptions="Center">
+
+                                                    <Label
+                                                        Padding="5"
+                                                        FontFamily="FAS"
+                                                        FontSize="30"
+                                                        HorizontalOptions="Center"
+                                                        Text="{DynamicResource FAS_Pen}"
+                                                        TextColor="White"
+                                                        VerticalOptions="Center" />
+
+                                                </Border>
+
+                                            </AbsoluteLayout>
+
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding UpdateIconCommand}" />
+                                            </Border.GestureRecognizers>
+
+                                        </Border>
+
+                                        <Border
+                                            Grid.Column="1"
+                                            BackgroundColor="{StaticResource Secondary}"
+                                            Style="{StaticResource Border.Radius24}"
+                                            VerticalOptions="Center">
+
+                                            <VerticalStackLayout>
+
+                                                <Label FontSize="25" Text="Nome do processo:" />
+
+                                                <Border
+                                                    Padding="10,0,10,0"
+                                                    BackgroundColor="{StaticResource ToyotaLightRed}"
+                                                    Style="{StaticResource Border.Radius14}">
+
+                                                    <Entry
+                                                        BackgroundColor="Transparent"
+                                                        FontAttributes="Bold"
+                                                        FontSize="25"
+                                                        Text="{Binding Title}"
+                                                        VerticalTextAlignment="Center" />
+
+                                                </Border>
+
+                                                <Label FontSize="25" Text="Descrição processo:" />
+                                                <Border
+                                                    Padding="10,0,10,0"
+                                                    BackgroundColor="{StaticResource ToyotaLightRed}"
+                                                    Style="{StaticResource Border.Radius14}">
+
+                                                    <Editor
+                                                        AutoSize="TextChanges"
+                                                        FontSize="17"
+                                                        Text="{Binding Description}"
+                                                        VerticalTextAlignment="Center" />
+
+                                                </Border>
+
+                                            </VerticalStackLayout>
+
+                                        </Border>
+
+                                    </Grid>
+
+                                    <Grid IsVisible="{Binding IsInCreateMode}">
+
+                                        <buttons:IconButton
+                                            BackgroundColorCode="#FF4C4C"
+                                            Event="{Binding CreateNewProcessCommand}"
+                                            FontSize="20"
+                                            TextContent="Criar processo"
+                                            Unicode="{DynamicResource FAS_CirclePlus}" />
+
+                                    </Grid>
+
+                                    <Grid
+                                        ColumnDefinitions="*,*"
+                                        ColumnSpacing="10"
+                                        IsVisible="{Binding IsInEditMode}">
+
+                                        <buttons:IconButton
+                                            BackgroundColorCode="#FF4C4C"
+                                            Event="{Binding CancelUpdateProcessCommand}"
+                                            FontSize="20"
+                                            TextContent="Cancelar alterações"
+                                            Unicode="{DynamicResource FAS_CircleXmark}" />
+
+                                        <buttons:IconButton
+                                            Grid.Column="1"
+                                            BackgroundColorCode="#0078D7"
+                                            Event="{Binding SaveUpdateProcessCommand}"
+                                            FontSize="20"
+                                            TextContent="Salvar alterações"
+                                            Unicode="{DynamicResource FAS_CircleCheck}" />
+
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                            </ScrollView>
+
+                        </Border>
+
+                        <HorizontalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Spacing="10">
+
+                            <buttons:IconButton
+                                BackgroundColorCode="{StaticResource ToyotaRed}"
+                                Event="{Binding SwitchToEmployeePanelCommand}"
+                                FontSize="20"
+                                TextContent="Colaboradores"
+                                Unicode="{DynamicResource FAS_CaretRight}" />
+
+                        </HorizontalStackLayout>
+
+                    </Grid>
+
+                </Grid>
+
+
+            </Border>
+
+            <!--  Emploeer  -->
+            <Border
+                BackgroundColor="{StaticResource Tertiary}"
+                IsVisible="{Binding IsInEmployeePanel}"
+                Style="{StaticResource Border.Radius24}">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0,0,24,24" />
+                </Border.StrokeShape>
+
+                <Grid ColumnDefinitions="2*,*" ColumnSpacing="10">
+
+                    <Border
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource ToyotaRed}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <Grid RowDefinitions="Auto,*" RowSpacing="10">
+
+                            <buttons:SearchBar SearchText="{Binding SearchEmployeeText, Mode=TwoWay}" />
+
+                            <CollectionView
+                                Grid.Row="1"
+                                HorizontalOptions="Fill"
+                                ItemTemplate="{StaticResource ToastEmployeeStyle}"
+                                ItemsSource="{Binding FiltredEmployeeList}"
+                                SelectionMode="None"
+                                VerticalOptions="Fill"
+                                VerticalScrollBarVisibility="Never">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout
+                                        Orientation="Vertical"
+                                        Span="1"
+                                        VerticalItemSpacing="5" />
+                                </CollectionView.ItemsLayout>
+
+                            </CollectionView>
+
+                        </Grid>
+
+                    </Border>
+
+                    <Grid RowDefinitions="*,auto" RowSpacing="10">
+
+                        <Border BackgroundColor="{StaticResource Primary}" Style="{StaticResource Border.Radius24}">
+
+                            <ScrollView>
+
+                                <VerticalStackLayout Padding="10" Spacing="10">
+
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="60"
+                                        HorizontalOptions="Center"
+                                        Text="Cadastrar colaborador" />
+
+
+                                    <Border BackgroundColor="{StaticResource Secondary}" Style="{StaticResource Border.Radius24}">
+
+                                        <VerticalStackLayout>
+
+                                            <Label FontSize="25" Text="Nome do colaborador:" />
+                                            <Border
+                                                Padding="10,0,10,0"
+                                                BackgroundColor="{StaticResource ToyotaLightRed}"
+                                                Style="{StaticResource Border.Radius14}">
+
+                                                <Entry
+                                                    BackgroundColor="Transparent"
+                                                    FontAttributes="Bold"
+                                                    FontSize="25"
+                                                    Text="{Binding Name}"
+                                                    VerticalTextAlignment="Center" />
+
+                                            </Border>
+
+                                            <Label FontSize="25" Text="Cargo do colaborador:" />
+                                            <Border
+                                                Padding="10,0,10,0"
+                                                BackgroundColor="{StaticResource ToyotaLightRed}"
+                                                Style="{StaticResource Border.Radius14}">
+
+                                                <Editor
+                                                    AutoSize="TextChanges"
+                                                    FontSize="17"
+                                                    Text="{Binding Position}"
+                                                    VerticalTextAlignment="Center" />
+
+                                            </Border>
+
+                                        </VerticalStackLayout>
+
+                                    </Border>
+
+                                    <Grid IsVisible="{Binding IsInCreateMode}">
+
+                                        <buttons:IconButton
+                                            BackgroundColorCode="#FF4C4C"
+                                            Event="{Binding CreateNewEmployeeCommand}"
+                                            FontSize="20"
+                                            TextContent="Criar processo"
+                                            Unicode="{DynamicResource FAS_CirclePlus}" />
+
+                                    </Grid>
+
+                                    <Grid
+                                        ColumnDefinitions="*,*"
+                                        ColumnSpacing="10"
+                                        IsVisible="{Binding IsInEditMode}">
+
+                                        <buttons:IconButton
+                                            BackgroundColorCode="#FF4C4C"
+                                            Event="{Binding CancelUpdateEmployeeCommand}"
+                                            FontSize="20"
+                                            TextContent="Cancelar alterações"
+                                            Unicode="{DynamicResource FAS_CircleXmark}" />
+
+                                        <buttons:IconButton
+                                            Grid.Column="1"
+                                            BackgroundColorCode="#0078D7"
+                                            Event="{Binding SaveUpdateEmployeeCommand}"
+                                            FontSize="20"
+                                            TextContent="Salvar alterações"
+                                            Unicode="{DynamicResource FAS_CircleCheck}" />
+
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                            </ScrollView>
+
+
+                        </Border>
+
+                        <HorizontalStackLayout
+                            Grid.Row="1"
+                            HorizontalOptions="Start"
+                            Spacing="10">
+
+                            <buttons:IconButton
+                                BackgroundColorCode="{StaticResource ToyotaRed}"
+                                Event="{Binding SwitchToProcessPanelCommand}"
+                                FontSize="20"
+                                TextContent="Processos"
+                                Unicode="{DynamicResource FAS_CaretLeft}" />
+
+                        </HorizontalStackLayout>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

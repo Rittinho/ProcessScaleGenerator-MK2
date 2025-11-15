@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="ProcessScaleGenerator.Model/ProcessScaleGenerator.Model.csproj" />
+  <Project Path="ProcessScaleGenerator.Shared/ProcessScaleGenerator.Shared.csproj" />
+  <Project Path="ProcessScaleGenerator.View/ProcessScaleGenerator.View.csproj" />
+  <Project Path="ProcessScaleGenerator.ViewModel/ProcessScaleGenerator.ViewModel.csproj" />
+  <Project Path="ProcessScaleGenerator/ProcessScaleGenerator.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>

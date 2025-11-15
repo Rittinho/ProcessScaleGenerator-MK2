@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessScaleGenerator.Model\ProcessScaleGenerator.Model.csproj" />
+    <ProjectReference Include="..\ProcessScaleGenerator.Shared\ProcessScaleGenerator.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Button\" />
+    <Folder Include="Components\Elements\" />
+    <Folder Include="Modal\Description\" />
+    <Folder Include="Modal\Warning\" />
+    <Folder Include="Pages\Secondary\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+  </ItemGroup>
+
+</Project>
