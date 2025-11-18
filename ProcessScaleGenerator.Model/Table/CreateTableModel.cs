@@ -1,5 +1,7 @@
-﻿using ProcessScaleGenerator.Shared.Injections.Contract;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.ValueObjects;
+using System.Collections.ObjectModel;
 
 namespace ProcessScaleGenerator.Model.Table;
 
@@ -12,16 +14,15 @@ public class CreateTableModel
         _repositoryServices = repositoryServices;
     }
 
-    public List<ToyotaTableGroup> GetAllTables() => _repositoryServices.GetAllTables();
+    public List<ToyotaTableGroup> GetAllTables() => _repositoryServices.GetAllTables() ?? [];
     public ToyotaTableGroup GetFirstTable() => _repositoryServices.GetFirstTable();
     public ToyotaTableGroup GetLastTable() => _repositoryServices.GetLastTable();
 
-    public bool CreateTable()
+    public ToyotaTableGroup CreateTable() => CreateRandomTables();
+    public bool SaveTable(ToyotaTableGroup table)
     {
-        ToyotaTableGroup table = CreateRandomTables();
-
-        if (table == null)
-            return false;
+        if (table is null)
+            return true;
 
         return _repositoryServices.SaveNewTableGroup(table);
     }
@@ -36,8 +37,11 @@ public class CreateTableModel
     {
         Random random = new();
 
-        List<ToyotaEmployee> employeeList = _repositoryServices.GetAllEmployees();
-        List<ToyotaProcess> processList = _repositoryServices.GetAllProcesses();
+        List<ToyotaEmployee> employeeList = [.._repositoryServices.GetAllEmployees().Where(x => x.Hidded == false)];
+        List<ToyotaProcess> processList = [.._repositoryServices.GetAllProcesses().Where(x => x.Hidded == false)];
+
+        int employeeHidded = _repositoryServices.GetAllEmployees().Where(x => x.Hidded).Count();
+        int processHidded = _repositoryServices.GetAllProcesses().Where(x => x.Hidded).Count();
 
         List<ToyotaProcessTable> tables = [];
 
@@ -61,7 +65,7 @@ public class CreateTableModel
             currentIndex += count;
         }
 
-        ToyotaTableGroup result = new(DateTime.Now.ToString(), tables, tables.Count, employeeList.Count, baseCount, 0, 0);
+        ToyotaTableGroup result = new(DateTime.Now.ToString(), tables.Count, employeeList.Count, baseCount, processHidded, employeeHidded, tables);
 
         return result;
     }

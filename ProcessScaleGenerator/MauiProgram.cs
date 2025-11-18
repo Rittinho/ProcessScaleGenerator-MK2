@@ -62,7 +62,7 @@ namespace ProcessScaleGenerator
 
             //ViewModels
             builder.Services.AddSingleton<CreateTableViewModel>();
-            builder.Services.AddSingleton<ShowTableViewModel>();
+            builder.Services.AddTransient<ShowTableViewModel>();
             builder.Services.AddSingleton<RegisterViewModel>();
 
             builder.Services.AddTransient<TableConfigModalViewModel>();

@@ -8,10 +8,10 @@
     <Border
         BackgroundColor="{Binding Path=BackgroundColorCode, Source={x:Reference Root}}"
         Stroke="{Binding Path=StrokeColorCode, Source={x:Reference Root}}"
-        StrokeThickness=".6"
+        StrokeThickness="0.6"
         Style="{StaticResource Border.Radius8}">
 
-        <HorizontalStackLayout Spacing="10">
+        <HorizontalStackLayout Spacing="6">
 
             <Label
                 FontFamily="FAS"

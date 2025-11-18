@@ -1,9 +1,9 @@
 ﻿namespace ProcessScaleGenerator.Shared.ValueObjects;
 
-public class ToyotaTableGroup(string CreationDate, List<ToyotaProcessTable> TableGroup, int TotalTables,
-    int TotalEmployers, int MediaEmployersPerProcess, int HiddenProcessCount, int HiddenEmployersCount)
+public class ToyotaTableGroup(string CreationDate, int TotalTables,
+    int TotalEmployers, int MediaEmployersPerProcess, int HiddenProcessCount, int HiddenEmployersCount,
+    List<ToyotaProcessTable> TableGroup)
 {
-    public List<ToyotaProcessTable> TableGroup { get; set; } = TableGroup;
     public string CreationDate { get; set; } = CreationDate;
     public int HiddenProcessCount { get; set; } = HiddenProcessCount;
     public int HiddenEmployersCount { get; set; } = HiddenEmployersCount;
@@ -11,4 +11,5 @@ public class ToyotaTableGroup(string CreationDate, List<ToyotaProcessTable> Tabl
     public int TotalProcess { get; set; } = TotalTables;
     public int TotalEmployers { get; set; } = TotalEmployers;
     public int MediaEmployersPerProcess { get; set; } = MediaEmployersPerProcess;
+    public List<ToyotaProcessTable> TableGroup { get; set; } = TableGroup;
 }

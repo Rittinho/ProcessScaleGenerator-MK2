@@ -334,7 +334,7 @@
                     <Label
                         FontSize="40"
                         HorizontalTextAlignment="Center"
-                        Text="Ultima tabela criada" />
+                        Text="Vizualizar tabela" />
 
                     <Border
                         Grid.Row="1"
@@ -342,22 +342,11 @@
                         StrokeThickness="0"
                         Style="{StaticResource Border.Radius8}">
 
-                        <CollectionView
-                            HorizontalOptions="Fill"
-                            ItemTemplate="{StaticResource TableGrupData}"
-                            ItemsSource="{Binding Grup}"
-                            SelectionMode="None"
-                            VerticalOptions="Fill">
+                        <ScrollView>
 
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout
-                                    HorizontalItemSpacing="10"
-                                    Orientation="Vertical"
-                                    Span="5"
-                                    VerticalItemSpacing="10" />
-                            </CollectionView.ItemsLayout>
+                            <VerticalStackLayout x:Name="MainContainer" />
 
-                        </CollectionView>
+                        </ScrollView>
 
                     </Border>
 
@@ -382,9 +371,10 @@
                 <buttons:IconButton
                     Grid.Column="1"
                     BackgroundColorCode="{StaticResource ToyotaBlue}"
+                    Event="{Binding SaveTableCommand}"
                     FontSize="20"
                     StrokeColorCode="{StaticResource ToyotaBlue}"
-                    TextContent="Pendente"
+                    TextContent="Salvar tabela"
                     Unicode="Book" />
 
             </Grid>

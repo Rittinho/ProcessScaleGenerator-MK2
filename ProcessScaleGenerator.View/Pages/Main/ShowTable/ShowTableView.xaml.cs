@@ -3,7 +3,6 @@ using Microsoft.Maui.Controls.Shapes;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using ProcessScaleGenerator.View.Components.Elements;
 using ProcessScaleGenerator.ViewModel.Pages.Main.ShowTable;
-using System.Collections.Specialized;
 
 namespace ProcessScaleGenerator.View.Pages.Main.ShowTable;
 

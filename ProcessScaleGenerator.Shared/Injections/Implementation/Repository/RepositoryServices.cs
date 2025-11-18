@@ -23,9 +23,33 @@ public partial class RepositoryServices : IRepositoryServices
 
         lock (_locker)
         {
-            _tableData = _jsonServices.LoadTableGroupJson() ?? [];
-            _employeeData = _jsonServices.LoadEmployeeJson() ?? [];
-            _processData = _jsonServices.LoadProcessJson() ?? [];
+            try
+            {
+                _tableData = _jsonServices.LoadTableGroupJson();
+            }
+            catch
+            {
+                _messenger.Send(new TableGrupsNull(true));
+                _tableData = [];
+            }
+            try
+            {
+                _employeeData = _jsonServices.LoadEmployeeJson();
+            }
+            catch
+            {
+                _messenger.Send(new EmployeesNull(true));
+                _employeeData = [];
+            }
+            try
+            {
+                _processData = _jsonServices.LoadProcessJson();
+            }
+            catch
+            {
+                _messenger.Send(new ProcessesNull(true));
+                _processData = [];
+            }
         }
     }
 

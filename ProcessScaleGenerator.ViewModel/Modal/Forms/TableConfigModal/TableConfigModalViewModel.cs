@@ -28,7 +28,7 @@ public partial class TableConfigModalViewModel : ObservableObject
     private void BackButton()
     {
         var processes = ProcessList.Where(p => p.Hidded).ToList();
-        var employee = EmployeeList.Where(e => e.Hidded).ToList() ;
+        var employee = EmployeeList.Where(e => e.Hidded).ToList();
         WeakReferenceMessenger.Default.Send(new Result(new(processes,employee)));
         _messenger.Send(new HiddedEmployeesCountChanged(employee.Count));
         _messenger.Send(new HiddedProcessesCountChanged(processes.Count));

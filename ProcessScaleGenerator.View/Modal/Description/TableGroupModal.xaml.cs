@@ -9,6 +9,7 @@ namespace ProcessScaleGenerator.View.Modal.Description;
 public partial class TableGroupModal : Popup
 {
 	private ToyotaTableGroup _toyotaTableGroup;
+
 	public List<ToyotaProcessTable> Tables;
     public TableGroupModal(ToyotaTableGroup toyotaTableGroup)
 	{

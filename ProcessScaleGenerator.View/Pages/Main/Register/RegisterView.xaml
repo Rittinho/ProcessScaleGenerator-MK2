@@ -212,25 +212,40 @@
 
                             </ScrollView>
 
-                            <Grid Grid.Row="1" IsVisible="{Binding IsInCreateMode}">
+                            <Grid
+                                Grid.Row="1"
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="6"
+                                IsVisible="{Binding IsInCreateMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="#FF4C4C"
+                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
                                     Event="{Binding CreateNewProcessCommand}"
                                     FontSize="20"
                                     TextContent="Criar processo"
                                     Unicode="{DynamicResource FAS_CirclePlus}" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource Tertiary}"
+                                    BorderColor="{StaticResource ToyotaLightRed}"
+                                    BorderWidth="0.7"
+                                    Command="{Binding CreateNewProcessCommand}"
+                                    FontFamily="FAS"
+                                    FontSize="20"
+                                    Text="{DynamicResource FAS_Gear}" />
 
                             </Grid>
 
                             <Grid
                                 Grid.Row="1"
                                 ColumnDefinitions="*,*"
-                                ColumnSpacing="10"
+                                ColumnSpacing="6"
                                 IsVisible="{Binding IsInEditMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="#FF4C4C"
+                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
                                     Event="{Binding CancelUpdateProcessCommand}"
                                     FontSize="20"
                                     TextContent="Cancelar alterações"
@@ -238,7 +253,7 @@
 
                                 <buttons:IconButton
                                     Grid.Column="1"
-                                    BackgroundColorCode="#0078D7"
+                                    BackgroundColorCode="{StaticResource ToyotaLightBlue}"
                                     Event="{Binding SaveUpdateProcessCommand}"
                                     FontSize="20"
                                     TextContent="Salvar alterações"
@@ -411,14 +426,31 @@
 
                             </VerticalStackLayout>
 
-                            <Grid Grid.Row="1" IsVisible="{Binding IsInCreateMode}">
+
+
+                            <Grid
+                                Grid.Row="1"
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="6"
+                                IsVisible="{Binding IsInCreateMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="#FF4C4C"
+                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
                                     Event="{Binding CreateNewEmployeeCommand}"
                                     FontSize="20"
                                     TextContent="Criar processo"
                                     Unicode="{DynamicResource FAS_CirclePlus}" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource Tertiary}"
+                                    BorderColor="{StaticResource ToyotaLightRed}"
+                                    BorderWidth="0.7"
+                                    Command="{Binding CreateNewProcessCommand}"
+                                    FontFamily="FAS"
+                                    FontSize="20"
+                                    Text="{DynamicResource FAS_Gear}" />
 
                             </Grid>
 
@@ -429,7 +461,7 @@
                                 IsVisible="{Binding IsInEditMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="#FF4C4C"
+                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
                                     Event="{Binding CancelUpdateEmployeeCommand}"
                                     FontSize="20"
                                     TextContent="Cancelar alterações"
@@ -437,7 +469,7 @@
 
                                 <buttons:IconButton
                                     Grid.Column="1"
-                                    BackgroundColorCode="#0078D7"
+                                    BackgroundColorCode="{StaticResource ToyotaLightBlue}"
                                     Event="{Binding SaveUpdateEmployeeCommand}"
                                     FontSize="20"
                                     TextContent="Salvar alterações"

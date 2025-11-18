@@ -54,7 +54,10 @@
 
         </Border>
 
-        <Border Padding="0,5,0,0" StrokeThickness="0">
+        <Border
+            Grid.Row="1"
+            Padding="0,5,0,0"
+            StrokeThickness="0">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="0,0,14,14" />
