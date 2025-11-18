@@ -37,15 +37,15 @@ namespace ProcessScaleGenerator
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 
+                    fonts.AddFont("JetBrainsMonoNL-Regular.ttf", "JetBrains");
+                    fonts.AddFont("Segoe UI.ttf", "Segoe");
+                    fonts.AddFont("Rubik-Regular.ttf", "Rubik");
                     fonts.AddFont("ToyotaFont.otf", "TOYOTA");
 
                     fonts.AddFont("FAR.otf", "FAR");
                     fonts.AddFont("FAS.otf", "FAS");
                     fonts.AddFont("FAB.otf", "FAB");
                 });
-
-#if DEBUG
-            builder.Logging.AddDebug();
 
             builder.Services.AddSingleton<IMessagingServices, MessagingServices>();
             builder.Services.AddSingleton<INavigationServices, NavigationServices>();
@@ -73,10 +73,12 @@ namespace ProcessScaleGenerator
             builder.Services.AddTransient<ToyotaProcessModel>();
             builder.Services.AddTransient<CreateTableModel>();
 
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
             var app = builder.Build();
 
             ServiceProvider = app.Services;
-#endif
 
             return app;
         }

@@ -17,7 +17,7 @@ public partial class RepositoryServices
         lock (_locker)
         {
             _tableData.Add(newTableGroup);
-            _jsonServices.SaveTableGroupJson(_tableData);
+            _jsonServices.SaveTableGroupJson(newTableGroup);
             _messenger.Send(new TableGroupAddedMessage(newTableGroup));
         }
 
@@ -33,7 +33,7 @@ public partial class RepositoryServices
             if (!_tableData.Remove(tableGroup))
                 return false;
 
-            _jsonServices.SaveTableGroupJson(_tableData);
+            _jsonServices.DeleteTableFileJson(tableGroup.CreationDate);
             _messenger.Send(new TableGroupRemovedMessage(tableGroup));
         }
 

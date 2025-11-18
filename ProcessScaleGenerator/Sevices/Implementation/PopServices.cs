@@ -14,18 +14,9 @@ namespace ToyotaProcessManager.Services.Injections.Implementation;
 
 public class PopServices : IPopServices
 {
-    public async Task ShowEmployeePopup(ToyotaEmployee toyotaEmployee)
-    {
-        var page = GetCurrentPage();
-
-        await page!.ShowPopupAsync(new EmployeeDescriptionModal(toyotaEmployee));
-    }
-    public async Task ShowProcessPopup(ToyotaProcess toyotaProcess)
-    {
-        var page = GetCurrentPage();
-
-        await page!.ShowPopupAsync(new ProcessDescriptionModal(toyotaProcess));
-    }
+    public async Task ShowEmployeePopup(ToyotaEmployee toyotaEmployee) => await GetCurrentPage().ShowPopupAsync(new EmployeeDescriptionModal(toyotaEmployee));
+    public async Task ShowProcessPopup(ToyotaProcess toyotaProcess) => await GetCurrentPage().ShowPopupAsync(new ProcessDescriptionModal(toyotaProcess));
+    public async Task ShowTableGroupPopup(ToyotaTableGroup toyotaTableGroup) => await GetCurrentPage().ShowPopupAsync(new TableGroupModal(toyotaTableGroup));
 
     public async Task<IconParameters> IconPickerPopup(IconParameters iconParameters)
     {
@@ -50,13 +41,13 @@ public class PopServices : IPopServices
 
         return result.Result;
     }
-    public async Task<ToyotaTableConfiguration> TableConfigPopup()
+    public async Task<HiddenFromTable> TableConfigPopup()
     {
         var page = GetCurrentPage();
 
         var vm = MauiProgram.ServiceProvider.GetRequiredService<TableConfigModalViewModel>();
 
-        IPopupResult<ToyotaTableConfiguration> result = await page!.ShowPopupAsync<ToyotaTableConfiguration>(new TableConfigModal(vm));
+        IPopupResult<HiddenFromTable> result = await page!.ShowPopupAsync<HiddenFromTable>(new TableConfigModal(vm));
 
         if (result.WasDismissedByTappingOutsideOfPopup)
         {

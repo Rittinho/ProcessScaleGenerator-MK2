@@ -49,6 +49,9 @@
 	  <MauiXaml Update="Modal\Description\ProcessDescriptionModal.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Modal\Description\TableGroupModal.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Modal\Forms\IconSelecterModal.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

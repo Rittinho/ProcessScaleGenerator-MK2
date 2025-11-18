@@ -12,3 +12,6 @@ public class ProcessRemovedMessage(ToyotaProcess removedProcess) : ValueChangedM
 public class ProcessesCountChanged(int processesCount) : ValueChangedMessage<int>(processesCount)
 {
 }
+public class HiddedProcessesCountChanged(int hiddedProcessesCount) : ValueChangedMessage<int>(hiddedProcessesCount)
+{
+}

@@ -50,8 +50,8 @@
     <!--  =========================================  -->
 
     <Style x:Key="Border.Base" TargetType="Border">
-        <Setter Property="StrokeThickness" Value="0" />
-        <Setter Property="Padding" Value="10" />
+        <Setter Property="StrokeThickness" Value=".6" />
+        <Setter Property="Padding" Value="6" />
         <Setter Property="BackgroundColor" Value="Transparent" />
     </Style>
 
@@ -175,6 +175,50 @@
         </Setter>
     </Style>
 
+    <Style
+        x:Key="Border.Radius14.DownLeftSharp"
+        BasedOn="{StaticResource Border.Radius14}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Medium.DownLeftSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius14.DownRightSharp"
+        BasedOn="{StaticResource Border.Radius14}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Medium.DownRightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius14.LeftRightSharp"
+        BasedOn="{StaticResource Border.Radius14}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Medium.LeftRightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius14.RightLeftSharp"
+        BasedOn="{StaticResource Border.Radius14}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Medium.RightLeftSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--  (As demais variantes seguem o mesmo padrão, omitidas por brevidade)  -->
 
     <!--  =========================================  -->
@@ -189,6 +233,72 @@
         <Setter Property="StrokeShape">
             <Setter.Value>
                 <RoundRectangle CornerRadius="{StaticResource CornerRadius.Small}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius8.LeftSharp"
+        BasedOn="{StaticResource Border.Radius8}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Small.LeftSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius8.RightSharp"
+        BasedOn="{StaticResource Border.Radius8}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Small.RightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius8.DownLeftSharp"
+        BasedOn="{StaticResource Border.Radius8}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Small.DownLeftSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius8.DownRightSharp"
+        BasedOn="{StaticResource Border.Radius8}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Small.DownRightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius8.LeftRightSharp"
+        BasedOn="{StaticResource Border.Radius8}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Small.LeftRightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Radius8.RightLeftSharp"
+        BasedOn="{StaticResource Border.Radius8}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Small.RightLeftSharp}" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -216,6 +326,61 @@
         <Setter Property="StrokeShape">
             <Setter.Value>
                 <RoundRectangle CornerRadius="{StaticResource CornerRadius.Circle.LeftSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Circle.RightSharp"
+        BasedOn="{StaticResource Border.Circle}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Circle.RightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Circle.DownLeftSharp"
+        BasedOn="{StaticResource Border.Circle}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Circle.DownLeftSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Circle.DownRightSharp"
+        BasedOn="{StaticResource Border.Circle}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Circle.DownRightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Circle.LeftRightSharp"
+        BasedOn="{StaticResource Border.Circle}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Circle.LeftRightSharp}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="Border.Circle.RightLeftSharp"
+        BasedOn="{StaticResource Border.Circle}"
+        TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="{StaticResource CornerRadius.Circle.RightLeftSharp}" />
             </Setter.Value>
         </Setter>
     </Style>

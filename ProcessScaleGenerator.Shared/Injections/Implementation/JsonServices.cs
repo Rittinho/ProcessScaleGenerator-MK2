@@ -10,14 +10,17 @@ public class JsonServices : IJsonServices
         WriteIndented = true
     };
 
-    private string _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Toyota repository");
+    private readonly string _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Toyota repository");
+
+    private readonly string _tableFilePath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Toyota repository"), "Tableas salvas");
 
     public JsonServices()
-    {
+    {       
         if (!Directory.Exists(_filePath))
-        {
             Directory.CreateDirectory(_filePath);
-        }
+            
+        if (!Directory.Exists(_tableFilePath))
+            Directory.CreateDirectory(_tableFilePath);
     }
 
     public void SaveEmployeeJson(List<ToyotaEmployee> data)
@@ -27,7 +30,7 @@ public class JsonServices : IJsonServices
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
 
-        using (StreamWriter streamWriter = new StreamWriter(jsonPath, false, Encoding.UTF8))
+        using (StreamWriter streamWriter = new (jsonPath, false, Encoding.UTF8))
         {
             var json = JsonSerializer.Serialize(data, options);
             streamWriter.Write(json);
@@ -40,41 +43,42 @@ public class JsonServices : IJsonServices
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
 
-        using (StreamWriter streamWriter = new StreamWriter(jsonPath, false, Encoding.UTF8))
+        using (StreamWriter streamWriter = new (jsonPath, false, Encoding.UTF8))
         {
             var json = JsonSerializer.Serialize(data, options);
             streamWriter.Write(json);
         }
     }
-    public void SaveTableGroupJson(List<ToyotaTableGroup> data)
+    public void SaveTableGroupJson(ToyotaTableGroup data)
     {
-        var jsonPath = Path.Combine(_filePath, "table-group.json");
+        var cultura = new System.Globalization.CultureInfo("pt-BR");
+        DateTime date = DateTime.ParseExact(data.CreationDate, "dd/MM/yyyy HH:mm:ss", cultura);
+        var jsonPath = Path.Combine(_tableFilePath, $"table_group_{date:dd-MM-yyyy_HH-mm-ss}.json");
 
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
 
-        using (StreamWriter streamWriter = new StreamWriter(jsonPath, false, Encoding.UTF8))
+        using (StreamWriter streamWriter = new (jsonPath, false, Encoding.UTF8))
         {
             var json = JsonSerializer.Serialize(data, options);
             streamWriter.Write(json);
         }
-        throw new NotImplementedException();
     }
     public List<ToyotaEmployee> LoadEmployeeJson()
     {
         var jsonPath = Path.Combine(_filePath, "employee.json");
 
         if (!File.Exists(jsonPath))
-            return null;
+            throw new Exception("Sem arquivos de tabela!");
 
-        List<ToyotaEmployee> result = null;
+        List<ToyotaEmployee> result = [];
 
         using (StreamReader stream = new(jsonPath))
         {
             string json = stream.ReadToEnd();
             try
             {
-                result = JsonSerializer.Deserialize<List<ToyotaEmployee>>(json, options);
+                result = JsonSerializer.Deserialize<List<ToyotaEmployee>>(json, options)!;
             }
             catch
             {
@@ -89,7 +93,7 @@ public class JsonServices : IJsonServices
         var jsonPath = Path.Combine(_filePath, "process.json");
 
         if (!File.Exists(jsonPath))
-            return null;
+            throw new Exception("Sem arquivos de tabela!");
 
         List<ToyotaProcess> result = [];
 
@@ -109,27 +113,66 @@ public class JsonServices : IJsonServices
         return result;
     }
     public List<ToyotaTableGroup> LoadTableGroupJson()
-    {
-        var jsonPath = Path.Combine(_filePath, "table-group.json");
-
-        if (!File.Exists(jsonPath))
-            return null;
-
-        List<ToyotaTableGroup> result = null;
-
-        using (StreamReader stream = new(jsonPath))
         {
-            string json = stream.ReadToEnd();
-            try
+        string[] files = Directory.GetFiles(_tableFilePath, "*.json");
+
+        if (files.Length == 0)
+            throw new Exception("Sem arquivos de tabela!");
+
+        List<ToyotaTableGroup> result = [];
+
+        foreach (var json in files)
+        {
+            using (StreamReader stream = new(json))
             {
-                result = JsonSerializer.Deserialize<List<ToyotaTableGroup>>(json, options);
-            }
-            catch
-            {
-                return null;
+                string jsonToRead = stream.ReadToEnd();
+                try
+                {
+                    result.Add(JsonSerializer.Deserialize<ToyotaTableGroup>(jsonToRead, options)!);
+                }
+                catch
+                {
+                    continue;
+                }
             }
         }
 
         return result;
+    }
+
+    public void DeleteFileJson(string fileName)
+    {
+        var jsonPath = Path.Combine(_filePath, $"{fileName}.json");
+
+        if (!File.Exists(jsonPath))
+            throw new Exception("Arquivo não existe!");
+
+        try
+        {
+            File.Delete(jsonPath);
+        }
+        catch (IOException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public void DeleteTableFileJson(string creationDate)
+    {
+        var cultura = new System.Globalization.CultureInfo("pt-BR");
+        DateTime date = DateTime.ParseExact(creationDate, "dd/MM/yyyy HH:mm:ss", cultura);
+        var jsonPath = Path.Combine(_tableFilePath, $"table_group_{date:dd-MM-yyyy_HH-mm-ss}.json");
+
+        if (!File.Exists(jsonPath))
+            throw new Exception("Arquivo não existe!");
+
+        try
+        {
+            File.Delete(jsonPath);
+        }
+        catch (IOException ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 }

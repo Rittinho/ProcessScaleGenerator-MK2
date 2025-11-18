@@ -6,8 +6,9 @@ public interface IPopServices
 {
     Task ShowEmployeePopup(ToyotaEmployee toyotaEmployee);
     Task ShowProcessPopup(ToyotaProcess toyotaProcess);
+    Task ShowTableGroupPopup(ToyotaTableGroup toyotaTableGroup);
     Task<IconParameters> IconPickerPopup(IconParameters iconParameters);
-    Task<ToyotaTableConfiguration> TableConfigPopup();
+    Task<HiddenFromTable> TableConfigPopup();
     Task WaringPopup(Tuple<string, string> token);
     Task WaringPopup(string title, string description);
     Task<bool> ConfirmPopup(Tuple<string, string> token);

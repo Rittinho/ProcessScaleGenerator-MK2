@@ -11,18 +11,22 @@
 
     <Grid Padding="10" RowDefinitions="Auto,*">
 
-        <Border BackgroundColor="Tomato" Style="{StaticResource Border.Base}">
+        <Border BackgroundColor="{StaticResource Secondary}" Stroke="Tomato">
 
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="24,24,0,0" />
+                <RoundRectangle CornerRadius="14,14,4,4" />
             </Border.StrokeShape>
 
-            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+            <Grid
+                Padding="6"
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="10">
 
                 <buttons:IconButton
                     BackgroundColorCode="{StaticResource Tertiary}"
                     Event="{Binding SwitchToRegisterCommand}"
                     FontSize="20"
+                    StrokeColorCode="Tomato"
                     TextContent="Registros"
                     Unicode="{StaticResource FAS_AddressBook}" />
 
@@ -31,6 +35,7 @@
                     BackgroundColorCode="{StaticResource Tertiary}"
                     Event="{Binding SwitchToCreateTablesCommand}"
                     FontSize="20"
+                    StrokeColorCode="Tomato"
                     TextContent="Criar tabela"
                     Unicode="{StaticResource FAS_Table}" />
 
@@ -49,23 +54,19 @@
 
         </Border>
 
-        <Grid Grid.Row="1">
+        <Border Padding="0,5,0,0" StrokeThickness="0">
 
-            <Border BackgroundColor="{StaticResource Tertiary}" Style="{StaticResource Border.Base}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,14,14" />
+            </Border.StrokeShape>
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="0,0,24,24" />
-                </Border.StrokeShape>
+            <ScrollView>
 
-                <ScrollView>
+                <VerticalStackLayout x:Name="MainContainer" />
 
-                    <VerticalStackLayout x:Name="MainContainer" />
+            </ScrollView>
 
-                </ScrollView>
-
-            </Border>
-
-        </Grid>
+        </Border>
 
     </Grid>
 

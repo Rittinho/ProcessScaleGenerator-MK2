@@ -4,6 +4,8 @@ namespace ProcessScaleGenerator.Shared.Injections.Contract;
 
 public interface IRepositoryServices
 {
+    void SaveAllData();
+
     bool SaveNewEmployee(ToyotaEmployee newEmployee);
     bool RemoveEmployee(ToyotaEmployee employee);
     List<ToyotaEmployee> GetAllEmployees();

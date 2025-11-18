@@ -81,6 +81,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\BaseElements\PopupsStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\BaseElements\PresenterElements.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

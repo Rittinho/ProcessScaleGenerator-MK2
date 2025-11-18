@@ -37,7 +37,7 @@ public class ToyotaEmployeeModel
             throw new Exception("Valor nulo!");
 
         if (CheckSameEmployee(newToyotaEmployee))
-            throw new Exception("Já existe esse processo!");
+            throw new Exception("Já existe esse Colaborador!");
 
         _repositoryServices.RemoveEmployee(oldToyotaEmployee);
         _repositoryServices.SaveNewEmployee(newToyotaEmployee);
@@ -53,7 +53,7 @@ public class ToyotaEmployeeModel
     public bool CheckSameEmployee(ToyotaEmployee toyotaEmployee)
     {
         foreach (var employee in _repositoryServices.GetAllEmployees())
-            if (employee.Name == toyotaEmployee.Name)
+            if (employee.Name == toyotaEmployee.Name && employee.Position == toyotaEmployee.Position)
                 return true;
 
         return false;

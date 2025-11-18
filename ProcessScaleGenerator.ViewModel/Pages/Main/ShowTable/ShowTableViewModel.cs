@@ -12,6 +12,9 @@ public partial class ShowTableViewModel : ObservableObject
 {
     private readonly CreateTableModel _createTableModel;
 
+    public ObservableCollection<ToyotaProcessTable> Tables { get; set; } = [];
+    public ToyotaTableGroup LastTableGroup { get; set; }
+
     private readonly IRepositoryServices _repositoryServices;
     private readonly INavigationServices _navigationServices;
 
@@ -20,8 +23,12 @@ public partial class ShowTableViewModel : ObservableObject
     {
         _repositoryServices = repositoryServices;
         _navigationServices = navigationServices;
-        Grup = [.._repositoryServices.GetAllTables()];
+
+        LastTableGroup = _repositoryServices.GetLastTable();
+
+        Tables = [.. LastTableGroup.TableGroup];
     }
+
     [RelayCommand]
     public async Task SwitchToRegister()
     {
@@ -32,4 +39,5 @@ public partial class ShowTableViewModel : ObservableObject
     {
         _navigationServices.GoToPageAsync(RegisteredPages.CreateTable);
     }
+
 }

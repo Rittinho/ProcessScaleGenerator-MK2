@@ -12,4 +12,7 @@ public class EmployeeRemovedMessage(ToyotaEmployee removedEmployee) : ValueChang
 public class EmployeesCountChanged(int employeesCount) : ValueChangedMessage<int>(employeesCount)
 {
 }
+public class HiddedEmployeesCountChanged(int HiddedEmployeesCount) : ValueChangedMessage<int>(HiddedEmployeesCount)
+{
+}
 

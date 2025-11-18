@@ -34,7 +34,6 @@
                     TextColor="White"
                     VerticalOptions="Center" />
 
-
                 <CollectionView
                     Grid.Row="2"
                     HorizontalOptions="Fill"

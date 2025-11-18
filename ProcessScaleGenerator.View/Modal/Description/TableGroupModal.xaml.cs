@@ -1,30 +1,35 @@
-using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Controls.Shapes;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using ProcessScaleGenerator.View.Components.Elements;
-using ProcessScaleGenerator.ViewModel.Pages.Main.ShowTable;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 
-namespace ProcessScaleGenerator.View.Pages.Main.ShowTable;
+namespace ProcessScaleGenerator.View.Modal.Description;
 
-public partial class ShowTableView : ContentPage
+public partial class TableGroupModal : Popup
 {
-    public ShowTableView(ShowTableViewModel showTableViewModel)
-    {
-        InitializeComponent();
-        BindingContext = showTableViewModel;
+	private ToyotaTableGroup _toyotaTableGroup;
+	public List<ToyotaProcessTable> Tables;
+    public TableGroupModal(ToyotaTableGroup toyotaTableGroup)
+	{
+		InitializeComponent();
 
-        TableGroupRender(showTableViewModel.Tables);
-    }
-    private void TableGroupRender(IEnumerable<ToyotaProcessTable> processGroups)
+		_toyotaTableGroup = toyotaTableGroup;
+
+		Tables = _toyotaTableGroup.TableGroup;
+
+        TableGroupRender(Tables);
+
+	}
+    private void TableGroupRender(List<ToyotaProcessTable> processGroups)
     {
-        MainContainer.Clear();
+        Container.Clear();
 
         if (processGroups == null)
             return;
         var process = processGroups.ToArray();
 
-        var tableGrid = new Grid { ColumnSpacing = 10, RowSpacing = 10};
+        var tableGrid = new Grid { ColumnSpacing = 10, RowSpacing = 10 };
 
         for (int j = 0; j < 5; j++)
         {
@@ -53,7 +58,7 @@ public partial class ShowTableView : ContentPage
             }
         }
 
-        MainContainer.Children.Add(tableGrid);
+        Container.Children.Add(tableGrid);
     }
     private Border ProcessTableContainer(ToyotaProcessTable processGroup)
     {
@@ -135,10 +140,9 @@ public partial class ShowTableView : ContentPage
             StrokeShape = new RoundRectangle { CornerRadius = 24 },
             Padding = new Thickness(10, 5, 10, 5),
             Content = nameLabel,
-            VerticalOptions = LayoutOptions.Center 
+            VerticalOptions = LayoutOptions.Center
         };
 
         return border;
     }
 }
-

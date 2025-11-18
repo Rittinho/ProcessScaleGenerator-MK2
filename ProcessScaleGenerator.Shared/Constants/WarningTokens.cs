@@ -27,6 +27,14 @@
             "Alterar informações do colaborador?",
             "Essa ação não tem volta!"
         );
+        public static Tuple<string, string> UpdatedEmployee = new(
+            "Colaborador Alterado!",
+            "Informações do colaborador alteradas com sucesso!"
+        );
+        public static Tuple<string, string> UpdatedProcess = new(
+            "Processo Alterado!",
+            "Informações do processo alteradas com sucesso!"
+        );
         public static Tuple<string, string> DeleteEmployee = new(
             "Excluir colaborador?",
             "Essa ação não tem volta!"

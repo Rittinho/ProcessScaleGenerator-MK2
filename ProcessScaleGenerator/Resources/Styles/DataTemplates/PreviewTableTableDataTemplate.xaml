@@ -4,61 +4,80 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons;assembly=ProcessScaleGenerator.View"
-    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View">
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View"
+    xmlns:vm="clr-namespace:ProcessScaleGenerator.ViewModel.Pages.Main.CreateTable;assembly=ProcessScaleGenerator.ViewModel">
 
     <DataTemplate x:Key="TablePreviewData">
 
         <Border
-            BackgroundColor="#242424"
+            BackgroundColor="{StaticResource Primary}"
             StrokeShape="8"
             StrokeThickness="0">
 
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        Command="{Binding Path=ShowTableGroupCommand, Source={RelativeSource AncestorType={x:Type vm:CreateTableViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        Text="Exibir" />
+                    <MenuFlyoutItem
+                        Command="{Binding Path=DeleteTableGroupCommand, Source={RelativeSource AncestorType={x:Type vm:CreateTableViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        Text="Excluir" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
+
             <Grid
                 Padding="5"
-                ColumnDefinitions="*,*,2*,0.7*,0.7*"
+                ColumnDefinitions="*,*,2*"
                 ColumnSpacing="5">
 
                 <Border
-                    BackgroundColor="#424242"
-                    StrokeShape="8"
-                    StrokeThickness="0">
+                    BackgroundColor="{StaticResource Secondary}"
+                    Stroke="{StaticResource ProcessGradient}"
+                    Style="{StaticResource Border.Radius8}">
 
-                    <Label Text="{Binding HiddenProcessCount}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="TailTruncation"
+                        Text="{Binding TotalProcess, StringFormat='P: {0}'}"
+                        VerticalOptions="Center" />
 
                 </Border>
 
                 <Border
                     Grid.Column="1"
-                    BackgroundColor="#424242"
-                    StrokeShape="8"
-                    StrokeThickness="0">
+                    BackgroundColor="{StaticResource Secondary}"
+                    Stroke="{StaticResource ProcessGradient}"
+                    Style="{StaticResource Border.Radius8}">
 
-                    <Label Text="{Binding HiddenEmployersCount}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        HorizontalOptions="Center"
+                        LineBreakMode="TailTruncation"
+                        Text="{Binding TotalEmployers, StringFormat='C: {0}'}"
+                        VerticalOptions="Center" />
 
                 </Border>
 
                 <Border
                     Grid.Column="2"
-                    BackgroundColor="#424242"
-                    StrokeShape="8"
-                    StrokeThickness="0">
+                    BackgroundColor="{StaticResource Secondary}"
+                    Stroke="{StaticResource ToyotaBlue}"
+                    Style="{StaticResource Border.Radius8}">
 
-                    <Label Text="{Binding CreationDate}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        LineBreakMode="TailTruncation"
+                        Text="{Binding CreationDate}"
+                        VerticalOptions="Center" />
 
                 </Border>
-
-                <buttons:IconButton
-                    Grid.Column="3"
-                    BackgroundColorCode="Transparent"
-                    FontSize="20"
-                    Unicode="Eye" />
-
-                <buttons:IconButton
-                    Grid.Column="4"
-                    BackgroundColorCode="Transparent"
-                    FontSize="20"
-                    Unicode="Trash" />
-
 
             </Grid>
 

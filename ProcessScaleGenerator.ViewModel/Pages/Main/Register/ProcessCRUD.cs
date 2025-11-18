@@ -65,6 +65,8 @@ public partial class RegisterViewModel
     [RelayCommand]
     public async Task UpdateProcess(ToyotaProcess? toyotaProcess)
     {
+        _currentProcessInEdit = toyotaProcess;
+
         if (!CheckIfAnythingHasChangedProcess())
         {
             if (!await _popServices.ConfirmPopup(WarningTokens.DescarteUpdate))
@@ -73,7 +75,6 @@ public partial class RegisterViewModel
             ClearProcessFilds();
         }
 
-        _currentProcessInEdit = toyotaProcess;
         SwitchMode(RegisterMode.Edit);
         LoadProcessFilds();
     }
@@ -92,6 +93,9 @@ public partial class RegisterViewModel
             SwitchMode(RegisterMode.Create);
             return;
         }
+
+        if (!await _popServices.ConfirmPopup(WarningTokens.UpdateProcess))
+            return;
 
         try
         {

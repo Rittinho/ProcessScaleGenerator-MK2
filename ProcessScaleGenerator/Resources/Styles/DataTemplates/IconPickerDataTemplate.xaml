@@ -5,10 +5,9 @@
     <DataTemplate x:Key="DotIconData">
 
         <Border
-            BackgroundColor="#282828"
+            BackgroundColor="{StaticResource Primary}"
             HeightRequest="55"
-            StrokeShape="14"
-            StrokeThickness="0"
+            Style="{StaticResource Border.Radius8}"
             WidthRequest="55">
             <Label
                 FontFamily="FAS"

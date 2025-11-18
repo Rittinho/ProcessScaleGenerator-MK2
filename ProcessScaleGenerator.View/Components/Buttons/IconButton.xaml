@@ -5,7 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="Root">
 
-    <Border BackgroundColor="{Binding Path=BackgroundColorCode, Source={x:Reference Root}}" Style="{StaticResource Border.Radius14}">
+    <Border
+        BackgroundColor="{Binding Path=BackgroundColorCode, Source={x:Reference Root}}"
+        Stroke="{Binding Path=StrokeColorCode, Source={x:Reference Root}}"
+        StrokeThickness=".6"
+        Style="{StaticResource Border.Radius8}">
 
         <HorizontalStackLayout Spacing="10">
 

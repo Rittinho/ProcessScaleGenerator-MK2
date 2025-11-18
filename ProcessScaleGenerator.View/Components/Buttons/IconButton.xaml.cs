@@ -16,6 +16,9 @@ public partial class IconButton : ContentView
     public static readonly BindableProperty BackgroundColorCodeProperty =
     BindableProperty.Create(nameof(BackgroundColorCode), typeof(Color), typeof(IconButton), default(Color));
 
+    public static readonly BindableProperty StrokeColorCodeProperty =
+    BindableProperty.Create(nameof(StrokeColorCode), typeof(Color), typeof(IconButton), default(Color));
+
     public static readonly BindableProperty FontColorCodeProperty =
     BindableProperty.Create(nameof(FontColorCode), typeof(Color), typeof(IconButton), default(Color));
 
@@ -44,6 +47,11 @@ public partial class IconButton : ContentView
     {
         get => (Color)GetValue(BackgroundColorCodeProperty);
         set => SetValue(BackgroundColorCodeProperty, value);
+    }
+    public Color StrokeColorCode
+    {
+        get => (Color)GetValue(StrokeColorCodeProperty);
+        set => SetValue(StrokeColorCodeProperty, value);
     }
     public Color FontColorCode
     {

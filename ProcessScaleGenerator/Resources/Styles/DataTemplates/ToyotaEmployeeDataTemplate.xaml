@@ -8,72 +8,66 @@
 
     <DataTemplate x:Key="ToastEmployeeStyle">
 
-        <VerticalStackLayout>
+        <Border
+            Padding="10,5,10,5"
+            BackgroundColor="{StaticResource Primary}"
+            Stroke="{StaticResource ProcessGradient}"
+            StrokeThickness="1"
+            Style="{StaticResource Border.Radius14}">
 
-            <Border
-                Padding="10,5,10,5"
-                BackgroundColor="{StaticResource Primary}"
-                Style="{StaticResource Border.Radius14}">
-
-                <Grid ColumnDefinitions="*,Auto,Auto,Auto">
-
-                    <!--  Name  -->
-                    <Border
-                        Margin="5,0,5,0"
-                        BackgroundColor="{StaticResource Secondary}"
-                        Style="{StaticResource Border.Radius14}">
-
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="25"
-                            HorizontalOptions="Center"
-                            LineBreakMode="TailTruncation"
-                            Text="{Binding Name}"
-                            VerticalOptions="Center" />
-
-                    </Border>
-
-                    <!--  Show-Button  -->
-                    <Button
-                        Grid.Column="1"
-                        BackgroundColor="Transparent"
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
                         Command="{Binding Path=ShowEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
                         CommandParameter="{Binding .}"
-                        CornerRadius="9999"
-                        FontFamily="FAS"
-                        FontSize="20"
-                        Text="{DynamicResource FAS_Eye}"
-                        TextColor="{StaticResource PrimaryDarkText}" />
-
-                    <!--  Update-Button  -->
-                    <Button
-                        Grid.Column="2"
-                        BackgroundColor="Transparent"
+                        Text="Exibir" />
+                    <MenuFlyoutItem
                         Command="{Binding Path=UpdateEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
                         CommandParameter="{Binding .}"
-                        CornerRadius="9999"
-                        FontFamily="FAS"
-                        FontSize="20"
-                        Text="{DynamicResource FAS_Pen}"
-                        TextColor="{StaticResource PrimaryDarkText}" />
-
-                    <!--  Delete-Button  -->
-                    <Button
-                        Grid.Column="3"
-                        BackgroundColor="Transparent"
+                        Text="Editar" />
+                    <MenuFlyoutItem
                         Command="{Binding Path=DeleteEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
                         CommandParameter="{Binding .}"
-                        CornerRadius="9999"
-                        FontFamily="FAS"
-                        FontSize="20"
-                        Text="{DynamicResource FAS_Trash}"
-                        TextColor="{StaticResource PrimaryDarkText}" />
+                        Text="Excluir" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
 
-                </Grid>
+            <Grid ColumnDefinitions="2*,*">
 
-            </Border>
+                <!--  Name  -->
+                <Border
+                    Margin="5,0,5,0"
+                    BackgroundColor="{StaticResource Secondary}"
+                    Style="{StaticResource Border.Radius14}">
 
-        </VerticalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="Center"
+                        LineBreakMode="TailTruncation"
+                        Text="{Binding Name}"
+                        VerticalOptions="Center" />
+
+                </Border>
+                <Border
+                    Grid.Column="1"
+                    Margin="5,0,5,0"
+                    BackgroundColor="{StaticResource Secondary}"
+                    Style="{StaticResource Border.Radius14}">
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="Center"
+                        LineBreakMode="TailTruncation"
+                        Text="{Binding Position}"
+                        VerticalOptions="Center" />
+
+                </Border>
+
+            </Grid>
+
+        </Border>
 
     </DataTemplate>
 
@@ -120,17 +114,7 @@
 
                     </Border>
 
-                    <!--  Show-Button  -->
-                    <Button
-                        Grid.Column="2"
-                        BackgroundColor="Transparent"
-                        Command="{Binding Path=ShowEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
-                        CommandParameter="{Binding .}"
-                        CornerRadius="9999"
-                        FontFamily="FAS"
-                        FontSize="20"
-                        Text="{DynamicResource FAS_Eye}"
-                        TextColor="White" />
+                    <CheckBox Grid.Column="2" IsChecked="{Binding Hidded}" />
 
                 </Grid>
 

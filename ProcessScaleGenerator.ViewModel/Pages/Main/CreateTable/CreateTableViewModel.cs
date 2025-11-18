@@ -9,11 +9,14 @@ using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using ToyotaProcessManager.Services.Injections.Contract;
+using static ProcessScaleGenerator.ViewModel.Pages.Main.Register.RegisterViewModel;
 
 namespace ProcessScaleGenerator.ViewModel.Pages.Main.CreateTable;
 
-public partial class CreateTableViewModel : ObservableObject, IRecipient<EmployeesCountChanged>, IRecipient<ProcessesCountChanged>
+public partial class CreateTableViewModel : ObservableObject, IRecipient<EmployeesCountChanged>, IRecipient<ProcessesCountChanged>,
+     IRecipient<HiddedEmployeesCountChanged>, IRecipient<HiddedProcessesCountChanged>, IRecipient<TableGroupRemovedMessage>, IRecipient<TableGroupAddedMessage>
 {
     private readonly IMessenger _messenger;
     private readonly IMessagingServices _messagingServices;
@@ -51,14 +54,21 @@ public partial class CreateTableViewModel : ObservableObject, IRecipient<Employe
         _messagingServices = messagingServices;
         _navigationServices = navigationServices;
 
-        HiddenEmployeesCount = 0;
-        HiddenProcessesCount = 1;
-
         _messenger.RegisterAll(this);
+
+        InitialLoad();
+
+    }
+
+    private void InitialLoad()
+    {
+        Tables = [.._createTableModel.GetAllTables()];
 
         EmployeesCount = _toyotaEmployeeModel.GetAllEmployees().Count;
         ProcessesCount = _toyotaProcessModel.GetAllProcesses().Count;
 
+        HiddenEmployeesCount = _toyotaEmployeeModel.GetAllEmployees().Where(E => E.Hidded).Count();
+        HiddenProcessesCount = _toyotaProcessModel.GetAllProcesses().Where(P => P.Hidded).Count();
     }
 
     [RelayCommand]
@@ -74,8 +84,28 @@ public partial class CreateTableViewModel : ObservableObject, IRecipient<Employe
     public async Task ConfigureTable()
     {
         var result = await _popServices.TableConfigPopup();
-    }
 
+    }
+    [RelayCommand]
+    public async Task ShowTableGroup(ToyotaTableGroup toyotaTableGroup)
+    {
+        if (toyotaTableGroup is null)
+        {
+            await _popServices.WaringPopup(WarningTokens.CorruptFile);
+            return;
+        }
+
+        await _popServices.ShowTableGroupPopup(toyotaTableGroup);
+    }
+    [RelayCommand]
+    public async Task DeleteTableGroup(ToyotaTableGroup toyotaTableGroup)
+    {
+        if (!await _popServices.ConfirmPopup(WarningTokens.DeleteProcess))
+            return;
+
+        if (_createTableModel.DeleteTable(toyotaTableGroup))
+            await _popServices.WaringPopup(WarningTokens.DeleteSuccess);
+    }
     void IRecipient<EmployeesCountChanged>.Receive(EmployeesCountChanged message)
     {
         _messagingServices.BeginInvokeOnMainThread(() =>
@@ -101,5 +131,35 @@ public partial class CreateTableViewModel : ObservableObject, IRecipient<Employe
     public async Task SwitchToRegister()
     {
         _navigationServices.GoToPageAsync(RegisteredPages.Register);
+    }
+
+    public void Receive(HiddedEmployeesCountChanged message)
+    {
+        _messagingServices.BeginInvokeOnMainThread(() =>
+        {
+            HiddenEmployeesCount = message.Value;
+        });
+    }
+
+    public void Receive(HiddedProcessesCountChanged message)
+    {
+        _messagingServices.BeginInvokeOnMainThread(() =>
+        {
+            HiddenProcessesCount = message.Value;
+        });
+    }
+
+    public void Receive(TableGroupRemovedMessage message)
+    {
+        _messagingServices.BeginInvokeOnMainThread(() =>
+        {
+            Tables.Remove(message.Value);
+        });
+    }
+
+    public void Receive(TableGroupAddedMessage message)
+    {
+        Tables.Add(message.Value);
+
     }
 }

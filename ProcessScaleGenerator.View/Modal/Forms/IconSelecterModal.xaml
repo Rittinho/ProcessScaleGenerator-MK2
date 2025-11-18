@@ -10,11 +10,11 @@
     x:Name="Root"
     Padding="-20"
     x:TypeArguments="local:IconParameters"
-    BackgroundColor="#424242"
-    MaximumWidthRequest="1080">
+    BackgroundColor="{StaticResource Tertiary}"
+    WidthRequest="1000">
 
     <Grid
-        ColumnDefinitions="*,3*"
+        ColumnDefinitions="*,2*"
         ColumnSpacing="20"
         RowDefinitions="Auto,*,Auto"
         RowSpacing="20">
@@ -32,7 +32,7 @@
         <!--  Icon preview  -->
         <elements:CircularIcon
             Grid.RowSpan="3"
-            ColorCode="{Binding SelectedColorCode}"
+            ColorCode="FFFFFF"
             IconSize="270"
             Unicode="{Binding SelectedUnicode}" />
 
@@ -40,100 +40,29 @@
         <Border
             Grid.Row="1"
             Grid.Column="1"
-            BackgroundColor="#424242"
-            StrokeShape="24"
-            StrokeThickness="0">
+            BackgroundColor="{StaticResource Secondary}"
+            Style="{StaticResource Border.Radius14}">
 
-            <Grid RowDefinitions="*,auto" RowSpacing="10">
+            <!--  Lista de icones  -->
+            <CollectionView
+                x:Name="IconCollection"
+                HorizontalOptions="Fill"
+                ItemTemplate="{DynamicResource DotIconData}"
+                ItemsSource="{Binding IconList}"
+                SelectionChangedCommand="{Binding IconSelectionChangedCommand}"
+                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference IconCollection}}"
+                SelectionMode="Single"
+                VerticalOptions="Fill"
+                VerticalScrollBarVisibility="Never">
 
-                <!--  Lista de icones  -->
-                <CollectionView
-                    x:Name="IconCollection"
-                    HorizontalOptions="Fill"
-                    ItemTemplate="{DynamicResource DotIconData}"
-                    ItemsSource="{Binding IconList}"
-                    SelectionChangedCommand="{Binding IconSelectionChangedCommand}"
-                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference IconCollection}}"
-                    SelectionMode="Single"
-                    VerticalOptions="Fill"
-                    VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="10"
+                        VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
 
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout
-                            Orientation="Vertical"
-                            Span="12"
-                            VerticalItemSpacing="5" />
-                    </CollectionView.ItemsLayout>
-
-
-                </CollectionView>
-
-                <!--  Container de cores  -->
-                <Border
-                    Grid.Row="1"
-                    Padding="10"
-                    Stroke="#4DA3FF"
-                    StrokeShape="24"
-                    StrokeThickness="5">
-
-                    <!--  Lista de cores  -->
-                    <CollectionView
-                        HorizontalOptions="Fill"
-                        ItemsSource="{Binding ColorsList}"
-                        MaximumWidthRequest="1200"
-                        SelectionChanged="SelectColor"
-                        SelectionMode="Single"
-                        VerticalOptions="Fill">
-
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical" Span="12" />
-                        </CollectionView.ItemsLayout>
-
-                        <CollectionView.ItemTemplate>
-
-                            <DataTemplate>
-
-                                <Border
-                                    BackgroundColor="{Binding .}"
-                                    HeightRequest="60"
-                                    StrokeShape="14"
-                                    StrokeThickness="4"
-                                    WidthRequest="60">
-                                    <VisualStateManager.VisualStateGroups>
-
-                                        <VisualStateGroup Name="CommonStates">
-
-                                            <VisualState Name="Normal">
-
-                                                <VisualState.Setters>
-                                                    <Setter Property="StrokeThickness" Value="0" />
-                                                </VisualState.Setters>
-
-                                            </VisualState>
-
-                                            <VisualState Name="Selected">
-
-                                                <VisualState.Setters>
-                                                    <Setter Property="StrokeThickness" Value="5" />
-                                                    <Setter Property="Stroke" Value="#4DA3FF" />
-                                                </VisualState.Setters>
-
-                                            </VisualState>
-
-                                        </VisualStateGroup>
-
-                                    </VisualStateManager.VisualStateGroups>
-                                </Border>
-
-                            </DataTemplate>
-
-                        </CollectionView.ItemTemplate>
-
-                    </CollectionView>
-
-                </Border>
-
-            </Grid>
+            </CollectionView>
 
         </Border>
 
@@ -154,7 +83,7 @@
 
             <buttons:IconButton
                 BackgroundColorCode="#4CAF50"
-                Event="{Binding Source={x:Reference Root}, Path=SaveButtonCommand}"
+                Event="{Binding ConfirmCommand}"
                 FontSize="20"
                 TextContent="Salvar"
                 Unicode="{StaticResource FAS_CircleCheck}" />

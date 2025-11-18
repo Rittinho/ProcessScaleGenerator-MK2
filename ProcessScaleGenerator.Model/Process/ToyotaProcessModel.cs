@@ -52,7 +52,9 @@ public class ToyotaProcessModel
     public bool CheckSameProcess(ToyotaProcess toyotaProcess)
     {
         foreach (var process in _repositoryServices.GetAllProcesses())
-            if (process.Title == toyotaProcess.Title)
+            if (process.Title == toyotaProcess.Title &&
+                process.Description == toyotaProcess .Description &&
+                process.Icon == toyotaProcess.Icon)
                 return true;
 
         return false;
