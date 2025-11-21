@@ -26,7 +26,14 @@ public partial class ShowTableViewModel : ObservableObject
 
         LastTableGroup = _repositoryServices.GetLastTable();
 
-        Tables = [.. LastTableGroup.TableGroup];
+        try
+        {
+            Tables = [.. LastTableGroup.TableGroup];
+        }
+        catch
+        {
+            Tables = [];
+        }
     }
 
     [RelayCommand]
