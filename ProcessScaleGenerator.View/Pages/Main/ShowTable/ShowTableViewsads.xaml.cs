@@ -1,4 +1,3 @@
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls.Shapes;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using ProcessScaleGenerator.View.Components.Elements;
@@ -6,9 +5,9 @@ using ProcessScaleGenerator.ViewModel.Pages.Main.ShowTable;
 
 namespace ProcessScaleGenerator.View.Pages.Main.ShowTable;
 
-public partial class ShowTableView : ContentPage
+public partial class ShowTableViewsads : ContentPage
 {
-    public ShowTableView(ShowTableViewModel showTableViewModel)
+    public ShowTableViewsads(ShowTableViewModel showTableViewModel)
     {
         InitializeComponent();
         BindingContext = showTableViewModel;
@@ -23,7 +22,7 @@ public partial class ShowTableView : ContentPage
             return;
         var process = processGroups.ToArray();
 
-        var tableGrid = new Grid { ColumnSpacing = 10, RowSpacing = 10};
+        var tableGrid = new Grid { ColumnSpacing = 10, RowSpacing = 10 };
 
         for (int j = 0; j < 5; j++)
         {
@@ -134,7 +133,7 @@ public partial class ShowTableView : ContentPage
             StrokeShape = new RoundRectangle { CornerRadius = 24 },
             Padding = new Thickness(10, 5, 10, 5),
             Content = nameLabel,
-            VerticalOptions = LayoutOptions.Center 
+            VerticalOptions = LayoutOptions.Center
         };
 
         return border;

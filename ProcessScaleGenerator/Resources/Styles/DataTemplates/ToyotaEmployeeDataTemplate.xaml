@@ -4,29 +4,28 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View"
-    xmlns:vm="clr-namespace:ProcessScaleGenerator.ViewModel.Pages.Main.Register;assembly=ProcessScaleGenerator.ViewModel">
+    xmlns:vm="clr-namespace:ProcessScaleGenerator.ViewModel.Pages.Main.Employeers;assembly=ProcessScaleGenerator.ViewModel">
 
     <DataTemplate x:Key="ToastEmployeeStyle">
 
         <Border
             Padding="10,5,10,5"
-            BackgroundColor="{StaticResource Primary}"
-            Stroke="{StaticResource ProcessGradient}"
+            BackgroundColor="{DynamicResource Primary}"
             StrokeThickness="1"
-            Style="{StaticResource Border.Radius14}">
+            Style="{DynamicResource Border.Radius14}">
 
             <FlyoutBase.ContextFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem
-                        Command="{Binding Path=ShowEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        Command="{Binding Path=ShowEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:EmployeeManagerViewModel}}}"
                         CommandParameter="{Binding .}"
                         Text="Exibir" />
                     <MenuFlyoutItem
-                        Command="{Binding Path=UpdateEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        Command="{Binding Path=UpdateEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:EmployeeManagerViewModel}}}"
                         CommandParameter="{Binding .}"
                         Text="Editar" />
                     <MenuFlyoutItem
-                        Command="{Binding Path=DeleteEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        Command="{Binding Path=DeleteEmployeeCommand, Source={RelativeSource AncestorType={x:Type vm:EmployeeManagerViewModel}}}"
                         CommandParameter="{Binding .}"
                         Text="Excluir" />
                 </MenuFlyout>
@@ -37,8 +36,8 @@
                 <!--  Name  -->
                 <Border
                     Margin="5,0,5,0"
-                    BackgroundColor="{StaticResource Secondary}"
-                    Style="{StaticResource Border.Radius14}">
+                    BackgroundColor="{DynamicResource Secondary}"
+                    Style="{DynamicResource Border.Radius14}">
 
                     <Label
                         FontAttributes="Bold"
@@ -52,8 +51,8 @@
                 <Border
                     Grid.Column="1"
                     Margin="5,0,5,0"
-                    BackgroundColor="{StaticResource Secondary}"
-                    Style="{StaticResource Border.Radius14}">
+                    BackgroundColor="{DynamicResource Secondary}"
+                    Style="{DynamicResource Border.Radius14}">
 
                     <Label
                         FontAttributes="Bold"
@@ -76,17 +75,26 @@
         <VerticalStackLayout>
 
             <Border
-                Padding="10,5,10,5"
-                BackgroundColor="{StaticResource Primary}"
-                Style="{StaticResource Border.Radius14}">
+                Padding="5"
+                BackgroundColor="{DynamicResource Primary}"
+                Style="{DynamicResource Border.Radius14}">
 
-                <Grid ColumnDefinitions="2*,*,Auto">
+                <Border.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference HiddenSwitch}, Path=IsToggled}"
+                        TargetType="Border"
+                        Value="True">
+                        <Setter Property="Opacity" Value=".7" />
+                    </DataTrigger>
+                </Border.Triggers>
+
+                <Grid ColumnDefinitions="6*,3*,*">
 
                     <!--  Name  -->
                     <Border
                         Margin="5,0,5,0"
-                        BackgroundColor="{StaticResource Secondary}"
-                        Style="{StaticResource Border.Radius14}">
+                        BackgroundColor="{DynamicResource Secondary}"
+                        Style="{DynamicResource Border.Radius14}">
 
                         <Label
                             FontAttributes="Bold"
@@ -101,8 +109,8 @@
                     <Border
                         Grid.Column="1"
                         Margin="5,0,5,0"
-                        BackgroundColor="{StaticResource Secondary}"
-                        Style="{StaticResource Border.Radius14}">
+                        BackgroundColor="{DynamicResource Secondary}"
+                        Style="{DynamicResource Border.Radius14}">
 
                         <Label
                             FontAttributes="Bold"
@@ -114,7 +122,11 @@
 
                     </Border>
 
-                    <CheckBox Grid.Column="2" IsChecked="{Binding Hidded}" />
+                    <Switch
+                        x:Name="HiddenSwitch"
+                        Grid.Column="2"
+                        IsToggled="{Binding Hidded}"
+                        WidthRequest="10" />
 
                 </Grid>
 

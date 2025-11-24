@@ -55,8 +55,8 @@ public partial class IconButton : ContentView
     }
     public Color FontColorCode
     {
-        get => (Color)GetValue(BackgroundColorCodeProperty);
-        set => SetValue(BackgroundColorCodeProperty, value);
+        get => (Color)GetValue(FontColorCodeProperty);
+        set => SetValue(FontColorCodeProperty, value);
     }
     public ICommand Event
     {

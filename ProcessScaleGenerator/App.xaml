@@ -7,17 +7,17 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/BaseElements/PopupsStyles.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-                <ResourceDictionary Source="Resources/Styles/BaseElements/PresenterElements.xaml" />
+
                 <ResourceDictionary Source="Resources/Styles/Icons/FASolid.xaml" />
-                <ResourceDictionary Source="Resources/Styles/DataTemplates/ToyotaProcessDataTemplate.xaml" />
-                <ResourceDictionary Source="Resources/Styles/DataTemplates/ToyotaEmployeeDataTemplate.xaml" />
-                <ResourceDictionary Source="Resources/Styles/DataTemplates/TableGrupDataTemplate.xaml" />
+
                 <ResourceDictionary Source="Resources/Styles/DataTemplates/IconPickerDataTemplate.xaml" />
-                <ResourceDictionary Source="Resources/Styles/DataTemplates/TableItemDataTemplate.xaml" />
                 <ResourceDictionary Source="Resources/Styles/DataTemplates/PreviewTableTableDataTemplate.xaml" />
+                <ResourceDictionary Source="Resources/Styles/DataTemplates/ToyotaEmployeeDataTemplate.xaml" />
+                <ResourceDictionary Source="Resources/Styles/DataTemplates/ToyotaProcessDataTemplate.xaml" />
+
+                <ResourceDictionary Source="Resources/Styles/BaseElements/PresenterElements.xaml" />
+                <ResourceDictionary Source="Resources/Styles/BaseElements/PopupsStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

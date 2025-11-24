@@ -10,13 +10,13 @@
     x:Name="Root"
     Padding="-20"
     x:TypeArguments="local:HiddenFromTable"
-    BackgroundColor="#222222"
+    BackgroundColor="{DynamicResource Tertiary}"
     CanBeDismissedByTappingOutsideOfPopup="False"
     WidthRequest="1000">
 
     <Grid RowDefinitions="Auto,*">
 
-        <Border BackgroundColor="{StaticResource ToyotaBlue}" Style="{StaticResource Border.Radius24}">
+        <Border BackgroundColor="{DynamicResource ToyotaBlue}" Style="{DynamicResource Border.Radius24}">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="14,14,0,0" />
@@ -40,8 +40,8 @@
 
                 <Border
                     Padding="10,10,10,0"
-                    BackgroundColor="{StaticResource Secondary}"
-                    Style="{StaticResource Border.Radius14}">
+                    BackgroundColor="{DynamicResource Secondary}"
+                    Style="{DynamicResource Border.Radius14}">
 
                     <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5">
 
@@ -53,25 +53,25 @@
                             Spacing="10">
 
                             <buttons:IconButton
-                                BackgroundColorCode="{StaticResource ToyotaBlue}"
+                                BackgroundColorCode="{DynamicResource ToyotaBlue}"
                                 Event="{Binding ShowProcessHiddedsCommand}"
                                 FontSize="13"
                                 TextContent="Mostrar ocultados"
-                                Unicode="{StaticResource FAS_EyeLowVision}" />
+                                Unicode="{DynamicResource FAS_EyeLowVision}" />
 
                             <buttons:IconButton
-                                BackgroundColorCode="{StaticResource ToyotaRed}"
+                                BackgroundColorCode="{DynamicResource ToyotaRed}"
                                 Event="{Binding ClearProcessHiddedsCommand}"
                                 FontSize="13"
                                 TextContent="Limpar"
-                                Unicode="{StaticResource FAS_Broom}" />
+                                Unicode="{DynamicResource FAS_Broom}" />
 
                         </HorizontalStackLayout>
 
                         <CollectionView
                             Grid.Row="2"
                             HorizontalOptions="Fill"
-                            ItemTemplate="{StaticResource ToastProcessSelectStyle}"
+                            ItemTemplate="{DynamicResource ToastProcessSelectStyle}"
                             ItemsSource="{Binding FiltredProcessList}"
                             SelectionMode="None"
                             VerticalOptions="Fill"
@@ -93,8 +93,8 @@
                 <Border
                     Grid.Column="1"
                     Padding="10,10,10,0"
-                    BackgroundColor="{StaticResource Secondary}"
-                    Style="{StaticResource Border.Radius14}">
+                    BackgroundColor="{DynamicResource Secondary}"
+                    Style="{DynamicResource Border.Radius14}">
 
                     <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5">
 
@@ -106,25 +106,25 @@
                             Spacing="10">
 
                             <buttons:IconButton
-                                BackgroundColorCode="{StaticResource ToyotaBlue}"
+                                BackgroundColorCode="{DynamicResource ToyotaBlue}"
                                 Event="{Binding ShowEmployeeHiddedsCommand}"
                                 FontSize="13"
                                 TextContent="Mostrar ocultados"
-                                Unicode="{StaticResource FAS_EyeLowVision}" />
+                                Unicode="{DynamicResource FAS_EyeLowVision}" />
 
                             <buttons:IconButton
-                                BackgroundColorCode="{StaticResource ToyotaRed}"
+                                BackgroundColorCode="{DynamicResource ToyotaRed}"
                                 Event="{Binding ClearEmployeeHiddedsCommand}"
                                 FontSize="13"
                                 TextContent="Limpar"
-                                Unicode="{StaticResource FAS_Broom}" />
+                                Unicode="{DynamicResource FAS_Broom}" />
 
                         </HorizontalStackLayout>
 
                         <CollectionView
                             Grid.Row="2"
                             HorizontalOptions="Fill"
-                            ItemTemplate="{StaticResource ToastEmployeeSelectStyle}"
+                            ItemTemplate="{DynamicResource ToastEmployeeSelectStyle}"
                             ItemsSource="{Binding FiltredEmployeeList}"
                             SelectionMode="None"
                             VerticalOptions="Fill"
@@ -153,11 +153,11 @@
                 Spacing="10">
 
                 <buttons:IconButton
-                    BackgroundColorCode="{StaticResource ToyotaBlue}"
+                    BackgroundColorCode="{DynamicResource ToyotaBlue}"
                     Event="{Binding BackButtonCommand}"
                     FontSize="20"
                     TextContent="Voltar"
-                    Unicode="{StaticResource FAS_CircleCheck}" />
+                    Unicode="{DynamicResource FAS_CircleCheck}" />
 
             </HorizontalStackLayout>
 

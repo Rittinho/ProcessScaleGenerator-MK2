@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ProcessScaleGenerator.View.Components.Elements.TableInfoBlock"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="Root">
+
+    <Border
+        Padding="0"
+        BackgroundColor="{DynamicResource Primary}"
+        StrokeThickness="0"
+        Style="{StaticResource Border.Radius14}">
+
+        <Grid Padding="5" RowDefinitions="Auto,*,Auto,Auto">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="13"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Path=TitleText, Source={x:Reference Root}}"
+                VerticalTextAlignment="Center" />
+
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="Auto,*"
+                ColumnSpacing="5">
+
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="FAS"
+                    FontSize="40"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Path=Unicode, Source={x:Reference Root}}"
+                    VerticalTextAlignment="Center" />
+
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="40"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Path=Count, Source={x:Reference Root}}"
+                    VerticalTextAlignment="Center" />
+
+            </Grid>
+
+            <Label
+                Grid.Row="2"
+                FontSize="13"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Path=Description, Source={x:Reference Root}}"
+                VerticalTextAlignment="Center" />
+
+            <Border
+                Grid.Row="3"
+                Margin="-5,0,-5,-5"
+                BackgroundColor="{DynamicResource NavBar}"
+                MinimumHeightRequest="10"
+                StrokeThickness="0" />
+
+        </Grid>
+
+    </Border>
+
+</ContentView>

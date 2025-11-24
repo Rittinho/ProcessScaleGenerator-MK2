@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace ProcessScaleGenerator.ViewModel.Modal.Forms.TableConfigModal;
 
@@ -25,7 +24,7 @@ public partial class TableConfigModalViewModel
             .ToList();
 
         FiltredProcessList.Clear();
-        
+
         foreach (var item in filtered)
             FiltredProcessList.Add(item);
     }
@@ -34,7 +33,7 @@ public partial class TableConfigModalViewModel
     {
         _showProcessHiddeds = false;
 
-        ProcessList.ForEach(p => 
+        ProcessList.ForEach(p =>
         {
             p.Hidded = false;
         });
@@ -53,7 +52,7 @@ public partial class TableConfigModalViewModel
 
         if (_showProcessHiddeds)
         {
-            hiddeds = [..ProcessList.Where(p => p.Hidded)];
+            hiddeds = [.. ProcessList.Where(p => p.Hidded)];
         }
         else
         {

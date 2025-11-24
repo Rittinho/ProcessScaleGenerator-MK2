@@ -4,30 +4,29 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View"
-    xmlns:vm="clr-namespace:ProcessScaleGenerator.ViewModel.Pages.Main.Register;assembly=ProcessScaleGenerator.ViewModel"
+    xmlns:vm="clr-namespace:ProcessScaleGenerator.ViewModel.Pages.Main.Processes;assembly=ProcessScaleGenerator.ViewModel"
     xmlns:vm2="clr-namespace:ProcessScaleGenerator.ViewModel.Modal.Forms.TableConfigModal;assembly=ProcessScaleGenerator.ViewModel">
 
     <DataTemplate x:Key="ToastViewData">
 
         <Border
             Padding="10,5,10,5"
-            BackgroundColor="{StaticResource Tertiary}"
-            Stroke="{StaticResource ProcessGradient}"
+            BackgroundColor="{DynamicResource Secondary}"
             StrokeThickness="1"
-            Style="{StaticResource Border.Radius14}">
+            Style="{DynamicResource Border.Radius14}">
 
             <FlyoutBase.ContextFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem
-                        Command="{Binding Path=ShowProcessCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        Command="{Binding Path=ShowProcessCommand, Source={RelativeSource AncestorType={x:Type vm:ProcessManagerViewModel}}}"
                         CommandParameter="{Binding .}"
                         Text="Exibir" />
                     <MenuFlyoutItem
-                        Command="{Binding Path=UpdateProcessCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        Command="{Binding Path=UpdateProcessCommand, Source={RelativeSource AncestorType={x:Type vm:ProcessManagerViewModel}}}"
                         CommandParameter="{Binding .}"
                         Text="Editar" />
                     <MenuFlyoutItem
-                        Command="{Binding Path=DeleteProcessCommand, Source={RelativeSource AncestorType={x:Type vm:RegisterViewModel}}}"
+                        Command="{Binding Path=DeleteProcessCommand, Source={RelativeSource AncestorType={x:Type vm:ProcessManagerViewModel}}}"
                         CommandParameter="{Binding .}"
                         Text="Excluir" />
                 </MenuFlyout>
@@ -44,8 +43,8 @@
                 <Border
                     Grid.Column="1"
                     Margin="5,0,5,0"
-                    BackgroundColor="{StaticResource Primary}"
-                    Style="{StaticResource Border.Radius14}">
+                    BackgroundColor="{DynamicResource Primary}"
+                    Style="{DynamicResource Border.Radius14}">
 
                     <Label
                         FontAttributes="Bold"
@@ -66,11 +65,20 @@
     <DataTemplate x:Key="ToastProcessSelectStyle">
 
         <Border
-            Padding="10,5,10,5"
-            BackgroundColor="{StaticResource Primary}"
-            Style="{StaticResource Border.Radius14}">
+            Padding="5"
+            BackgroundColor="{DynamicResource Primary}"
+            Style="{DynamicResource Border.Radius14}">
 
-            <Grid ColumnDefinitions="Auto,*,Auto">
+            <Border.Triggers>
+                <DataTrigger
+                    Binding="{Binding Source={x:Reference HiddenSwitch}, Path=IsToggled}"
+                    TargetType="Border"
+                    Value="True">
+                    <Setter Property="Opacity" Value=".7" />
+                </DataTrigger>
+            </Border.Triggers>
+
+            <Grid ColumnDefinitions="Auto,5*,*">
 
                 <!--  Icon  -->
                 <elements:CircularIcon
@@ -82,8 +90,8 @@
                 <Border
                     Grid.Column="1"
                     Margin="5,0,5,0"
-                    BackgroundColor="{StaticResource Secondary}"
-                    Style="{StaticResource Border.Radius14}">
+                    BackgroundColor="{DynamicResource Secondary}"
+                    Style="{DynamicResource Border.Radius14}">
 
                     <Label
                         FontAttributes="Bold"
@@ -96,7 +104,11 @@
                 </Border>
 
                 <!--  Show-Button  -->
-                <CheckBox Grid.Column="2" IsChecked="{Binding Hidded}" />
+                <Switch
+                    x:Name="HiddenSwitch"
+                    Grid.Column="2"
+                    IsToggled="{Binding Hidded}"
+                    WidthRequest="10" />
 
             </Grid>
 

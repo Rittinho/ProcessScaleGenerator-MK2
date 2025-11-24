@@ -19,6 +19,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Pages\Secondary\**" />
+	  <Compile Remove="Pages\Secondary\**" />
+	  <EmbeddedResource Remove="Pages\Secondary\**" />
+	  <MauiCss Remove="Pages\Secondary\**" />
+	  <MauiXaml Remove="Pages\Secondary\**" />
+	  <None Remove="Pages\Secondary\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="12.3.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.120" />
@@ -30,7 +39,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\Secondary\" />
+	  <Compile Update="Pages\Main\ProcessManagerView.xaml.cs">
+	    <DependentUpon>ProcessManagerView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Main\ShowTable\ShowTableViewsads.xaml.cs">
+	    <DependentUpon>ShowTableViewsads.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -41,6 +55,18 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Components\Elements\CircularIcon.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Elements\DirectoryTextBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Elements\EditorBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Elements\TableInfoBlock.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Elements\Textbar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Modal\Description\EmployeeDescriptionModal.xaml">
@@ -64,10 +90,28 @@
 	  <MauiXaml Update="Pages\Main\CreateTable\CreateTableView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Main\DashboardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Main\EmployeeManagerView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Main\ProcessManagerView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Main\Register\RegisterView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Main\ShowTable\ShowTableView.xaml">
+	  <MauiXaml Update="Pages\Main\SettingsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Main\ShowTableView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Main\ShowTable\ShowTableViewsads.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Main\TableManagerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

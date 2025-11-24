@@ -35,16 +35,29 @@ public partial class ShowTableViewModel : ObservableObject
             Tables = [];
         }
     }
-
     [RelayCommand]
-    public async Task SwitchToRegister()
+    public async Task SwitchToDashboard()
     {
-        _navigationServices.GoToPageAsync(RegisteredPages.Register);
+        _navigationServices.GoToPageAsync(RegisteredPages.Dashboard);
     }
     [RelayCommand]
-    public async Task SwitchToCreateTables()
+    public async Task SwitchToTableManager()
     {
-        _navigationServices.GoToPageAsync(RegisteredPages.CreateTable);
+        _navigationServices.GoToPageAsync(RegisteredPages.TableManager);
     }
-
+    [RelayCommand]
+    public async Task SwitchToProcessesManager()
+    {
+        _navigationServices.GoToPageAsync(RegisteredPages.Processes);
+    }
+    [RelayCommand]
+    public async Task SwitchToEmployeersManager()
+    {
+        _navigationServices.GoToPageAsync(RegisteredPages.Employeers);
+    }
+    [RelayCommand]
+    public async Task SwitchToSettings()
+    {
+        _navigationServices.GoToPageAsync(RegisteredPages.Settings);
+    }
 }

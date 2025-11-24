@@ -8,7 +8,7 @@ public partial class CircularIcon : ContentView
     BindableProperty.Create(nameof(IconSize), typeof(int), typeof(CircularIcon), default(int), propertyChanged: OnIconSizePropertyChanged);
 
     public static readonly BindableProperty ColorCodeProperty =
-    BindableProperty.Create(nameof(ColorCode), typeof(string), typeof(CircularIcon), default(string), propertyChanged: OnColorCodePropertyChanged);
+    BindableProperty.Create(nameof(ColorCode), typeof(string), typeof(CircularIcon), default(string));
 
     public static readonly BindableProperty UnicodeProperty =
     BindableProperty.Create(nameof(Unicode), typeof(string), typeof(CircularIcon), default(string), propertyChanged: OnUnicodeChanged);
@@ -50,18 +50,4 @@ public partial class CircularIcon : ContentView
             control.icon.Text = code;
         }
     }
-    public static void OnColorCodePropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        var control = (CircularIcon)bindable;
-
-        if (newValue is string colorCode && !string.IsNullOrEmpty(colorCode))
-        {
-            var color = Color.FromArgb(colorCode);
-
-            control.externalBorder.BackgroundColor = color;
-            control.icon.TextColor = color;
-        }
-    }
-
-    public string GetColorCode() => ColorCode;
 }

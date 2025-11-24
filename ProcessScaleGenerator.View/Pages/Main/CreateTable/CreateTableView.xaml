@@ -13,8 +13,8 @@
 
         <Border
             Padding="10"
-            BackgroundColor="{StaticResource Secondary}"
-            Stroke="{StaticResource ToyotaBlue}">
+            BackgroundColor="{DynamicResource Secondary}"
+            Stroke="{DynamicResource ToyotaBlue}">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="14,14,4,4" />
@@ -23,12 +23,12 @@
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
 
                 <buttons:IconButton
-                    BackgroundColorCode="{StaticResource Tertiary}"
+                    BackgroundColorCode="{DynamicResource Tertiary}"
                     Event="{Binding SwitchToRegisterCommand}"
                     FontSize="20"
-                    StrokeColorCode="{StaticResource ToyotaBlue}"
+                    StrokeColorCode="{DynamicResource ToyotaBlue}"
                     TextContent="Registros"
-                    Unicode="{StaticResource FAS_AddressBook}" />
+                    Unicode="{DynamicResource FAS_AddressBook}" />
 
                 <Border Grid.Column="1" StrokeThickness="0">
 
@@ -42,12 +42,12 @@
 
                 <buttons:IconButton
                     Grid.Column="2"
-                    BackgroundColorCode="{StaticResource Tertiary}"
+                    BackgroundColorCode="{DynamicResource Tertiary}"
                     Event="{Binding SwitchToShowTablesCommand}"
                     FontSize="20"
-                    StrokeColorCode="{StaticResource ToyotaBlue}"
+                    StrokeColorCode="{DynamicResource ToyotaBlue}"
                     TextContent="Ver tabelas"
-                    Unicode="{StaticResource FAS_Eye}" />
+                    Unicode="{DynamicResource FAS_Eye}" />
 
             </Grid>
 
@@ -63,15 +63,15 @@
 
             <!--  Left  -->
             <Border
-                BackgroundColor="{StaticResource Secondary}"
-                Stroke="{StaticResource ToyotaBlue}"
+                BackgroundColor="{DynamicResource Secondary}"
+                Stroke="{DynamicResource ToyotaBlue}"
                 StrokeThickness="0"
-                Style="{StaticResource Border.Radius14}">
+                Style="{DynamicResource Border.Radius14}">
 
                 <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
 
                     <!--  Container 1  -->
-                    <Border BackgroundColor="{StaticResource Tertiary}" Style="{StaticResource Border.Radius8}">
+                    <Border BackgroundColor="{DynamicResource Tertiary}" Style="{DynamicResource Border.Radius8}">
 
                         <Grid
                             ColumnDefinitions="*,*"
@@ -96,17 +96,17 @@
                             <Border
                                 Grid.Row="1"
                                 Padding="6"
-                                BackgroundColor="{StaticResource Secondary}"
-                                Stroke="{StaticResource ProcessGradient}"
-                                Style="{StaticResource Border.Radius14.DownLeftSharp}">
+                                BackgroundColor="{DynamicResource Secondary}"
+                                Stroke="{DynamicResource ProcessGradient}"
+                                Style="{DynamicResource Border.Radius14.DownLeftSharp}">
 
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="6">
 
                                     <Border
                                         Grid.Column="1"
-                                        BackgroundColor="{StaticResource Primary}"
+                                        BackgroundColor="{DynamicResource Primary}"
                                         StrokeThickness="0"
-                                        Style="{StaticResource Border.Radius8}">
+                                        Style="{DynamicResource Border.Radius8}">
 
                                         <Label
                                             FontSize="25"
@@ -130,16 +130,16 @@
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Padding="6"
-                                BackgroundColor="{StaticResource Secondary}"
-                                Stroke="{StaticResource ProcessGradient}"
-                                Style="{StaticResource Border.Radius14.DownRightSharp}">
+                                BackgroundColor="{DynamicResource Secondary}"
+                                Stroke="{DynamicResource ProcessGradient}"
+                                Style="{DynamicResource Border.Radius14.DownRightSharp}">
 
                                 <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
 
                                     <Border
-                                        BackgroundColor="{StaticResource Primary}"
+                                        BackgroundColor="{DynamicResource Primary}"
                                         StrokeThickness="0"
-                                        Style="{StaticResource Border.Radius8}">
+                                        Style="{DynamicResource Border.Radius8}">
 
                                         <Label
                                             FontSize="25"
@@ -166,9 +166,9 @@
                     <!--  Container 2  -->
                     <Border
                         Grid.Row="1"
-                        BackgroundColor="{StaticResource Tertiary}"
+                        BackgroundColor="{DynamicResource Tertiary}"
                         StrokeThickness="0"
-                        Style="{StaticResource Border.Radius8}">
+                        Style="{DynamicResource Border.Radius8}">
 
                         <VerticalStackLayout Spacing="10">
 
@@ -189,13 +189,13 @@
 
                                 <Border
                                     Padding="6"
-                                    BackgroundColor="{StaticResource ToyotaLightRed}"
-                                    Stroke="{StaticResource ToyotaDarkRed}"
-                                    Style="{StaticResource Border.Radius8.LeftSharp}">
+                                    BackgroundColor="{DynamicResource ToyotaLightRed}"
+                                    Stroke="{DynamicResource ToyotaDarkRed}"
+                                    Style="{DynamicResource Border.Radius8.LeftSharp}">
 
                                     <Grid ColumnDefinitions="Auto,*">
 
-                                        <Border BackgroundColor="DarkRed" Style="{StaticResource Border.Radius8}">
+                                        <Border BackgroundColor="DarkRed" Style="{DynamicResource Border.Radius8}">
 
                                             <HorizontalStackLayout Spacing="10">
 
@@ -203,7 +203,7 @@
                                                     FontFamily="FAS"
                                                     FontSize="15"
                                                     HorizontalOptions="Center"
-                                                    Text="{StaticResource FAS_EyeSlash}"
+                                                    Text="{DynamicResource FAS_EyeSlash}"
                                                     VerticalOptions="Center"
                                                     VerticalTextAlignment="Center" />
 
@@ -235,13 +235,13 @@
                                 <Border
                                     Grid.Column="1"
                                     Padding="6"
-                                    BackgroundColor="{StaticResource ToyotaLightRed}"
-                                    Stroke="{StaticResource ToyotaDarkRed}"
-                                    Style="{StaticResource Border.Radius8.RightSharp}">
+                                    BackgroundColor="{DynamicResource ToyotaLightRed}"
+                                    Stroke="{DynamicResource ToyotaDarkRed}"
+                                    Style="{DynamicResource Border.Radius8.RightSharp}">
 
                                     <Grid ColumnDefinitions="Auto,*">
 
-                                        <Border BackgroundColor="DarkRed" Style="{StaticResource Border.Radius8}">
+                                        <Border BackgroundColor="DarkRed" Style="{DynamicResource Border.Radius8}">
 
                                             <HorizontalStackLayout Spacing="10">
 
@@ -249,7 +249,7 @@
                                                     FontFamily="FAS"
                                                     FontSize="15"
                                                     HorizontalOptions="Center"
-                                                    Text="{StaticResource FAS_EyeSlash}"
+                                                    Text="{DynamicResource FAS_EyeSlash}"
                                                     VerticalOptions="Center"
                                                     VerticalTextAlignment="Center" />
 
@@ -281,7 +281,7 @@
                                 <buttons:IconButton
                                     Grid.Row="1"
                                     Grid.ColumnSpan="2"
-                                    BackgroundColorCode="{StaticResource ToyotaBlue}"
+                                    BackgroundColorCode="{DynamicResource ToyotaBlue}"
                                     Event="{Binding ConfigureTableCommand}"
                                     TextContent="Alterar configurações"
                                     Unicode="Gears" />
@@ -295,13 +295,13 @@
                     <!--  Container 3  -->
                     <Border
                         Grid.Row="2"
-                        BackgroundColor="{StaticResource Tertiary}"
+                        BackgroundColor="{DynamicResource Tertiary}"
                         StrokeThickness="0"
-                        Style="{StaticResource Border.Radius8}">
+                        Style="{DynamicResource Border.Radius8}">
 
                         <CollectionView
                             HorizontalOptions="Fill"
-                            ItemTemplate="{StaticResource TablePreviewData}"
+                            ItemTemplate="{DynamicResource TablePreviewData}"
                             ItemsSource="{Binding Tables}"
                             SelectionMode="None"
                             VerticalOptions="Fill"
@@ -325,9 +325,9 @@
             <!--  Right  -->
             <Border
                 Grid.Column="1"
-                BackgroundColor="{StaticResource Secondary}"
-                Stroke="{StaticResource ToyotaBlue}"
-                Style="{StaticResource Border.Radius14}">
+                BackgroundColor="{DynamicResource Secondary}"
+                Stroke="{DynamicResource ToyotaBlue}"
+                Style="{DynamicResource Border.Radius14}">
 
                 <Grid RowDefinitions="Auto,*">
 
@@ -338,9 +338,9 @@
 
                     <Border
                         Grid.Row="1"
-                        BackgroundColor="{StaticResource Tertiary}"
+                        BackgroundColor="{DynamicResource Tertiary}"
                         StrokeThickness="0"
-                        Style="{StaticResource Border.Radius8}">
+                        Style="{DynamicResource Border.Radius8}">
 
                         <ScrollView>
 
@@ -361,19 +361,19 @@
                 ColumnSpacing="10">
 
                 <buttons:IconButton
-                    BackgroundColorCode="{StaticResource ToyotaBlue}"
+                    BackgroundColorCode="{DynamicResource ToyotaBlue}"
                     Event="{Binding CreateTableCommand}"
                     FontSize="20"
-                    StrokeColorCode="{StaticResource ToyotaBlue}"
+                    StrokeColorCode="{DynamicResource ToyotaBlue}"
                     TextContent="Gerar tabela"
                     Unicode="Book" />
 
                 <buttons:IconButton
                     Grid.Column="1"
-                    BackgroundColorCode="{StaticResource ToyotaBlue}"
+                    BackgroundColorCode="{DynamicResource ToyotaBlue}"
                     Event="{Binding SaveTableCommand}"
                     FontSize="20"
-                    StrokeColorCode="{StaticResource ToyotaBlue}"
+                    StrokeColorCode="{DynamicResource ToyotaBlue}"
                     TextContent="Salvar tabela"
                     Unicode="Book" />
 

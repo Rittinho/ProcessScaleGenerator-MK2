@@ -1,9 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProcessScaleGenerator.Shared.Constants;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System.Collections.ObjectModel;
-using ToyotaProcessManager.Services.Injections.Contract;
 
 namespace ProcessScaleGenerator.ViewModel.Modal.Forms.TableConfigModal;
 

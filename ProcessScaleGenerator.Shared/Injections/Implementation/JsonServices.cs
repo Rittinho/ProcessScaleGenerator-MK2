@@ -15,10 +15,10 @@ public class JsonServices : IJsonServices
     private readonly string _tableFilePath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Toyota repository"), "Tableas salvas");
 
     public JsonServices()
-    {       
+    {
         if (!Directory.Exists(_filePath))
             Directory.CreateDirectory(_filePath);
-            
+
         if (!Directory.Exists(_tableFilePath))
             Directory.CreateDirectory(_tableFilePath);
     }
@@ -30,7 +30,7 @@ public class JsonServices : IJsonServices
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
 
-        using (StreamWriter streamWriter = new (jsonPath, false, Encoding.UTF8))
+        using (StreamWriter streamWriter = new(jsonPath, false, Encoding.UTF8))
         {
             var json = JsonSerializer.Serialize(data, options);
             streamWriter.Write(json);
@@ -43,7 +43,7 @@ public class JsonServices : IJsonServices
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
 
-        using (StreamWriter streamWriter = new (jsonPath, false, Encoding.UTF8))
+        using (StreamWriter streamWriter = new(jsonPath, false, Encoding.UTF8))
         {
             var json = JsonSerializer.Serialize(data, options);
             streamWriter.Write(json);
@@ -58,7 +58,7 @@ public class JsonServices : IJsonServices
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
 
-        using (StreamWriter streamWriter = new (jsonPath, false, Encoding.UTF8))
+        using (StreamWriter streamWriter = new(jsonPath, false, Encoding.UTF8))
         {
             var json = JsonSerializer.Serialize(data, options);
             streamWriter.Write(json);
@@ -113,7 +113,7 @@ public class JsonServices : IJsonServices
         return result;
     }
     public List<ToyotaTableGroup> LoadTableGroupJson()
-        {
+    {
         string[] files = Directory.GetFiles(_tableFilePath, "*.json");
 
         if (files.Length == 0)

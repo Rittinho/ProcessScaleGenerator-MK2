@@ -2,6 +2,7 @@
 using ProcessScaleGenerator.Shared.Constants;
 
 namespace ProcessScaleGenerator.Shared.Messages;
+
 public class PageRequestMessage(RegisteredPages page) : ValueChangedMessage<RegisteredPages>(page)
 {
 }

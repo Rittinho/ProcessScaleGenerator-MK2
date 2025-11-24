@@ -2,7 +2,6 @@ using Microsoft.Maui.Controls.Shapes;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using ProcessScaleGenerator.View.Components.Elements;
 using ProcessScaleGenerator.ViewModel.Pages.Main.CreateTable;
-using ProcessScaleGenerator.ViewModel.Pages.Main.ShowTable;
 
 namespace ProcessScaleGenerator.View.Pages.Main.CreateTable;
 

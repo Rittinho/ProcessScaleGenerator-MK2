@@ -15,6 +15,7 @@ public partial class TableConfigModalViewModel : ObservableObject
     public TableConfigModalViewModel(IRepositoryServices repositoryServices, IMessenger messenger)
     {
         _repositoryServices = repositoryServices;
+        _messenger = messenger;
 
         ProcessList = _repositoryServices.GetAllProcesses();
         EmployeeList = _repositoryServices.GetAllEmployees();
@@ -22,16 +23,13 @@ public partial class TableConfigModalViewModel : ObservableObject
         FiltredProcessList = [.. ProcessList];
         FiltredEmployeeList = [.. EmployeeList];
 
-        _messenger = messenger;
     }
     [RelayCommand]
-    private void BackButton()
+    private void SendMessages()
     {
         var processes = ProcessList.Where(p => p.Hidded).ToList();
         var employee = EmployeeList.Where(e => e.Hidded).ToList();
-        WeakReferenceMessenger.Default.Send(new Result(new(processes,employee)));
         _messenger.Send(new HiddedEmployeesCountChanged(employee.Count));
         _messenger.Send(new HiddedProcessesCountChanged(processes.Count));
     }
 }
-public record Result(HiddenFromTable HiddenFromTable);

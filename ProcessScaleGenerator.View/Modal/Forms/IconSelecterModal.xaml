@@ -10,7 +10,7 @@
     x:Name="Root"
     Padding="-20"
     x:TypeArguments="local:IconParameters"
-    BackgroundColor="{StaticResource Tertiary}"
+    BackgroundColor="{DynamicResource Tertiary}"
     WidthRequest="1000">
 
     <Grid
@@ -26,7 +26,6 @@
             FontSize="60"
             HorizontalOptions="Center"
             Text="Customização de icone"
-            TextColor="White"
             VerticalOptions="Center" />
 
         <!--  Icon preview  -->
@@ -40,8 +39,8 @@
         <Border
             Grid.Row="1"
             Grid.Column="1"
-            BackgroundColor="{StaticResource Secondary}"
-            Style="{StaticResource Border.Radius14}">
+            BackgroundColor="{DynamicResource Secondary}"
+            Style="{DynamicResource Border.Radius14}">
 
             <!--  Lista de icones  -->
             <CollectionView
@@ -79,14 +78,14 @@
                 Event="{Binding Source={x:Reference Root}, Path=CancelButtonCommand}"
                 FontSize="20"
                 TextContent="Cancelar"
-                Unicode="{StaticResource FAS_CircleXmark}" />
+                Unicode="{DynamicResource FAS_CircleXmark}" />
 
             <buttons:IconButton
                 BackgroundColorCode="#4CAF50"
                 Event="{Binding ConfirmCommand}"
                 FontSize="20"
                 TextContent="Salvar"
-                Unicode="{StaticResource FAS_CircleCheck}" />
+                Unicode="{DynamicResource FAS_CircleCheck}" />
 
             <buttons:IconButton />
 

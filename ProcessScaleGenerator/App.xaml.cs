@@ -1,6 +1,9 @@
-﻿using ProcessScaleGenerator.Shared.Injections.Contract;
+﻿using ProcessScaleGenerator.Resources.Styles;
+using ProcessScaleGenerator.Shared.Injections.Contract;
+using ProcessScaleGenerator.View.Pages.Main;
 using ProcessScaleGenerator.View.Pages.Main.Register;
-using ProcessScaleGenerator.ViewModel.Pages.Main.Register;
+using ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard;
+using ProcessScaleGenerator.ViewModel.Pages.Main.Employeers;
 
 namespace ProcessScaleGenerator
 {
@@ -9,12 +12,13 @@ namespace ProcessScaleGenerator
         public App()
         {
             InitializeComponent();
+            LoadThemeColors(AppInfo.RequestedTheme);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var vm = MauiProgram.ServiceProvider.GetRequiredService<RegisterViewModel>();
-            var window = new Window(new NavigationPage(new RegisterView(vm)));
+            var vm = MauiProgram.ServiceProvider.GetRequiredService<DashboardViewModel>();
+            var window = new Window(new NavigationPage(new DashboardView(vm)));
 
             window.Destroying += OnWindowDestroying;
 
@@ -33,6 +37,26 @@ namespace ProcessScaleGenerator
             {
                 repository.SaveAllData();
             }
+        }
+        private void LoadThemeColors(AppTheme theme)
+        {
+            var styles = Application.Current.Resources.MergedDictionaries;
+
+            var themeStyle = new ResourceDictionary();
+
+            switch (theme)
+            {
+                case AppTheme.Dark:
+                    styles.Add(new DarkColors());
+                    break;
+                case AppTheme.Light:
+                    styles.Add(new LightColors());
+                    break;
+                case AppTheme.Unspecified:
+                    break;
+            }
+
+            styles.Add(themeStyle);
         }
     }
 }

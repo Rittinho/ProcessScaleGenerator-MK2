@@ -6,12 +6,12 @@
     xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    BackgroundColor="#343434"
+    BackgroundColor="{DynamicResource Tertiary}"
     WidthRequest="1280">
 
     <Grid RowDefinitions="Auto,*">
 
-        <Border Style="{StaticResource Border.Radius14}">
+        <Border Style="{DynamicResource Border.Radius14}">
 
             <Grid ColumnDefinitions="*,*,*">
 

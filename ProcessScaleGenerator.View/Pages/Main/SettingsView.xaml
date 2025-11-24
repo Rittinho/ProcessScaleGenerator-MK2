@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProcessScaleGenerator.View.Pages.Main.SettingsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    x:Name="Root"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid ColumnDefinitions="*,4*">
+
+        <Border BackgroundColor="{DynamicResource NavBar}" StrokeThickness="0">
+
+            <Grid
+                Padding="5"
+                RowDefinitions="*,Auto"
+                RowSpacing="5">
+                <VerticalStackLayout Spacing="5">
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToDashboardCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Dashboard"
+                        Unicode="{DynamicResource FAS_Gear}" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToProcessesManagerCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Processos"
+                        Unicode="{DynamicResource FAS_Gear}" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToEmployeersManagerCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Colaboradores"
+                        Unicode="{DynamicResource FAS_Gear}" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToTableManagerCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Configurar tabela"
+                        Unicode="{DynamicResource FAS_Gear}" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToShowTablesCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Visualizar tabela"
+                        Unicode="{DynamicResource FAS_Gear}" />
+
+                </VerticalStackLayout>
+
+                <Border
+                    Grid.Row="1"
+                    BackgroundColor="{DynamicResource SelectedNavBar}"
+                    StrokeThickness="0"
+                    Style="{StaticResource Border.Radius8}">
+
+                    <HorizontalStackLayout>
+
+                        <Label
+                            FontSize="20"
+                            Text="{DynamicResource FAS_Gear}"
+                            TextColor="{DynamicResource InversePrimaryText}" />
+                        <Label
+                            FontSize="20"
+                            Text="Configurações"
+                            TextColor="{DynamicResource InversePrimaryText}" />
+
+                    </HorizontalStackLayout>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
+        <Border
+            Grid.Column="1"
+            Padding="0"
+            BackgroundColor="{DynamicResource Secondary}"
+            StrokeThickness="0">
+
+            <ScrollView Padding="20,20,5,5">
+
+                <VerticalStackLayout>
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="35"
+                        Text="Configurações do sistema"
+                        TextColor="{DynamicResource PrimaryText}" />
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="Aparencia"
+                        TextColor="{DynamicResource PrimaryText}" />
+
+                    <Border
+                        Grid.Column="1"
+                        BackgroundColor="{DynamicResource Primary}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <Picker
+                            Title="Tema"
+                            BackgroundColor="{DynamicResource Primary}"
+                            SelectedItem="{Binding Position}"
+                            TextColor="Black">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Claro</x:String>
+                                    <x:String>Escuro</x:String>
+                                    <x:String>Sistema</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+
+                    </Border>
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="Armazenamento"
+                        TextColor="{DynamicResource PrimaryText}" />
+
+                    <Border
+                        Grid.Column="1"
+                        BackgroundColor="{DynamicResource Primary}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <VerticalStackLayout>
+
+                            <elements:DirectoryTextBar
+                                Path=""
+                                TextTitle="Local processos"
+                                Unicode="{StaticResource FAS_Gear}" />
+
+                            <elements:DirectoryTextBar
+                                Path=""
+                                TextTitle="Local colaboradores"
+                                Unicode="{StaticResource FAS_Gear}" />
+
+                            <elements:DirectoryTextBar
+                                Path=""
+                                TextTitle="Local tabelas"
+                                Unicode="{StaticResource FAS_Gear}" />
+
+                            <elements:DirectoryTextBar
+                                Path=""
+                                TextTitle="Local backups"
+                                Unicode="{StaticResource FAS_Gear}" />
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="Importar dados"
+                        TextColor="{DynamicResource PrimaryText}" />
+
+                    <Border
+                        Grid.Column="1"
+                        BackgroundColor="{DynamicResource Primary}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+
+                            <buttons:IconButton
+                                BackgroundColorCode="{DynamicResource Normal}"
+                                Event="{Binding SwitchToTableManagerCommand}"
+                                FontColorCode="{DynamicResource InversePrimaryText}"
+                                FontSize="20"
+                                TextContent="Inportar processos(Json)"
+                                Unicode="{DynamicResource FAS_Gear}" />
+
+                            <buttons:IconButton
+                                Grid.Column="1"
+                                BackgroundColorCode="{DynamicResource Normal}"
+                                Event="{Binding SwitchToTableManagerCommand}"
+                                FontColorCode="{DynamicResource InversePrimaryText}"
+                                FontSize="20"
+                                TextContent="Inportar colaboradores(Json)"
+                                Unicode="{DynamicResource FAS_Gear}" />
+
+                            <buttons:IconButton
+                                Grid.Column="2"
+                                BackgroundColorCode="{DynamicResource Normal}"
+                                Event="{Binding SwitchToTableManagerCommand}"
+                                FontColorCode="{DynamicResource InversePrimaryText}"
+                                FontSize="20"
+                                TextContent="Inportar tabelas(Json)"
+                                Unicode="{DynamicResource FAS_Gear}" />
+
+                        </Grid>
+
+                    </Border>
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="Outras configurações"
+                        TextColor="{DynamicResource PrimaryText}" />
+
+                    <Border
+                        Grid.Column="1"
+                        BackgroundColor="{DynamicResource Primary}"
+                        Style="{StaticResource Border.Radius14}">
+
+                        <VerticalStackLayout>
+
+                            <HorizontalStackLayout>
+                                <CheckBox />
+                                <Label
+                                    Text="Salvar automaticamente ao feichar"
+                                    TextColor="{DynamicResource PrimaryText}"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout>
+                                <CheckBox />
+                                <Label
+                                    Text="Confirmar antes de excluir"
+                                    TextColor="{DynamicResource PrimaryText}"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout>
+                                <CheckBox />
+                                <Label
+                                    Text="backups altomatico"
+                                    TextColor="{DynamicResource PrimaryText}"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

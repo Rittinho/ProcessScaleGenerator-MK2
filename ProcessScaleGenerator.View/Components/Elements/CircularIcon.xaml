@@ -7,13 +7,14 @@
 
     <Border
         x:Name="externalBorder"
+        BackgroundColor="{DynamicResource PrimaryText}"
         HeightRequest="{Binding Path=IconSize, Source={x:Reference Root}}"
         StrokeShape="1000000000000"
         StrokeThickness="0"
         WidthRequest="{Binding Path=IconSize, Source={x:Reference Root}}">
 
         <Border
-            Background="#323232"
+            Background="{DynamicResource Primary}"
             StrokeShape="1000000000000"
             StrokeThickness="0">
 
@@ -21,6 +22,7 @@
                 x:Name="icon"
                 FontFamily="FAS"
                 HorizontalOptions="Center"
+                TextColor="{DynamicResource PrimaryText}"
                 VerticalOptions="Center" />
 
         </Border>

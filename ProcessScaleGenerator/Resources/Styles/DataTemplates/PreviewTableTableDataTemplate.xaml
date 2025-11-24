@@ -10,7 +10,7 @@
     <DataTemplate x:Key="TablePreviewData">
 
         <Border
-            BackgroundColor="{StaticResource Primary}"
+            BackgroundColor="{DynamicResource Primary}"
             StrokeShape="8"
             StrokeThickness="0">
 
@@ -32,10 +32,7 @@
                 ColumnDefinitions="*,*,2*"
                 ColumnSpacing="5">
 
-                <Border
-                    BackgroundColor="{StaticResource Secondary}"
-                    Stroke="{StaticResource ProcessGradient}"
-                    Style="{StaticResource Border.Radius8}">
+                <Border BackgroundColor="{DynamicResource Secondary}" Style="{DynamicResource Border.Radius8}">
 
                     <Label
                         FontAttributes="Bold"
@@ -49,9 +46,8 @@
 
                 <Border
                     Grid.Column="1"
-                    BackgroundColor="{StaticResource Secondary}"
-                    Stroke="{StaticResource ProcessGradient}"
-                    Style="{StaticResource Border.Radius8}">
+                    BackgroundColor="{DynamicResource Secondary}"
+                    Style="{DynamicResource Border.Radius8}">
 
                     <Label
                         FontAttributes="Bold"
@@ -65,9 +61,9 @@
 
                 <Border
                     Grid.Column="2"
-                    BackgroundColor="{StaticResource Secondary}"
-                    Stroke="{StaticResource ToyotaBlue}"
-                    Style="{StaticResource Border.Radius8}">
+                    BackgroundColor="{DynamicResource Secondary}"
+                    Stroke="{DynamicResource ToyotaBlue}"
+                    Style="{DynamicResource Border.Radius8}">
 
                     <Label
                         FontAttributes="Bold"

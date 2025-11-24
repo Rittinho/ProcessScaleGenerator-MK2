@@ -11,7 +11,7 @@
 
     <Grid Padding="10" RowDefinitions="Auto,*">
 
-        <Border BackgroundColor="{StaticResource Secondary}" Stroke="{StaticResource ToyotaRed}">
+        <Border BackgroundColor="{DynamicResource Secondary}" Stroke="{DynamicResource ToyotaRed}">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="14,14,4,4" />
@@ -34,22 +34,22 @@
 
                 <buttons:IconButton
                     Grid.Column="1"
-                    BackgroundColorCode="{StaticResource Tertiary}"
+                    BackgroundColorCode="{DynamicResource Tertiary}"
                     Event="{Binding SwitchToCreateTablesCommand}"
                     FontSize="20"
-                    StrokeColorCode="{StaticResource ToyotaRed}"
+                    StrokeColorCode="{DynamicResource ToyotaRed}"
                     TextContent="Criar tabela"
-                    Unicode="{StaticResource FAS_Table}" />
+                    Unicode="{DynamicResource FAS_Table}" />
 
 
                 <buttons:IconButton
                     Grid.Column="2"
-                    BackgroundColorCode="{StaticResource Tertiary}"
+                    BackgroundColorCode="{DynamicResource Tertiary}"
                     Event="{Binding SwitchToShowTablesCommand}"
                     FontSize="20"
-                    StrokeColorCode="{StaticResource ToyotaRed}"
+                    StrokeColorCode="{DynamicResource ToyotaRed}"
                     TextContent="Ver tabelas"
-                    Unicode="{StaticResource FAS_Eye}" />
+                    Unicode="{DynamicResource FAS_Eye}" />
 
             </Grid>
 
@@ -71,9 +71,9 @@
 
                     <!--  List  -->
                     <Border
-                        BackgroundColor="{StaticResource Secondary}"
-                        Stroke="{StaticResource ToyotaRed}"
-                        Style="{StaticResource Border.Radius14}">
+                        BackgroundColor="{DynamicResource Secondary}"
+                        Stroke="{DynamicResource ToyotaRed}"
+                        Style="{DynamicResource Border.Radius14}">
 
                         <Grid RowDefinitions="Auto,*" RowSpacing="10">
 
@@ -82,7 +82,7 @@
                             <CollectionView
                                 Grid.Row="1"
                                 HorizontalOptions="Fill"
-                                ItemTemplate="{StaticResource ToastViewData}"
+                                ItemTemplate="{DynamicResource ToastViewData}"
                                 ItemsSource="{Binding FiltredProcessList}"
                                 SelectionMode="None"
                                 VerticalOptions="Fill"
@@ -104,9 +104,9 @@
                     <!--  Forms  -->
                     <Border
                         Grid.Column="1"
-                        BackgroundColor="{StaticResource Secondary}"
-                        Stroke="{StaticResource ToyotaRed}"
-                        Style="{StaticResource Border.Radius14}">
+                        BackgroundColor="{DynamicResource Secondary}"
+                        Stroke="{DynamicResource ToyotaRed}"
+                        Style="{DynamicResource Border.Radius14}">
 
                         <Grid RowDefinitions="*,auto">
 
@@ -124,10 +124,10 @@
 
                                         <buttons:IconButton
                                             Grid.Column="1"
-                                            BackgroundColorCode="{StaticResource Tertiary}"
+                                            BackgroundColorCode="{DynamicResource Tertiary}"
                                             Event="{Binding SwitchToEmployeePanelCommand}"
                                             FontSize="20"
-                                            StrokeColorCode="{StaticResource ToyotaRed}"
+                                            StrokeColorCode="{DynamicResource ToyotaRed}"
                                             TextContent="Colaboradores"
                                             Unicode="{DynamicResource FAS_CaretRight}" />
 
@@ -150,10 +150,10 @@
                                                     Padding="5"
                                                     AbsoluteLayout.LayoutBounds="1,0,0.3,0.3"
                                                     AbsoluteLayout.LayoutFlags="All"
-                                                    BackgroundColor="{StaticResource Tertiary}"
+                                                    BackgroundColor="{DynamicResource Tertiary}"
                                                     HorizontalOptions="Center"
                                                     StrokeThickness="0"
-                                                    Style="{StaticResource Border.Circle}"
+                                                    Style="{DynamicResource Border.Circle}"
                                                     VerticalOptions="Center">
 
                                                     <Label
@@ -179,9 +179,9 @@
 
                                         <Border
                                             Padding="10,0,10,0"
-                                            BackgroundColor="{StaticResource Tertiary}"
-                                            Stroke="{StaticResource ToyotaRed}"
-                                            Style="{StaticResource Border.Radius8}">
+                                            BackgroundColor="{DynamicResource Tertiary}"
+                                            Stroke="{DynamicResource ToyotaRed}"
+                                            Style="{DynamicResource Border.Radius8}">
 
                                             <Entry
                                                 BackgroundColor="Transparent"
@@ -194,9 +194,9 @@
                                         <Label FontSize="15" Text="Descrição processo:" />
                                         <Border
                                             Padding="10,0,10,0"
-                                            BackgroundColor="{StaticResource Tertiary}"
-                                            Stroke="{StaticResource ToyotaRed}"
-                                            Style="{StaticResource Border.Radius8}">
+                                            BackgroundColor="{DynamicResource Tertiary}"
+                                            Stroke="{DynamicResource ToyotaRed}"
+                                            Style="{DynamicResource Border.Radius8}">
 
                                             <Editor
                                                 AutoSize="TextChanges"
@@ -219,7 +219,7 @@
                                 IsVisible="{Binding IsInCreateMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
+                                    BackgroundColorCode="{DynamicResource ToyotaLightRed}"
                                     Event="{Binding CreateNewProcessCommand}"
                                     FontSize="20"
                                     TextContent="Criar processo"
@@ -228,8 +228,8 @@
                                 <Button
                                     Grid.Column="1"
                                     Padding="0"
-                                    BackgroundColor="{StaticResource Tertiary}"
-                                    BorderColor="{StaticResource ToyotaLightRed}"
+                                    BackgroundColor="{DynamicResource Tertiary}"
+                                    BorderColor="{DynamicResource ToyotaLightRed}"
                                     BorderWidth="0.7"
                                     Command="{Binding CreateNewProcessCommand}"
                                     FontFamily="FAS"
@@ -245,7 +245,7 @@
                                 IsVisible="{Binding IsInEditMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
+                                    BackgroundColorCode="{DynamicResource ToyotaLightRed}"
                                     Event="{Binding CancelUpdateProcessCommand}"
                                     FontSize="20"
                                     TextContent="Cancelar alterações"
@@ -253,7 +253,7 @@
 
                                 <buttons:IconButton
                                     Grid.Column="1"
-                                    BackgroundColorCode="{StaticResource ToyotaLightBlue}"
+                                    BackgroundColorCode="{DynamicResource ToyotaLightBlue}"
                                     Event="{Binding SaveUpdateProcessCommand}"
                                     FontSize="20"
                                     TextContent="Salvar alterações"
@@ -285,9 +285,9 @@
                     <!--  List  -->
                     <Border
                         Grid.Column="1"
-                        BackgroundColor="{StaticResource Secondary}"
-                        Stroke="{StaticResource ToyotaRed}"
-                        Style="{StaticResource Border.Radius14}">
+                        BackgroundColor="{DynamicResource Secondary}"
+                        Stroke="{DynamicResource ToyotaRed}"
+                        Style="{DynamicResource Border.Radius14}">
 
                         <Grid RowDefinitions="Auto,*" RowSpacing="10">
 
@@ -296,7 +296,7 @@
                             <CollectionView
                                 Grid.Row="1"
                                 HorizontalOptions="Fill"
-                                ItemTemplate="{StaticResource ToastEmployeeStyle}"
+                                ItemTemplate="{DynamicResource ToastEmployeeStyle}"
                                 ItemsSource="{Binding FiltredEmployeeList}"
                                 SelectionMode="None"
                                 VerticalOptions="Fill"
@@ -317,9 +317,9 @@
 
                     <!--  Forms  -->
                     <Border
-                        BackgroundColor="{StaticResource Secondary}"
-                        Stroke="{StaticResource ToyotaRed}"
-                        Style="{StaticResource Border.Radius14}">
+                        BackgroundColor="{DynamicResource Secondary}"
+                        Stroke="{DynamicResource ToyotaRed}"
+                        Style="{DynamicResource Border.Radius14}">
 
                         <Grid RowDefinitions="*,Auto">
 
@@ -336,10 +336,10 @@
                                         Text="Cadastrar colaborador" />
 
                                     <buttons:IconButton
-                                        BackgroundColorCode="{StaticResource Tertiary}"
+                                        BackgroundColorCode="{DynamicResource Tertiary}"
                                         Event="{Binding SwitchToProcessPanelCommand}"
                                         FontSize="20"
-                                        StrokeColorCode="{StaticResource ToyotaRed}"
+                                        StrokeColorCode="{DynamicResource ToyotaRed}"
                                         TextContent="Processos"
                                         Unicode="{DynamicResource FAS_CaretLeft}" />
 
@@ -351,10 +351,10 @@
 
                                         <Border
                                             Padding="0"
-                                            BackgroundColor="{StaticResource Tertiary}"
+                                            BackgroundColor="{DynamicResource Tertiary}"
                                             HeightRequest="250"
-                                            Stroke="{StaticResource ProcessGradient}"
-                                            Style="{StaticResource Border.Circle}"
+                                            Stroke="{DynamicResource ProcessGradient}"
+                                            Style="{DynamicResource Border.Circle}"
                                             WidthRequest="250">
 
                                             <Label
@@ -372,10 +372,10 @@
                                             Padding="5"
                                             AbsoluteLayout.LayoutBounds="1,0,0.3,0.3"
                                             AbsoluteLayout.LayoutFlags="All"
-                                            BackgroundColor="{StaticResource Tertiary}"
+                                            BackgroundColor="{DynamicResource Tertiary}"
                                             HorizontalOptions="Center"
                                             StrokeThickness="0"
-                                            Style="{StaticResource Border.Circle}"
+                                            Style="{DynamicResource Border.Circle}"
                                             VerticalOptions="Center">
 
                                             <Label
@@ -396,9 +396,9 @@
                                 <Label FontSize="15" Text="Nome do colaborador:" />
                                 <Border
                                     Padding="10,0,10,0"
-                                    BackgroundColor="{StaticResource Tertiary}"
-                                    Stroke="{StaticResource ToyotaRed}"
-                                    Style="{StaticResource Border.Radius14}">
+                                    BackgroundColor="{DynamicResource Tertiary}"
+                                    Stroke="{DynamicResource ToyotaRed}"
+                                    Style="{DynamicResource Border.Radius14}">
 
                                     <Entry
                                         BackgroundColor="Transparent"
@@ -412,9 +412,9 @@
                                 <Label FontSize="15" Text="Cargo do colaborador:" />
                                 <Border
                                     Padding="10,0,10,0"
-                                    BackgroundColor="{StaticResource Tertiary}"
-                                    Stroke="{StaticResource ToyotaRed}"
-                                    Style="{StaticResource Border.Radius14}">
+                                    BackgroundColor="{DynamicResource Tertiary}"
+                                    Stroke="{DynamicResource ToyotaRed}"
+                                    Style="{DynamicResource Border.Radius14}">
 
                                     <Editor
                                         AutoSize="TextChanges"
@@ -435,7 +435,7 @@
                                 IsVisible="{Binding IsInCreateMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
+                                    BackgroundColorCode="{DynamicResource ToyotaLightRed}"
                                     Event="{Binding CreateNewEmployeeCommand}"
                                     FontSize="20"
                                     TextContent="Criar processo"
@@ -444,8 +444,8 @@
                                 <Button
                                     Grid.Column="1"
                                     Padding="0"
-                                    BackgroundColor="{StaticResource Tertiary}"
-                                    BorderColor="{StaticResource ToyotaLightRed}"
+                                    BackgroundColor="{DynamicResource Tertiary}"
+                                    BorderColor="{DynamicResource ToyotaLightRed}"
                                     BorderWidth="0.7"
                                     Command="{Binding CreateNewProcessCommand}"
                                     FontFamily="FAS"
@@ -461,7 +461,7 @@
                                 IsVisible="{Binding IsInEditMode}">
 
                                 <buttons:IconButton
-                                    BackgroundColorCode="{StaticResource ToyotaLightRed}"
+                                    BackgroundColorCode="{DynamicResource ToyotaLightRed}"
                                     Event="{Binding CancelUpdateEmployeeCommand}"
                                     FontSize="20"
                                     TextContent="Cancelar alterações"
@@ -469,7 +469,7 @@
 
                                 <buttons:IconButton
                                     Grid.Column="1"
-                                    BackgroundColorCode="{StaticResource ToyotaLightBlue}"
+                                    BackgroundColorCode="{DynamicResource ToyotaLightBlue}"
                                     Event="{Binding SaveUpdateEmployeeCommand}"
                                     FontSize="20"
                                     TextContent="Salvar alterações"

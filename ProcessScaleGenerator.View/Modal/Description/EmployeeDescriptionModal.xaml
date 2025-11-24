@@ -7,8 +7,7 @@
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Padding="-20"
-    BackgroundColor="#343434"
-    HorizontalOptions="Center">
+    BackgroundColor="{DynamicResource Tertiary}">
 
     <VerticalStackLayout>
 
@@ -22,14 +21,12 @@
                     FontSize="50"
                     HorizontalOptions="Center"
                     Text="{Binding Name}"
-                    TextColor="White"
                     VerticalOptions="Center" />
 
                 <Label
                     FontSize="30"
                     HorizontalOptions="Center"
                     Text="{Binding Position}"
-                    TextColor="White"
                     VerticalOptions="Center" />
 
             </VerticalStackLayout>
@@ -44,7 +41,7 @@
             FontSize="20"
             HorizontalOptions="End"
             TextContent="Voltar"
-            Unicode="{StaticResource FAS_RotateLeft}" />
+            Unicode="{DynamicResource FAS_RotateLeft}" />
 
     </VerticalStackLayout>
 

@@ -7,7 +7,7 @@
 
     <Style x:Key="BasePopup" TargetType="toolkitViews:Popup">
 
-        <Setter Property="BackgroundColor" Value="{StaticResource Tertiary}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Tertiary}" />
 
     </Style>
 

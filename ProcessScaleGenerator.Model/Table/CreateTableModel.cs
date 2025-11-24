@@ -1,7 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using ProcessScaleGenerator.Shared.Injections.Contract;
+﻿using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.ValueObjects;
-using System.Collections.ObjectModel;
 
 namespace ProcessScaleGenerator.Model.Table;
 
@@ -37,8 +35,8 @@ public class CreateTableModel
     {
         Random random = new();
 
-        List<ToyotaEmployee> employeeList = [.._repositoryServices.GetAllEmployees().Where(x => x.Hidded == false)];
-        List<ToyotaProcess> processList = [.._repositoryServices.GetAllProcesses().Where(x => x.Hidded == false)];
+        List<ToyotaEmployee> employeeList = [.. _repositoryServices.GetAllEmployees().Where(x => x.Hidded == false)];
+        List<ToyotaProcess> processList = [.. _repositoryServices.GetAllProcesses().Where(x => x.Hidded == false)];
 
         int employeeHidded = _repositoryServices.GetAllEmployees().Where(x => x.Hidded).Count();
         int processHidded = _repositoryServices.GetAllProcesses().Where(x => x.Hidded).Count();

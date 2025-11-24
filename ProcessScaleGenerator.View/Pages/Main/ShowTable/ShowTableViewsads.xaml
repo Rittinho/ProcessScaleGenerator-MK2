@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="ProcessScaleGenerator.View.Pages.Main.ShowTable.ShowTableView"
+    x:Class="ProcessScaleGenerator.View.Pages.Main.ShowTable.ShowTableViewsads"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
@@ -11,7 +11,7 @@
 
     <Grid Padding="10" RowDefinitions="Auto,*">
 
-        <Border BackgroundColor="{StaticResource Secondary}" Stroke="Tomato">
+        <Border BackgroundColor="{DynamicResource Secondary}" Stroke="Tomato">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="14,14,4,4" />
@@ -23,21 +23,21 @@
                 ColumnSpacing="10">
 
                 <buttons:IconButton
-                    BackgroundColorCode="{StaticResource Tertiary}"
+                    BackgroundColorCode="{DynamicResource Tertiary}"
                     Event="{Binding SwitchToRegisterCommand}"
                     FontSize="20"
                     StrokeColorCode="Tomato"
                     TextContent="Registros"
-                    Unicode="{StaticResource FAS_AddressBook}" />
+                    Unicode="{DynamicResource FAS_AddressBook}" />
 
                 <buttons:IconButton
                     Grid.Column="1"
-                    BackgroundColorCode="{StaticResource Tertiary}"
+                    BackgroundColorCode="{DynamicResource Tertiary}"
                     Event="{Binding SwitchToCreateTablesCommand}"
                     FontSize="20"
                     StrokeColorCode="Tomato"
                     TextContent="Criar tabela"
-                    Unicode="{StaticResource FAS_Table}" />
+                    Unicode="{DynamicResource FAS_Table}" />
 
                 <Border Grid.Column="2" StrokeThickness="0">
 

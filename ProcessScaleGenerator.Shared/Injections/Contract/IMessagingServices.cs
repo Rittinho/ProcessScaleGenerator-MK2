@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProcessScaleGenerator.Shared.Injections.Contract;
+﻿namespace ProcessScaleGenerator.Shared.Injections.Contract;
 
 public interface IMessagingServices
 {

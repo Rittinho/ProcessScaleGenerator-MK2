@@ -7,16 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Compile Remove="Pages\Secondary\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Pages\Secondary\**" />
+    <None Remove="Components\**" />
+    <None Remove="Pages\Secondary\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProcessScaleGenerator.Model\ProcessScaleGenerator.Model.csproj" />
     <ProjectReference Include="..\ProcessScaleGenerator.Shared\ProcessScaleGenerator.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\Button\" />
-    <Folder Include="Components\Elements\" />
     <Folder Include="Modal\Description\" />
     <Folder Include="Modal\Warning\" />
-    <Folder Include="Pages\Secondary\" />
   </ItemGroup>
 
   <ItemGroup>

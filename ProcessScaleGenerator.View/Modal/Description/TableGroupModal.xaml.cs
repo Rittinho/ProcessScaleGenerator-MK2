@@ -2,26 +2,25 @@ using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Controls.Shapes;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using ProcessScaleGenerator.View.Components.Elements;
-using System.Collections.ObjectModel;
 
 namespace ProcessScaleGenerator.View.Modal.Description;
 
 public partial class TableGroupModal : Popup
 {
-	private ToyotaTableGroup _toyotaTableGroup;
+    private ToyotaTableGroup _toyotaTableGroup;
 
-	public List<ToyotaProcessTable> Tables;
+    public List<ToyotaProcessTable> Tables;
     public TableGroupModal(ToyotaTableGroup toyotaTableGroup)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
-		_toyotaTableGroup = toyotaTableGroup;
+        _toyotaTableGroup = toyotaTableGroup;
 
-		Tables = _toyotaTableGroup.TableGroup;
+        Tables = _toyotaTableGroup.TableGroup;
 
         TableGroupRender(Tables);
 
-	}
+    }
     private void TableGroupRender(List<ToyotaProcessTable> processGroups)
     {
         Container.Clear();

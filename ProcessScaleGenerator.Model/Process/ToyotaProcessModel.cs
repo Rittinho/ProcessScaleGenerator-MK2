@@ -53,7 +53,7 @@ public class ToyotaProcessModel
     {
         foreach (var process in _repositoryServices.GetAllProcesses())
             if (process.Title == toyotaProcess.Title &&
-                process.Description == toyotaProcess .Description &&
+                process.Description == toyotaProcess.Description &&
                 process.Icon == toyotaProcess.Icon)
                 return true;
 

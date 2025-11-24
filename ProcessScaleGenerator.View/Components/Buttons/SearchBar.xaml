@@ -7,10 +7,9 @@
 
     <Border
         Padding="5,0,0,0"
-        BackgroundColor="{StaticResource Primary}"
+        BackgroundColor="{DynamicResource Primary}"
         HorizontalOptions="Fill"
-        StrokeThickness="0"
-        Style="{StaticResource Border.Radius8}">
+        Style="{DynamicResource Border.Radius8}">
 
         <Grid ColumnDefinitions="*,Auto">
 
@@ -18,16 +17,15 @@
 
             <Button
                 Grid.Column="1"
-                BackgroundColor="{StaticResource Tertiary}"
+                BackgroundColor="{DynamicResource Secondary}"
                 Command="{Binding Path=Event, Source={x:Reference Root}}"
                 CornerRadius="0"
                 FontFamily="FAS"
-                Text="{StaticResource FAS_MagnifyingGlass}"
-                TextColor="{StaticResource PrimaryDarkText}" />
+                Text="{DynamicResource FAS_MagnifyingGlass}"
+                TextColor="{DynamicResource PrimaryDarkText}" />
 
         </Grid>
 
     </Border>
-
 
 </ContentView>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ProcessScaleGenerator.View.Components.Elements.Textbar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="Root">
+
+    <VerticalStackLayout>
+
+        <Label FontSize="18" Text="{Binding Path=TextTitle, Source={x:Reference Root}}" />
+
+        <Border
+            Padding="0"
+            BackgroundColor="{DynamicResource Primary}"
+            HorizontalOptions="Fill"
+            Style="{DynamicResource Border.Radius8}">
+
+            <Grid ColumnDefinitions="Auto,*">
+
+                <Border BackgroundColor="{DynamicResource Secondary}" StrokeThickness="0">
+
+                    <Label
+                        FontFamily="FAS"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Path=Unicode, Source={x:Reference Root}}"
+                        VerticalTextAlignment="Center" />
+
+                </Border>
+
+                <Entry
+                    Grid.Column="1"
+                    FontSize="20"
+                    Text="{Binding Path=TextContent, Source={x:Reference Root}}" />
+
+            </Grid>
+
+        </Border>
+
+    </VerticalStackLayout>
+
+</ContentView>

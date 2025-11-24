@@ -1,16 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProcessScaleGenerator.ViewModel.Pages.Main.CreateTable;
+
 public partial class CreateTableViewModel
 {
     public event Action<List<ToyotaProcessTable>> OnPreviewTableCreated;

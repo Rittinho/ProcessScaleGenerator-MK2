@@ -9,14 +9,15 @@ using ProcessScaleGenerator.Sevices.Injections.Implementation;
 using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Injections.Implementation;
 using ProcessScaleGenerator.Shared.Injections.Implementation.Repository;
-using ProcessScaleGenerator.View.Pages.Main.CreateTable;
-using ProcessScaleGenerator.View.Pages.Main.Register;
-using ProcessScaleGenerator.View.Pages.Main.ShowTable;
+using ProcessScaleGenerator.View.Pages.Main;
 using ProcessScaleGenerator.ViewModel.Modal.Forms.IconPicker;
 using ProcessScaleGenerator.ViewModel.Modal.Forms.TableConfigModal;
-using ProcessScaleGenerator.ViewModel.Pages.Main.CreateTable;
-using ProcessScaleGenerator.ViewModel.Pages.Main.Register;
+using ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard;
+using ProcessScaleGenerator.ViewModel.Pages.Main.Employeers;
+using ProcessScaleGenerator.ViewModel.Pages.Main.Processes;
+using ProcessScaleGenerator.ViewModel.Pages.Main.Settings;
 using ProcessScaleGenerator.ViewModel.Pages.Main.ShowTable;
+using ProcessScaleGenerator.ViewModel.Pages.Main.TableManager;
 using ToyotaProcessManager.Services.Injections.Contract;
 using ToyotaProcessManager.Services.Injections.Implementation;
 
@@ -51,14 +52,21 @@ namespace ProcessScaleGenerator
             builder.Services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
 
             //views
-            builder.Services.AddTransient<CreateTableView>();
+            builder.Services.AddTransient<DashboardView>();
+            builder.Services.AddTransient<ProcessManagerView>();
+            builder.Services.AddTransient<EmployeeManagerView>();
+            builder.Services.AddTransient<TableManagerView>();
             builder.Services.AddTransient<ShowTableView>();
-            builder.Services.AddTransient<RegisterView>();
+            builder.Services.AddTransient<SettingsView>();
+
 
             //ViewModels
-            builder.Services.AddSingleton<CreateTableViewModel>();
-            builder.Services.AddTransient<ShowTableViewModel>();
-            builder.Services.AddSingleton<RegisterViewModel>();
+            builder.Services.AddSingleton<DashboardViewModel>();
+            builder.Services.AddSingleton<ProcessManagerViewModel>();
+            builder.Services.AddSingleton<EmployeeManagerViewModel>();
+            builder.Services.AddSingleton<TableManagerViewModel>();
+            builder.Services.AddSingleton<ShowTableViewModel>();
+            builder.Services.AddSingleton<SettingsViewModel>();
 
             builder.Services.AddTransient<TableConfigModalViewModel>();
             builder.Services.AddTransient<IconPickerModalViewModel>();

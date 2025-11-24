@@ -4,8 +4,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using ProcessScaleGenerator.Shared.Constants;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Globalization;
 
 namespace ProcessScaleGenerator.ViewModel.Modal.Forms.IconPicker;
 
