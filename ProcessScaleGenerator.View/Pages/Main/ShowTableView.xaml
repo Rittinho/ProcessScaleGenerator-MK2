@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<ContentView
     x:Class="ProcessScaleGenerator.View.Pages.Main.ShowTableView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,89 +8,6 @@
     x:Name="Root"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid ColumnDefinitions="*,4*">
+    <VerticalStackLayout />
 
-        <Border BackgroundColor="{DynamicResource NavBar}" StrokeThickness="0">
-
-            <Grid
-                Padding="5"
-                RowDefinitions="*,Auto"
-                RowSpacing="5">
-                <VerticalStackLayout Spacing="5">
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToDashboardCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Dashboard"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToProcessesManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Processos"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToEmployeersManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Colaboradores"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToTableManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Configurar tabela"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <Border
-                        BackgroundColor="{DynamicResource SelectedNavBar}"
-                        StrokeThickness="0"
-                        Style="{StaticResource Border.Radius8}">
-
-                        <HorizontalStackLayout>
-
-                            <Label
-                                FontSize="20"
-                                Text="{DynamicResource FAS_Gear}"
-                                TextColor="{DynamicResource InversePrimaryText}" />
-                            <Label
-                                FontSize="20"
-                                Text="Visualizar tabela"
-                                TextColor="{DynamicResource InversePrimaryText}" />
-
-                        </HorizontalStackLayout>
-
-                    </Border>
-
-                </VerticalStackLayout>
-
-                <buttons:IconButton
-                    Grid.Row="1"
-                    BackgroundColorCode="Transparent"
-                    Event="{Binding SwitchToSettingsCommand}"
-                    FontColorCode="{DynamicResource InversePrimaryText}"
-                    FontSize="20"
-                    TextContent="Configurações"
-                    Unicode="{DynamicResource FAS_Gear}" />
-
-            </Grid>
-
-        </Border>
-
-        <Border
-            Grid.Column="1"
-            Padding="5"
-            BackgroundColor="{DynamicResource Secondary}"
-            StrokeThickness="0" />
-
-    </Grid>
-
-</ContentPage>
+</ContentView>

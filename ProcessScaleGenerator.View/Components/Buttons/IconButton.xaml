@@ -14,7 +14,7 @@
         <HorizontalStackLayout Spacing="6">
 
             <Label
-                FontFamily="FAS"
+                FontFamily="{Binding Path=UnicodeFamily, Source={x:Reference Root}}"
                 FontSize="{Binding Path=FontSize, Source={x:Reference Root}}"
                 HorizontalOptions="Center"
                 Text="{Binding Path=Unicode, Source={x:Reference Root}}"

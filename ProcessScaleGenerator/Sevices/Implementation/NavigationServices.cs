@@ -24,34 +24,56 @@ public class NavigationServices : INavigationServices
 
     public async Task GoToPageAsync(RegisteredPages page)
     {
+        //switch (page)
+        //{
+        //    case RegisteredPages.Dashboard:
+        //        var vmDashboard = MauiProgram.ServiceProvider.GetRequiredService<DashboardViewModel>();
+        //        await GetCurrentPage().Navigation.PushAsync(new DashboardView(vmDashboard));
+        //        break;
+        //    case RegisteredPages.Processes:
+        //        var vmProcess = MauiProgram.ServiceProvider.GetRequiredService<ProcessManagerViewModel>();
+        //        await GetCurrentPage().Navigation.PushAsync(new ProcessManagerView(vmProcess));
+        //        break;
+        //    case RegisteredPages.Employeers:
+        //        var vmEmployee = MauiProgram.ServiceProvider.GetRequiredService<EmployeeManagerViewModel>();
+        //        await GetCurrentPage().Navigation.PushAsync(new EmployeeManagerView(vmEmployee));
+        //        break;
+        //    case RegisteredPages.TableManager:
+        //        var vmTableManager = MauiProgram.ServiceProvider.GetRequiredService<TableManagerViewModel>();
+        //        await GetCurrentPage().Navigation.PushAsync(new TableManagerView(vmTableManager));
+        //        break;
+        //    case RegisteredPages.ShowTable:
+        //        var vmShow = MauiProgram.ServiceProvider.GetRequiredService<ShowTableViewModel>();
+        //        await GetCurrentPage().Navigation.PushAsync(new ShowTableView(vmShow));
+        //        break;
+        //    case RegisteredPages.Settings:
+        //        var vmSettings = MauiProgram.ServiceProvider.GetRequiredService<SettingsViewModel>();
+        //        await GetCurrentPage().Navigation.PushAsync(new SettingsView(vmSettings));
+        //        break;
+        //}
+    }
+
+    public object GetViewAsync(RegisteredPages page)
+    {
         switch (page)
         {
             case RegisteredPages.Dashboard:
-                var vmDashboard = MauiProgram.ServiceProvider.GetRequiredService<DashboardViewModel>();
-                await GetCurrentPage().Navigation.PushAsync(new DashboardView(vmDashboard));
-                break;
+                return MauiProgram.ServiceProvider.GetRequiredService<DashboardView>();
             case RegisteredPages.Processes:
-                var vmProcess = MauiProgram.ServiceProvider.GetRequiredService<ProcessManagerViewModel>();
-                await GetCurrentPage().Navigation.PushAsync(new ProcessManagerView(vmProcess));
-                break;
+                return MauiProgram.ServiceProvider.GetRequiredService<ProcessManagerView>();
             case RegisteredPages.Employeers:
-                var vmEmployee = MauiProgram.ServiceProvider.GetRequiredService<EmployeeManagerViewModel>();
-                await GetCurrentPage().Navigation.PushAsync(new EmployeeManagerView(vmEmployee));
-                break;
+                return MauiProgram.ServiceProvider.GetRequiredService<EmployeeManagerView>();
             case RegisteredPages.TableManager:
-                var vmTableManager = MauiProgram.ServiceProvider.GetRequiredService<TableManagerViewModel>();
-                await GetCurrentPage().Navigation.PushAsync(new TableManagerView(vmTableManager));
-                break;
+                return MauiProgram.ServiceProvider.GetRequiredService<TableManagerView>();
             case RegisteredPages.ShowTable:
-                var vmShow = MauiProgram.ServiceProvider.GetRequiredService<ShowTableViewModel>();
-                await GetCurrentPage().Navigation.PushAsync(new ShowTableView(vmShow));
-                break;
+                return MauiProgram.ServiceProvider.GetRequiredService<ShowTableView>();
             case RegisteredPages.Settings:
-                var vmSettings = MauiProgram.ServiceProvider.GetRequiredService<SettingsViewModel>();
-                await GetCurrentPage().Navigation.PushAsync(new SettingsView(vmSettings));
-                break;
+                return MauiProgram.ServiceProvider.GetRequiredService<SettingsView>();
+            default:
+                throw new ArgumentOutOfRangeException(nameof(page), "Página não registrada no Switch");
         }
     }
+
     private Page? GetCurrentPage()
     {
         if (Shell.Current?.CurrentPage != null)

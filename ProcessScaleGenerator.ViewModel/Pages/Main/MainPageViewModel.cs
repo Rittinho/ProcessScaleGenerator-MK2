@@ -8,46 +8,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProcessScaleGenerator.ViewModel.Pages.Main.Settings
+namespace ProcessScaleGenerator.ViewModel.Pages.Main
 {
-    public partial class SettingsViewModel : ObservableObject
+    public partial class MainPageViewModel : ObservableObject
     {
         private readonly INavigationServices _navigationServices;
-        private readonly IRepositoryServices _repositoryServices;
-        public SettingsViewModel(IRepositoryServices repositoryServices, INavigationServices navigationServices)
+
+        [ObservableProperty]
+        private object _currentView;
+
+        public MainPageViewModel(INavigationServices navigationServices)
         {
             _navigationServices = navigationServices;
-            _repositoryServices = repositoryServices;
-        }
-        private void LoadSettings()
-        {
-            //ProcessPath = 
+            SwitchToDashboard();
         }
 
         [RelayCommand]
         public async Task SwitchToDashboard()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.Dashboard);
+            CurrentView = _navigationServices.GetViewAsync(RegisteredPages.Dashboard);
         }
         [RelayCommand]
         public async Task SwitchToTableManager()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.TableManager);
+            CurrentView = _navigationServices.GetViewAsync(RegisteredPages.TableManager);
         }
         [RelayCommand]
         public async Task SwitchToProcessesManager()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.Processes);
+            CurrentView = _navigationServices.GetViewAsync(RegisteredPages.Processes);
         }
         [RelayCommand]
         public async Task SwitchToEmployeersManager()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.Employeers);
+            CurrentView = _navigationServices.GetViewAsync(RegisteredPages.Employeers);
         }
         [RelayCommand]
         public async Task SwitchToShowTables()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.ShowTable);
+            CurrentView = _navigationServices.GetViewAsync(RegisteredPages.ShowTable);
+        }
+        [RelayCommand]
+        public async Task SwitchToSettings()
+        {
+            CurrentView = _navigationServices.GetViewAsync(RegisteredPages.Settings);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
     <x:String x:Key="FAS_Space">&#x20;</x:String>
     <x:String x:Key="FAS_Exclamation">&#x21;</x:String>
     <x:String x:Key="FAS_Hashtag">&#x23;</x:String>
@@ -10,16 +9,16 @@
     <x:String x:Key="FAS_Asterisk">&#x2a;</x:String>
     <x:String x:Key="FAS_Plus">&#x2b;</x:String>
     <x:String x:Key="FAS_Hyphen">&#x2d;</x:String>
-    <x:String x:Key="FAS__0">&#x30;</x:String>
-    <x:String x:Key="FAS__1">&#x31;</x:String>
-    <x:String x:Key="FAS__2">&#x32;</x:String>
-    <x:String x:Key="FAS__3">&#x33;</x:String>
-    <x:String x:Key="FAS__4">&#x34;</x:String>
-    <x:String x:Key="FAS__5">&#x35;</x:String>
-    <x:String x:Key="FAS__6">&#x36;</x:String>
-    <x:String x:Key="FAS__7">&#x37;</x:String>
-    <x:String x:Key="FAS__8">&#x38;</x:String>
-    <x:String x:Key="FAS__9">&#x39;</x:String>
+    <x:String x:Key="FAS_0">&#x30;</x:String>
+    <x:String x:Key="FAS_1">&#x31;</x:String>
+    <x:String x:Key="FAS_2">&#x32;</x:String>
+    <x:String x:Key="FAS_3">&#x33;</x:String>
+    <x:String x:Key="FAS_4">&#x34;</x:String>
+    <x:String x:Key="FAS_5">&#x35;</x:String>
+    <x:String x:Key="FAS_6">&#x36;</x:String>
+    <x:String x:Key="FAS_7">&#x37;</x:String>
+    <x:String x:Key="FAS_8">&#x38;</x:String>
+    <x:String x:Key="FAS_9">&#x39;</x:String>
     <x:String x:Key="FAS_LessThan">&#x3c;</x:String>
     <x:String x:Key="FAS_Equals">&#x3d;</x:String>
     <x:String x:Key="FAS_GreaterThan">&#x3e;</x:String>

@@ -1,3 +1,4 @@
+using ProcessScaleGenerator.View.Components.Elements;
 using System.Windows.Input;
 
 namespace ProcessScaleGenerator.View.Components.Buttons;
@@ -6,6 +7,9 @@ public partial class IconButton : ContentView
 {
     public static readonly BindableProperty UnicodeProperty =
     BindableProperty.Create(nameof(Unicode), typeof(string), typeof(IconButton), default(string));
+
+    public static readonly BindableProperty UnicodeFamilyProperty =
+    BindableProperty.Create(nameof(UnicodeFamily), typeof(string), typeof(IconButton), default(string));
 
     public static readonly BindableProperty TextContentProperty =
     BindableProperty.Create(nameof(TextContent), typeof(string), typeof(IconButton), default(string));
@@ -32,6 +36,11 @@ public partial class IconButton : ContentView
     {
         get => (string)GetValue(UnicodeProperty);
         set => SetValue(UnicodeProperty, value);
+    }
+    public string UnicodeFamily
+    {
+        get => (string)GetValue(UnicodeFamilyProperty);
+        set => SetValue(UnicodeFamilyProperty, value);
     }
     public string TextContent
     {

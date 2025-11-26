@@ -1,9 +1,9 @@
 ﻿using ProcessScaleGenerator.Resources.Styles;
 using ProcessScaleGenerator.Shared.Injections.Contract;
+using ProcessScaleGenerator.View.Pages;
 using ProcessScaleGenerator.View.Pages.Main;
-using ProcessScaleGenerator.View.Pages.Main.Register;
+using ProcessScaleGenerator.ViewModel.Pages.Main;
 using ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard;
-using ProcessScaleGenerator.ViewModel.Pages.Main.Employeers;
 
 namespace ProcessScaleGenerator
 {
@@ -14,11 +14,10 @@ namespace ProcessScaleGenerator
             InitializeComponent();
             LoadThemeColors(AppInfo.RequestedTheme);
         }
-
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var vm = MauiProgram.ServiceProvider.GetRequiredService<DashboardViewModel>();
-            var window = new Window(new NavigationPage(new DashboardView(vm)));
+            var vm = MauiProgram.ServiceProvider.GetRequiredService<MainPageViewModel>();
+            var window = new Window(new NavigationPage(new MainPage(vm)));
 
             window.Destroying += OnWindowDestroying;
 

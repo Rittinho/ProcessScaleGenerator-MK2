@@ -20,10 +20,13 @@
                 <Border BackgroundColor="{DynamicResource Secondary}" StrokeThickness="0">
 
                     <Label
-                        FontFamily="FAS"
+                        Padding="5"
+                        FontFamily="{Binding Path=UnicodeFamily, Source={x:Reference Root}}"
                         FontSize="20"
                         HorizontalTextAlignment="Center"
+                        MinimumWidthRequest="40"
                         Text="{Binding Path=Unicode, Source={x:Reference Root}}"
+                        TextColor="{Binding Path=UnicodeColor, Source={x:Reference Root}}"
                         VerticalTextAlignment="Center" />
 
                 </Border>

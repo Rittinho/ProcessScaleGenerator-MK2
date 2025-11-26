@@ -2,7 +2,7 @@ using ProcessScaleGenerator.ViewModel.Pages.Main.TableManager;
 
 namespace ProcessScaleGenerator.View.Pages.Main;
 
-public partial class TableManagerView : ContentPage
+public partial class TableManagerView : ContentView
 {
 	public TableManagerView(TableManagerViewModel tableManagerViewModel)
 	{

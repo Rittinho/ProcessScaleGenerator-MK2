@@ -12,7 +12,7 @@
     </Style>
 
     <Style TargetType="Border">
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={DynamicResource Gray300}, Dark={DynamicResource Gray500}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={DynamicResource Gray200}, Dark={DynamicResource Gray500}}" />
         <Setter Property="StrokeShape" Value="Rectangle" />
         <Setter Property="StrokeThickness" Value="1" />
     </Style>
@@ -48,7 +48,7 @@
     </Style>
 
     <Style TargetType="CheckBox">
-        <Setter Property="Color" Value="{DynamicResource SelectedNavBar}" />
+        <Setter Property="Color" Value="{DynamicResource Normal}" />
         <Setter Property="MinimumHeightRequest" Value="44" />
         <Setter Property="MinimumWidthRequest" Value="44" />
         <Setter Property="VisualStateManager.VisualStateGroups">

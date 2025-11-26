@@ -8,21 +8,22 @@
 
   <ItemGroup>
     <Compile Remove="Components\**" />
+    <Compile Remove="Modal\Description\**" />
+    <Compile Remove="Modal\Warning\**" />
     <Compile Remove="Pages\Secondary\**" />
     <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Modal\Description\**" />
+    <EmbeddedResource Remove="Modal\Warning\**" />
     <EmbeddedResource Remove="Pages\Secondary\**" />
     <None Remove="Components\**" />
+    <None Remove="Modal\Description\**" />
+    <None Remove="Modal\Warning\**" />
     <None Remove="Pages\Secondary\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProcessScaleGenerator.Model\ProcessScaleGenerator.Model.csproj" />
     <ProjectReference Include="..\ProcessScaleGenerator.Shared\ProcessScaleGenerator.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Modal\Description\" />
-    <Folder Include="Modal\Warning\" />
   </ItemGroup>
 
   <ItemGroup>

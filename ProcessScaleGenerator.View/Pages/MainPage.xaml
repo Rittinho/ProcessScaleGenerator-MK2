@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProcessScaleGenerator.View.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Pages="clr-namespace:ProcessScaleGenerator.View.Pages.Main"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
+    BackgroundColor="Red"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid ColumnDefinitions="*,4*">
+
+        <Border BackgroundColor="{DynamicResource NavBar}" StrokeThickness="0">
+
+            <Grid
+                Padding="5"
+                RowDefinitions="*,Auto"
+                RowSpacing="5">
+                <VerticalStackLayout Spacing="5">
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToDashboardCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Dashboard"
+                        Unicode="{DynamicResource FAO_House}"
+                        UnicodeFamily="FAO" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToProcessesManagerCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Processos"
+                        Unicode="{DynamicResource FAO_Clipboard}"
+                        UnicodeFamily="FAO" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToEmployeersManagerCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Colaboradores"
+                        Unicode="{DynamicResource FAO_AddressBook}"
+                        UnicodeFamily="FAO" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToTableManagerCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Configurar tabela"
+                        Unicode="{DynamicResource FAS_Table}"
+                        UnicodeFamily="FAS" />
+
+                    <buttons:IconButton
+                        BackgroundColorCode="Transparent"
+                        Event="{Binding SwitchToShowTablesCommand}"
+                        FontColorCode="{DynamicResource InversePrimaryText}"
+                        FontSize="20"
+                        TextContent="Visualizar tabela"
+                        Unicode="{DynamicResource FAO_Eye}"
+                        UnicodeFamily="FAO" />
+
+                </VerticalStackLayout>
+
+                <buttons:IconButton
+                    Grid.Row="1"
+                    BackgroundColorCode="Transparent"
+                    Event="{Binding SwitchToSettingsCommand}"
+                    FontColorCode="{DynamicResource InversePrimaryText}"
+                    FontSize="20"
+                    TextContent="Configurações"
+                    Unicode="{DynamicResource FAS_Gear}"
+                    UnicodeFamily="FAS" />
+
+            </Grid>
+
+        </Border>
+
+        <Border
+            x:Name="ContentFild"
+            Grid.Column="1"
+            Padding="5"
+            BackgroundColor="{DynamicResource Secondary}"
+            StrokeThickness="0">
+
+            <ContentPresenter Content="{Binding CurrentView}" />
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

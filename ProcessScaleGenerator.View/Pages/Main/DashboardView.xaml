@@ -1,225 +1,147 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<ContentView
     x:Class="ProcessScaleGenerator.View.Pages.Main.DashboardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    xmlns:icon="clr-namespace:ProcessScaleGenerator.Shared.Constants.Fonts;assembly=ProcessScaleGenerator.Shared"
     x:Name="Root"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid ColumnDefinitions="*,4*">
+    <Grid
+        Grid.Row="1"
+        ColumnDefinitions="*,2*"
+        ColumnSpacing="6">
 
-        <Border BackgroundColor="{DynamicResource NavBar}" StrokeThickness="0">
+        <!--  Left  -->
+        <Grid
+            Padding="20,20,0,0"
+            RowDefinitions="Auto,Auto,*"
+            RowSpacing="5">
 
+            <Label
+                FontAttributes="Bold"
+                FontSize="35"
+                Text="Visão geral"
+                TextColor="{DynamicResource PrimaryText}" />
+
+            <!--  Container 1  -->
             <Grid
-                Padding="5"
-                RowDefinitions="*,Auto"
+                Grid.Row="1"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="5"
+                RowDefinitions="*,*"
                 RowSpacing="5">
-                <VerticalStackLayout Spacing="5">
 
-                    <Border
-                        BackgroundColor="{DynamicResource SelectedNavBar}"
-                        StrokeThickness="0"
-                        Style="{StaticResource Border.Radius8}">
+                <elements:TableInfoBlock
+                    BarColor="{DynamicResource Normal}"
+                    Count="1"
+                    Description="Criados"
+                    TitleText="Total processos"
+                    Unicode="{StaticResource FAS_Clipboard}" />
 
-                        <HorizontalStackLayout>
+                <elements:TableInfoBlock
+                    Grid.Column="1"
+                    BarColor="{DynamicResource Normal}"
+                    Count="1"
+                    Description="Registrados"
+                    TitleText="Total colaboradores"
+                    Unicode="{StaticResource FAS_Users}" />
 
-                            <Label
-                                FontSize="20"
-                                Text="{DynamicResource FAS_Gear}"
-                                TextColor="{DynamicResource InversePrimaryText}" />
-                            <Label
-                                FontSize="20"
-                                Text="Dashboard"
-                                TextColor="{DynamicResource InversePrimaryText}" />
-
-                        </HorizontalStackLayout>
-
-                    </Border>
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToProcessesManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Processos"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToEmployeersManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Colaboradores"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToTableManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Configurar tabela"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToShowTablesCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Visualizar tabela"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                </VerticalStackLayout>
-
-                <buttons:IconButton
+                <elements:TableInfoBlock
                     Grid.Row="1"
-                    BackgroundColorCode="Transparent"
-                    Event="{Binding SwitchToSettingsCommand}"
-                    FontColorCode="{DynamicResource InversePrimaryText}"
-                    FontSize="20"
-                    TextContent="Configurações"
-                    Unicode="{DynamicResource FAS_Gear}" />
+                    BarColor="{DynamicResource Error}"
+                    Count="1"
+                    Description="Ocultos"
+                    TitleText="Total processos"
+                    Unicode="{StaticResource FAS_EyeSlash}" />
+                <elements:TableInfoBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BarColor="{DynamicResource Error}"
+                    Count="1"
+                    Description="Ocultos"
+                    TitleText="Total colaboradores"
+                    Unicode="{StaticResource FAS_EyeSlash}" />
 
             </Grid>
 
-        </Border>
+            <!--  Container 3  -->
+            <Border
+                Grid.Row="2"
+                BackgroundColor="{DynamicResource Primary}"
+                Style="{DynamicResource Border.Radius14}">
 
+                <CollectionView
+                    HorizontalOptions="Fill"
+                    ItemTemplate="{DynamicResource TablePreviewData}"
+                    ItemsSource="{Binding Tables}"
+                    SelectionMode="None"
+                    VerticalOptions="Fill"
+                    VerticalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            Orientation="Vertical"
+                            Span="1"
+                            VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+
+                </CollectionView>
+
+            </Border>
+
+        </Grid>
+
+        <!--  Right  -->
         <Border
             Grid.Column="1"
-            Padding="5"
-            BackgroundColor="{DynamicResource Secondary}"
-            StrokeThickness="0">
+            BackgroundColor="{DynamicResource Primary}"
+            Stroke="{DynamicResource ToyotaBlue}"
+            Style="{DynamicResource Border.Radius14}">
 
-            <Grid
-                Grid.Row="1"
-                ColumnDefinitions="*,2*"
-                ColumnSpacing="6">
+            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5">
 
-                <!--  Left  -->
-                <Grid
-                    Padding="20,20,0,0"
-                    RowDefinitions="Auto,Auto,*"
-                    RowSpacing="5">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="35"
+                    HorizontalTextAlignment="Center"
+                    Text="Pré-Visualização da tabela" />
 
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="35"
-                        Text="Visão geral"
-                        TextColor="{DynamicResource PrimaryText}" />
+                <buttons:IconButton
+                    Grid.Row="1"
+                    BackgroundColorCode="{DynamicResource Normal}"
+                    Event="{Binding CreateTableCommand}"
+                    FontColorCode="{DynamicResource InversePrimaryText}"
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    TextContent="Gerar nova tabela"
+                    Unicode="{StaticResource FAS_ArrowsRotate}"
+                    UnicodeFamily="FAS" />
 
-                    <!--  Container 1  -->
-                    <Grid
-                        Grid.Row="1"
-                        ColumnDefinitions="*,*"
-                        ColumnSpacing="10"
-                        RowDefinitions="*,*"
-                        RowSpacing="10">
+                <buttons:IconButton
+                    Grid.Row="1"
+                    BackgroundColorCode="{DynamicResource Success}"
+                    Event="{Binding SaveTableCommand}"
+                    FontColorCode="{DynamicResource InversePrimaryText}"
+                    FontSize="20"
+                    HorizontalOptions="End"
+                    TextContent="Salvar atual"
+                    Unicode="{StaticResource FAS_FloppyDisk}"
+                    UnicodeFamily="FAS" />
 
-                        <elements:TableInfoBlock
-                            Count="1"
-                            Description="Criados"
-                            TitleText="Total processos"
-                            Unicode="{StaticResource FAS_Gear}" />
-
-                        <elements:TableInfoBlock
-                            Grid.Column="1"
-                            Count="1"
-                            Description="Registrados"
-                            TitleText="Total colaboradores"
-                            Unicode="{StaticResource FAS_Gear}" />
-
-                        <elements:TableInfoBlock
-                            Grid.Row="1"
-                            Count="1"
-                            Description="Ocultos"
-                            TitleText="Total processos"
-                            Unicode="{StaticResource FAS_Gear}" />
-                        <elements:TableInfoBlock
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Count="1"
-                            Description="Ocultos"
-                            TitleText="Total colaboradores"
-                            Unicode="{StaticResource FAS_Gear}" />
-
-                    </Grid>
-
-                    <!--  Container 3  -->
-                    <Border
-                        Grid.Row="2"
-                        BackgroundColor="{DynamicResource Primary}"
-                        Style="{DynamicResource Border.Radius14}">
-
-                        <CollectionView
-                            HorizontalOptions="Fill"
-                            ItemTemplate="{DynamicResource TablePreviewData}"
-                            ItemsSource="{Binding Tables}"
-                            SelectionMode="None"
-                            VerticalOptions="Fill"
-                            VerticalScrollBarVisibility="Never">
-
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout
-                                    Orientation="Vertical"
-                                    Span="1"
-                                    VerticalItemSpacing="5" />
-                            </CollectionView.ItemsLayout>
-
-                        </CollectionView>
-
-                    </Border>
-
-                </Grid>
-
-                <!--  Right  -->
                 <Border
-                    Grid.Column="1"
-                    BackgroundColor="{DynamicResource Primary}"
-                    Stroke="{DynamicResource ToyotaBlue}"
-                    Style="{DynamicResource Border.Radius14}">
+                    Grid.Row="2"
+                    BackgroundColor="{DynamicResource Tertiar}"
+                    StrokeThickness="0"
+                    Style="{DynamicResource Border.Radius8}">
 
-                    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5">
+                    <ScrollView>
 
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="35"
-                            HorizontalTextAlignment="Center"
-                            Text="Pré-Visualização da tabela" />
+                        <VerticalStackLayout x:Name="MainContainer" />
 
-                        <buttons:IconButton
-                            Grid.Row="1"
-                            BackgroundColorCode="{DynamicResource Normal}"
-                            Event="{Binding CreateTableCommand}"
-                            FontSize="20"
-                            HorizontalOptions="Start"
-                            TextContent="Gerar nova tabela"
-                            Unicode="{StaticResource FAS_Gear}" />
-
-                        <buttons:IconButton
-                            Grid.Row="1"
-                            BackgroundColorCode="{DynamicResource Success}"
-                            Event="{Binding SaveTableCommand}"
-                            FontSize="20"
-                            HorizontalOptions="End"
-                            TextContent="Salvar atual"
-                            Unicode="{StaticResource FAS_Gear}" />
-
-                        <Border
-                            Grid.Row="2"
-                            BackgroundColor="{DynamicResource Tertiar}"
-                            StrokeThickness="0"
-                            Style="{DynamicResource Border.Radius8}">
-
-                            <ScrollView>
-
-                                <VerticalStackLayout x:Name="MainContainer" />
-
-                            </ScrollView>
-
-                        </Border>
-
-                    </Grid>
+                    </ScrollView>
 
                 </Border>
 
@@ -229,4 +151,4 @@
 
     </Grid>
 
-</ContentPage>
+</ContentView>

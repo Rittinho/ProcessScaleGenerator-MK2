@@ -14,6 +14,9 @@ public partial class TableInfoBlock : ContentView
     public static readonly BindableProperty DescriptionProperty =
     BindableProperty.Create(nameof(Description), typeof(string), typeof(EditorBar), default(string));
 
+    public static readonly BindableProperty BarColorProperty =
+    BindableProperty.Create(nameof(BarColor), typeof(Color), typeof(EditorBar), default(Color));
+
     public string TitleText
     {
         get => (string)GetValue(TitleTextProperty);
@@ -33,6 +36,11 @@ public partial class TableInfoBlock : ContentView
     {
         get => (string)GetValue(DescriptionProperty);
         set => SetValue(DescriptionProperty, value);
+    }
+    public Color BarColor
+    {
+        get => (Color)GetValue(BarColorProperty);
+        set => SetValue(BarColorProperty, value);
     }
 
     public TableInfoBlock()

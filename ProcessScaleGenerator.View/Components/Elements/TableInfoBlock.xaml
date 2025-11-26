@@ -8,10 +8,9 @@
     <Border
         Padding="0"
         BackgroundColor="{DynamicResource Primary}"
-        StrokeThickness="0"
         Style="{StaticResource Border.Radius14}">
 
-        <Grid Padding="5" RowDefinitions="Auto,*,Auto,Auto">
+        <Grid Padding="10,5,10,5" RowDefinitions="Auto,*,Auto,Auto">
 
             <Label
                 FontAttributes="Bold"
@@ -52,8 +51,8 @@
 
             <Border
                 Grid.Row="3"
-                Margin="-5,0,-5,-5"
-                BackgroundColor="{DynamicResource NavBar}"
+                Margin="-10,3,-10,-5"
+                BackgroundColor="{Binding Path=BarColor, Source={x:Reference Root}}"
                 MinimumHeightRequest="10"
                 StrokeThickness="0" />
 

@@ -9,9 +9,11 @@ using ProcessScaleGenerator.Sevices.Injections.Implementation;
 using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Injections.Implementation;
 using ProcessScaleGenerator.Shared.Injections.Implementation.Repository;
+using ProcessScaleGenerator.View.Pages;
 using ProcessScaleGenerator.View.Pages.Main;
 using ProcessScaleGenerator.ViewModel.Modal.Forms.IconPicker;
 using ProcessScaleGenerator.ViewModel.Modal.Forms.TableConfigModal;
+using ProcessScaleGenerator.ViewModel.Pages.Main;
 using ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard;
 using ProcessScaleGenerator.ViewModel.Pages.Main.Employeers;
 using ProcessScaleGenerator.ViewModel.Pages.Main.Processes;
@@ -38,7 +40,9 @@ namespace ProcessScaleGenerator
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 
-                    fonts.AddFont("FAS.otf", "FAS");
+                    fonts.AddFont("Fa-Solid.otf", "FAS");
+                    fonts.AddFont("Fa-Brands.otf", "FAB");
+                    fonts.AddFont("Fa-Outlined.otf", "FAO");
 
                     fonts.AddFont("Segoe UI.ttf", "Segoe");
                 });
@@ -52,6 +56,8 @@ namespace ProcessScaleGenerator
             builder.Services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
 
             //views
+            builder.Services.AddTransient<MainPage>();
+
             builder.Services.AddTransient<DashboardView>();
             builder.Services.AddTransient<ProcessManagerView>();
             builder.Services.AddTransient<EmployeeManagerView>();
@@ -61,6 +67,8 @@ namespace ProcessScaleGenerator
 
 
             //ViewModels
+            builder.Services.AddSingleton<MainPageViewModel>();
+
             builder.Services.AddSingleton<DashboardViewModel>();
             builder.Services.AddSingleton<ProcessManagerViewModel>();
             builder.Services.AddSingleton<EmployeeManagerViewModel>();

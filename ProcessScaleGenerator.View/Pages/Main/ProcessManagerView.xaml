@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<ContentView
     x:Class="ProcessScaleGenerator.View.Pages.Main.ProcessManagerView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,215 +8,71 @@
     x:Name="Root"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid ColumnDefinitions="*,4*">
+    <Grid ColumnDefinitions="2*,*">
 
-        <Border BackgroundColor="{DynamicResource NavBar}" StrokeThickness="0">
+        <!--  forms  -->
+        <VerticalStackLayout Padding="20">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="35"
+                Text="Criar novo processo"
+                TextColor="{DynamicResource PrimaryText}" />
+
 
             <Grid
-                Padding="5"
+                ColumnDefinitions="1.5*,*"
+                ColumnSpacing="5"
                 RowDefinitions="*,Auto"
                 RowSpacing="5">
-                <VerticalStackLayout Spacing="5">
 
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToDashboardCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Dashboard"
-                        Unicode="{DynamicResource FAS_Gear}" />
+                <VerticalStackLayout>
 
-                    <Border
-                        BackgroundColor="{DynamicResource SelectedNavBar}"
-                        StrokeThickness="0"
-                        Style="{StaticResource Border.Radius8}">
+                    <elements:Textbar
+                        TextContent="{Binding Title, Mode=TwoWay}"
+                        TextTitle="Nome do processo"
+                        Unicode="{DynamicResource FAS_Clipboard}"
+                        UnicodeColor="{DynamicResource Gray400}"
+                        UnicodeFamily="FAO" />
 
-                        <HorizontalStackLayout>
-
-                            <Label
-                                FontSize="20"
-                                Text="{DynamicResource FAS_Gear}"
-                                TextColor="{DynamicResource InversePrimaryText}" />
-                            <Label
-                                FontSize="20"
-                                Text="Processos"
-                                TextColor="{DynamicResource InversePrimaryText}" />
-
-                        </HorizontalStackLayout>
-
-                    </Border>
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToEmployeersManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Colaboradores"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToTableManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Configurar tabela"
-                        Unicode="{DynamicResource FAS_Gear}" />
-
-                    <buttons:IconButton
-                        BackgroundColorCode="Transparent"
-                        Event="{Binding SwitchToShowTablesCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Visualizar tabela"
-                        Unicode="{DynamicResource FAS_Gear}" />
+                    <elements:EditorBar
+                        HeightEditor="300"
+                        TextContent="{Binding Description, Mode=TwoWay}"
+                        TextTitle="Descrição do processo"
+                        Unicode="{DynamicResource FAO_File}"
+                        UnicodeColor="{DynamicResource Gray400}"
+                        UnicodeFamily="FAO" />
 
                 </VerticalStackLayout>
 
-                <buttons:IconButton
-                    Grid.Row="1"
-                    BackgroundColorCode="Transparent"
-                    Event="{Binding SwitchToSettingsCommand}"
-                    FontColorCode="{DynamicResource InversePrimaryText}"
-                    FontSize="20"
-                    TextContent="Configurações"
-                    Unicode="{DynamicResource FAS_Gear}" />
-            </Grid>
-
-        </Border>
-
-        <Border
-            Grid.Column="1"
-            Padding="5"
-            BackgroundColor="{DynamicResource Secondary}"
-            StrokeThickness="0">
-
-            <Grid ColumnDefinitions="2*,*">
-
-                <!--  forms  -->
-                <VerticalStackLayout Padding="20">
-
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="35"
-                        Text="Criar novo processo"
-                        TextColor="{DynamicResource PrimaryText}" />
-
-
-                    <Grid
-                        ColumnDefinitions="1.5*,*"
-                        ColumnSpacing="5"
-                        RowDefinitions="*,Auto"
-                        RowSpacing="5">
-
-                        <VerticalStackLayout>
-
-                            <elements:Textbar
-                                TextContent="{Binding Title, Mode=TwoWay}"
-                                TextTitle="Nome do processo"
-                                Unicode="{DynamicResource FAS_Gear}" />
-
-                            <elements:EditorBar
-                                HeightEditor="300"
-                                TextContent="{Binding Description, Mode=TwoWay}"
-                                TextTitle="Descrição do processo"
-                                Unicode="{DynamicResource FAS_Gear}" />
-
-                        </VerticalStackLayout>
-
-                        <Border
-                            Grid.Column="1"
-                            BackgroundColor="{DynamicResource Primary}"
-                            Style="{StaticResource Border.Radius8}">
-
-                            <Grid RowDefinitions="Auto,*,Auto">
-
-                                <Label
-                                    FontSize="20"
-                                    HorizontalTextAlignment="Center"
-                                    Text="Icone do processo" />
-
-                                <elements:CircularIcon
-                                    Grid.Row="1"
-                                    AbsoluteLayout.LayoutBounds="1,1,1,1"
-                                    AbsoluteLayout.LayoutFlags="All"
-                                    ColorCode="{Binding Icon.ColorCode}"
-                                    IconSize="200"
-                                    Unicode="{Binding Icon.Unicode}" />
-
-
-                                <buttons:IconButton
-                                    Grid.Row="2"
-                                    BackgroundColorCode="{DynamicResource Secondary}"
-                                    Event="{Binding UpdateIconCommand}"
-                                    FontSize="20"
-                                    TextContent="Selecionar icone"
-                                    Unicode="{DynamicResource FAS_CirclePlus}" />
-
-                            </Grid>
-
-                        </Border>
-
-                    </Grid>
-
-                    <buttons:IconButton
-                        BackgroundColorCode="{DynamicResource Normal}"
-                        Event="{Binding CreateNewProcessCommand}"
-                        FontSize="20"
-                        IsVisible="{Binding IsInCreateMode}"
-                        TextContent="Criar processo"
-                        Unicode="{DynamicResource FAS_CirclePlus}" />
-
-                    <Grid
-                        ColumnDefinitions="*,*"
-                        ColumnSpacing="6"
-                        IsVisible="{Binding IsInEditMode}">
-
-                        <buttons:IconButton
-                            BackgroundColorCode="{DynamicResource Error}"
-                            Event="{Binding CancelUpdateProcessCommand}"
-                            FontSize="20"
-                            TextContent="Cancelar alterações"
-                            Unicode="{DynamicResource FAS_CircleXmark}" />
-
-                        <buttons:IconButton
-                            Grid.Column="1"
-                            BackgroundColorCode="{DynamicResource Success}"
-                            Event="{Binding SaveUpdateProcessCommand}"
-                            FontSize="20"
-                            TextContent="Salvar alterações"
-                            Unicode="{DynamicResource FAS_CircleCheck}" />
-
-                    </Grid>
-
-                </VerticalStackLayout>
-
-                <!--  List  -->
                 <Border
                     Grid.Column="1"
                     BackgroundColor="{DynamicResource Primary}"
-                    Style="{DynamicResource Border.Radius14}">
+                    Style="{StaticResource Border.Radius8}">
 
-                    <Grid RowDefinitions="Auto,*" RowSpacing="10">
+                    <Grid RowDefinitions="Auto,*,Auto">
 
-                        <buttons:SearchBar SearchText="{Binding SearchProcessText, Mode=TwoWay}" />
+                        <Label
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Text="Icone do processo" />
 
-                        <CollectionView
+                        <elements:CircularIcon
                             Grid.Row="1"
-                            HorizontalOptions="Fill"
-                            ItemTemplate="{DynamicResource ToastViewData}"
-                            ItemsSource="{Binding FiltredProcessList}"
-                            SelectionMode="None"
-                            VerticalOptions="Fill"
-                            VerticalScrollBarVisibility="Never">
+                            AbsoluteLayout.LayoutBounds="1,1,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            ColorCode="{Binding Icon.ColorCode}"
+                            IconSize="200"
+                            Unicode="{Binding Icon.Unicode}" />
 
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout
-                                    Orientation="Vertical"
-                                    Span="1"
-                                    VerticalItemSpacing="5" />
-                            </CollectionView.ItemsLayout>
 
-                        </CollectionView>
+                        <buttons:IconButton
+                            Grid.Row="2"
+                            BackgroundColorCode="{DynamicResource Secondary}"
+                            Event="{Binding UpdateIconCommand}"
+                            FontSize="20"
+                            TextContent="Selecionar icone"
+                            Unicode="{DynamicResource FAS_CirclePlus}" />
 
                     </Grid>
 
@@ -224,8 +80,70 @@
 
             </Grid>
 
+            <buttons:IconButton
+                BackgroundColorCode="{DynamicResource Normal}"
+                Event="{Binding CreateNewProcessCommand}"
+                FontSize="20"
+                IsVisible="{Binding IsInCreateMode}"
+                TextContent="Criar processo"
+                Unicode="{DynamicResource FAS_CirclePlus}" />
+
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="6"
+                IsVisible="{Binding IsInEditMode}">
+
+                <buttons:IconButton
+                    BackgroundColorCode="{DynamicResource Error}"
+                    Event="{Binding CancelUpdateProcessCommand}"
+                    FontSize="20"
+                    TextContent="Cancelar alterações"
+                    Unicode="{DynamicResource FAS_CircleXmark}" />
+
+                <buttons:IconButton
+                    Grid.Column="1"
+                    BackgroundColorCode="{DynamicResource Success}"
+                    Event="{Binding SaveUpdateProcessCommand}"
+                    FontSize="20"
+                    TextContent="Salvar alterações"
+                    Unicode="{DynamicResource FAS_CircleCheck}" />
+
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <!--  List  -->
+        <Border
+            Grid.Column="1"
+            BackgroundColor="{DynamicResource Primary}"
+            Style="{DynamicResource Border.Radius14}">
+
+            <Grid RowDefinitions="Auto,*" RowSpacing="10">
+
+                <buttons:SearchBar SearchText="{Binding SearchProcessText, Mode=TwoWay}" />
+
+                <CollectionView
+                    Grid.Row="1"
+                    HorizontalOptions="Fill"
+                    ItemTemplate="{DynamicResource ToastViewData}"
+                    ItemsSource="{Binding FiltredProcessList}"
+                    SelectionMode="None"
+                    VerticalOptions="Fill"
+                    VerticalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            Orientation="Vertical"
+                            Span="1"
+                            VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+
+                </CollectionView>
+
+            </Grid>
+
         </Border>
 
     </Grid>
 
-</ContentPage>
+</ContentView>

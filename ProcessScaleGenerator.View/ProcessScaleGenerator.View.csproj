@@ -42,9 +42,6 @@
 	  <Compile Update="Pages\Main\ProcessManagerView.xaml.cs">
 	    <DependentUpon>ProcessManagerView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\Main\ShowTable\ShowTableViewsads.xaml.cs">
-	    <DependentUpon>ShowTableViewsads.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,7 +84,7 @@
 	  <MauiXaml Update="Modal\Warning\ConfirmActionModal.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Main\CreateTable\CreateTableView.xaml">
+	  <MauiXaml Update="Pages\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Main\DashboardView.xaml">
@@ -99,16 +96,10 @@
 	  <MauiXaml Update="Pages\Main\ProcessManagerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Main\Register\RegisterView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\Main\SettingsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Main\ShowTableView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\Main\ShowTable\ShowTableViewsads.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Main\TableManagerView.xaml">

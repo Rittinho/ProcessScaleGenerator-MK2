@@ -22,10 +22,13 @@
                     <Border BackgroundColor="{DynamicResource Secondary}" StrokeThickness="0">
 
                         <Label
-                            FontFamily="FAS"
+                            Padding="5"
+                            FontFamily="{Binding Path=UnicodeFamily, Source={x:Reference Root}}"
                             FontSize="20"
                             HorizontalTextAlignment="Center"
+                            MinimumWidthRequest="40"
                             Text="{Binding Path=Unicode, Source={x:Reference Root}}"
+                            TextColor="{Binding Path=UnicodeColor, Source={x:Reference Root}}"
                             VerticalTextAlignment="Center" />
 
                     </Border>
@@ -33,7 +36,7 @@
                     <Entry
                         Grid.Column="1"
                         FontSize="20"
-                        Text="{Binding Path=Path, Source={x:Reference Root}}" />
+                        Text="{Binding Path=PathFolder, Source={x:Reference Root}}" />
 
                 </Grid>
 
@@ -44,8 +47,10 @@
                 Margin="5,0,0,0"
                 Padding="10,0,10,0"
                 BackgroundColor="{DynamicResource Normal}"
-                FontSize="18"
-                Text="Alterar"
+                Command="{Binding DirectoryFolderPickerCommand}"
+                FontFamily="FAS"
+                FontSize="28"
+                Text="{StaticResource FAS_Ellipsis}"
                 TextColor="{DynamicResource InversePrimaryText}" />
 
         </Grid>
