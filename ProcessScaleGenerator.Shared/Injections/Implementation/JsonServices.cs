@@ -10,22 +10,23 @@ public class JsonServices : IJsonServices
         WriteIndented = true
     };
 
-    private readonly string _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Toyota repository");
+    private readonly IAppSettings _appSettings;
+    private readonly string _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Process scale generator");
 
-    private readonly string _tableFilePath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Toyota repository"), "Tableas salvas");
-
-    public JsonServices()
+    public JsonServices(IAppSettings appSettings)
     {
+        _appSettings = appSettings;
         if (!Directory.Exists(_filePath))
+        {
             Directory.CreateDirectory(_filePath);
-
-        if (!Directory.Exists(_tableFilePath))
-            Directory.CreateDirectory(_tableFilePath);
+        }
     }
 
     public void SaveEmployeeJson(List<ToyotaEmployee> data)
     {
-        var jsonPath = Path.Combine(_filePath, "employee.json");
+        CheckEmployeersFolder();
+
+        var jsonPath = Path.Combine(_appSettings.EmployeesPath(), "employee.json");
 
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
@@ -38,7 +39,9 @@ public class JsonServices : IJsonServices
     }
     public void SaveProcessJson(List<ToyotaProcess> data)
     {
-        var jsonPath = Path.Combine(_filePath, "process.json");
+        CheckProcessesFolder();
+
+        var jsonPath = Path.Combine(_appSettings.ProcessesPath(), "process.json");
 
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
@@ -51,9 +54,11 @@ public class JsonServices : IJsonServices
     }
     public void SaveTableGroupJson(ToyotaTableGroup data)
     {
+        CheckTableFolder();
+
         var cultura = new System.Globalization.CultureInfo("pt-BR");
         DateTime date = DateTime.ParseExact(data.CreationDate, "dd/MM/yyyy HH:mm:ss", cultura);
-        var jsonPath = Path.Combine(_tableFilePath, $"table_group_{date:dd-MM-yyyy_HH-mm-ss}.json");
+        var jsonPath = Path.Combine(_appSettings.TablesPath(), $"table_group_{date:dd-MM-yyyy_HH-mm-ss}.json");
 
         if (File.Exists(jsonPath))
             File.Create(jsonPath).Dispose();
@@ -64,9 +69,12 @@ public class JsonServices : IJsonServices
             streamWriter.Write(json);
         }
     }
+
     public List<ToyotaEmployee> LoadEmployeeJson()
     {
-        var jsonPath = Path.Combine(_filePath, "employee.json");
+        CheckEmployeersFolder();
+
+        var jsonPath = Path.Combine(_appSettings.EmployeesPath(), "employee.json");
 
         if (!File.Exists(jsonPath))
             throw new Exception("Sem arquivos de tabela!");
@@ -90,7 +98,9 @@ public class JsonServices : IJsonServices
     }
     public List<ToyotaProcess> LoadProcessJson()
     {
-        var jsonPath = Path.Combine(_filePath, "process.json");
+        CheckProcessesFolder();
+
+        var jsonPath = Path.Combine(_appSettings.ProcessesPath(), "process.json");
 
         if (!File.Exists(jsonPath))
             throw new Exception("Sem arquivos de tabela!");
@@ -114,7 +124,9 @@ public class JsonServices : IJsonServices
     }
     public List<ToyotaTableGroup> LoadTableGroupJson()
     {
-        string[] files = Directory.GetFiles(_tableFilePath, "*.json");
+        CheckTableFolder();
+
+        string[] files = Directory.GetFiles(_appSettings.TablesPath(), "*.json");
 
         if (files.Length == 0)
             throw new Exception("Sem arquivos de tabela!");
@@ -140,28 +152,102 @@ public class JsonServices : IJsonServices
         return result;
     }
 
-    public void DeleteFileJson(string fileName)
+    public List<ToyotaEmployee> LoadFileEmployeeJson(string pathFile)
     {
-        var jsonPath = Path.Combine(_filePath, $"{fileName}.json");
+        CheckEmployeersFolder();
 
-        if (!File.Exists(jsonPath))
-            throw new Exception("Arquivo não existe!");
+        if (!File.Exists(pathFile))
+            throw new Exception("Sem arquivos de tabela!");
 
-        try
+        if (Path.GetFileName(pathFile) != "employee.json")
+            throw new Exception("Arquivo diferente");
+
+        List<ToyotaEmployee> result = [];
+
+        using (StreamReader stream = new(pathFile))
         {
-            File.Delete(jsonPath);
+            string json = stream.ReadToEnd();
+            try
+            {
+                result = JsonSerializer.Deserialize<List<ToyotaEmployee>>(json, options)!;
+            }
+            catch
+            {
+                return null;
+            }
         }
-        catch (IOException ex)
+
+        return result;
+    }
+    public List<ToyotaProcess> LoadFileProcessJson(string pathFile)
+    {
+        CheckProcessesFolder();
+
+        if (!File.Exists(pathFile))
+            throw new Exception("Arquivo com erro ou corrompido");
+
+        if (Path.GetFileName(pathFile) != "process.json")
+            throw new Exception("Arquivo diferente");
+
+        List<ToyotaProcess> result = [];
+
+        using (StreamReader stream = new(pathFile))
         {
-            throw new Exception(ex.Message);
+            string json = stream.ReadToEnd();
+            try
+            {
+                result = JsonSerializer.Deserialize<List<ToyotaProcess>>(json, options);
+            }
+            catch
+            {
+                return [];
+            }
+        }
+
+        return result;
+    }
+    public ToyotaTableGroup LoadFileTableGroupJson(string pathFile)
+    {
+        CheckTableFolder();
+
+        if (!File.Exists(pathFile))
+            throw new Exception("Arquivo diferente");
+
+        ToyotaTableGroup result;
+
+        using (StreamReader stream = new(pathFile))
+        {
+            string jsonToRead = stream.ReadToEnd();
+            try
+            {
+                result = JsonSerializer.Deserialize<ToyotaTableGroup>(jsonToRead, options);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        return result;
+    }
+
+    public void SaveSettingsJson(SystemSettings data)
+    {
+        var jsonPath = Path.Combine(_filePath, "AppSettings.json");
+
+        using (StreamWriter streamWriter = new(jsonPath, false, Encoding.UTF8))
+        {
+            var json = JsonSerializer.Serialize(data, options);
+            streamWriter.Write(json);
         }
     }
+    
 
     public void DeleteTableFileJson(string creationDate)
     {
         var cultura = new System.Globalization.CultureInfo("pt-BR");
         DateTime date = DateTime.ParseExact(creationDate, "dd/MM/yyyy HH:mm:ss", cultura);
-        var jsonPath = Path.Combine(_tableFilePath, $"table_group_{date:dd-MM-yyyy_HH-mm-ss}.json");
+        var jsonPath = Path.Combine(_appSettings.TablesPath(), $"table_group_{date:dd-MM-yyyy_HH-mm-ss}.json");
 
         if (!File.Exists(jsonPath))
             throw new Exception("Arquivo não existe!");
@@ -175,4 +261,47 @@ public class JsonServices : IJsonServices
             throw new Exception(ex.Message);
         }
     }
+
+    //public void DeleteFileJson(string fileName)
+    //{
+    //    var jsonPath = Path.Combine(_filePath, $"{fileName}.json");
+
+    //    if (!File.Exists(jsonPath))
+    //        throw new Exception("Arquivo não existe!");
+
+    //    try
+    //    {
+    //        File.Delete(jsonPath);
+    //    }
+    //    catch (IOException ex)
+    //    {
+    //        throw new Exception(ex.Message);
+    //    }
+    //}
+
+    #region Utils
+    public void CheckProcessesFolder()
+    {
+        if (!Directory.Exists(_appSettings.RootPath()))
+            Directory.CreateDirectory(_appSettings.RootPath());
+
+        if (!Directory.Exists(_appSettings.ProcessesPath()))
+            Directory.CreateDirectory(_appSettings.ProcessesPath());
+    }
+    public void CheckEmployeersFolder()
+    {
+        if (!Directory.Exists(_appSettings.EmployeesPath()))
+            Directory.CreateDirectory(_appSettings.EmployeesPath());
+    }
+    public void CheckTableFolder()
+    {
+        if (!Directory.Exists(_appSettings.TablesPath()))
+            Directory.CreateDirectory(_appSettings.TablesPath());
+    }
+    public void CheckBackupFolder()
+    {
+        if (!Directory.Exists(_appSettings.BackupsPath()))
+            Directory.CreateDirectory(_appSettings.BackupsPath());
+    }
+    #endregion
 }

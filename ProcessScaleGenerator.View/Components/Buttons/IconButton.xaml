@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+<base:ButtonBaseView
     x:Class="ProcessScaleGenerator.View.Components.Buttons.IconButton"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:ProcessScaleGenerator.View.Components.Buttons.Base"
     x:Name="Root">
 
     <Border
-        BackgroundColor="{Binding Path=BackgroundColorCode, Source={x:Reference Root}}"
-        Stroke="{Binding Path=StrokeColorCode, Source={x:Reference Root}}"
-        StrokeThickness="0.6"
-        Style="{DynamicResource Border.Radius8}">
+        Padding="{Binding Path=Padding, Source={x:Reference Root}}"
+        BackgroundColor="{Binding Path=BackgroundColor, Source={x:Reference Root}}"
+        Stroke="{Binding Source={x:Reference Root}, Path=BorderColor}"
+        StrokeThickness="{Binding Source={x:Reference Root}, Path=BorderWidth}">
 
-        <HorizontalStackLayout Spacing="6">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="{Binding Source={x:Reference Root}, Path=CornerRadius}" />
+        </Border.StrokeShape>
+
+        <Grid x:Name="ButtonGrid">
 
             <Label
+                x:Name="Icon"
+                FontAttributes="{Binding Path=FontAttributes, Source={x:Reference Root}}"
                 FontFamily="{Binding Path=UnicodeFamily, Source={x:Reference Root}}"
                 FontSize="{Binding Path=FontSize, Source={x:Reference Root}}"
-                HorizontalOptions="Center"
+                HorizontalTextAlignment="{Binding Path=HorizontalUnicodetAlignment, Source={x:Reference Root}}"
                 Text="{Binding Path=Unicode, Source={x:Reference Root}}"
-                TextColor="{Binding Path=FontColorCode, Source={x:Reference Root}}"
-                VerticalOptions="Center" />
+                TextColor="{Binding Path=TextColor, Source={x:Reference Root}}"
+                VerticalTextAlignment="{Binding Path=VerticalUnicodeAlignment, Source={x:Reference Root}}" />
 
             <Label
+                x:Name="Text"
+                FontAttributes="{Binding Path=FontAttributes, Source={x:Reference Root}}"
+                FontFamily="{Binding Path=FontFamily, Source={x:Reference Root}}"
                 FontSize="{Binding Path=FontSize, Source={x:Reference Root}}"
-                HorizontalOptions="Center"
-                Text="{Binding Path=TextContent, Source={x:Reference Root}}"
-                TextColor="{Binding Path=FontColorCode, Source={x:Reference Root}}"
-                VerticalOptions="Center" />
+                HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment, Source={x:Reference Root}}"
+                LineBreakMode="{Binding Path=LineBreakMode, Source={x:Reference Root}}"
+                Text="{Binding Path=Text, Source={x:Reference Root}}"
+                TextColor="{Binding Path=TextColor, Source={x:Reference Root}}"
+                VerticalTextAlignment="{Binding Path=VerticalTextAlignment, Source={x:Reference Root}}" />
 
-        </HorizontalStackLayout>
+        </Grid>
 
         <Border.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding Path=Event, Source={x:Reference Root}}" />
+
+            <TapGestureRecognizer Command="{Binding Path=Command, Source={x:Reference Root}}" />
+            <TapGestureRecognizer CommandParameter="{Binding Path=CommandParameter, Source={x:Reference Root}}" />
+
         </Border.GestureRecognizers>
 
     </Border>
 
-</ContentView>
+</base:ButtonBaseView>

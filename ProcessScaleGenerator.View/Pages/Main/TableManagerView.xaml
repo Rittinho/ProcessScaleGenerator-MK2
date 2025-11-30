@@ -5,10 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="Root"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    Unloaded="OnUnloaded">
 
-    <Grid Padding="20,20,5,5" RowDefinitions="Auto,*">
+    <Grid Padding="5" RowDefinitions="Auto,*">
 
         <Label
             FontAttributes="Bold"
@@ -18,8 +20,8 @@
 
         <Grid
             Grid.Row="1"
-            ColumnDefinitions="*,1.5*"
-            ColumnSpacing="10">
+            ColumnDefinitions="*,*"
+            ColumnSpacing="5">
 
             <Border BackgroundColor="{DynamicResource Primary}" Style="{DynamicResource Border.Radius14}">
 
@@ -30,28 +32,28 @@
                     <HorizontalStackLayout
                         Grid.Row="1"
                         HorizontalOptions="End"
-                        Spacing="10">
+                        Spacing="5">
 
                         <buttons:IconButton
-                            BackgroundColorCode="{DynamicResource Normal}"
-                            Event="{Binding ShowProcessHiddedsCommand}"
-                            FontSize="13"
-                            TextContent="Mostrar ocultados"
-                            Unicode="{DynamicResource FAS_EyeLowVision}" />
+                            Grid.Row="1"
+                            Command="{Binding ShowProcessHiddedsCommand}"
+                            Style="{StaticResource OKButton}"
+                            Text="Mostrar ocultados"
+                            Unicode="{StaticResource PPO_Eye}" />
 
                         <buttons:IconButton
-                            BackgroundColorCode="{DynamicResource Success}"
-                            Event="{Binding ClearProcessHiddedsCommand}"
-                            FontSize="13"
-                            TextContent="Marcar todos"
-                            Unicode="{DynamicResource FAS_Broom}" />
+                            Grid.Row="1"
+                            Command="{Binding MarkAllProcessHiddedsCommand}"
+                            Style="{StaticResource AcceptButton}"
+                            Text="Marcar todos"
+                            Unicode="{StaticResource PPO_Checks}" />
 
                         <buttons:IconButton
-                            BackgroundColorCode="{DynamicResource Error}"
-                            Event="{Binding ClearProcessHiddedsCommand}"
-                            FontSize="13"
-                            TextContent="Limpar"
-                            Unicode="{DynamicResource FAS_Broom}" />
+                            Grid.Row="1"
+                            Command="{Binding ClearProcessHiddedsCommand}"
+                            Style="{StaticResource DeleteButton}"
+                            Text="Limpar"
+                            Unicode="{StaticResource PPO_Broom}" />
 
                     </HorizontalStackLayout>
 
@@ -68,7 +70,7 @@
                             <GridItemsLayout
                                 Orientation="Vertical"
                                 Span="1"
-                                VerticalItemSpacing="5" />
+                                VerticalItemSpacing="2.5" />
                         </CollectionView.ItemsLayout>
 
                     </CollectionView>
@@ -92,25 +94,25 @@
                         Spacing="10">
 
                         <buttons:IconButton
-                            BackgroundColorCode="{DynamicResource Normal}"
-                            Event="{Binding ShowEmployeeHiddedsCommand}"
-                            FontSize="13"
-                            TextContent="Mostrar ocultados"
-                            Unicode="{DynamicResource FAS_EyeLowVision}" />
+                            Grid.Row="1"
+                            Command="{Binding ShowEmployeeHiddedsCommand}"
+                            Style="{StaticResource OKButton}"
+                            Text="Mostrar ocultados"
+                            Unicode="{StaticResource PPO_Eye}" />
 
                         <buttons:IconButton
-                            BackgroundColorCode="{DynamicResource Success}"
-                            Event="{Binding ClearProcessHiddedsCommand}"
-                            FontSize="13"
-                            TextContent="Marcar todos"
-                            Unicode="{DynamicResource FAS_Broom}" />
+                            Grid.Row="1"
+                            Command="{Binding MarkAllEmployeeHiddedsCommand}"
+                            Style="{StaticResource AcceptButton}"
+                            Text="Marcar todos"
+                            Unicode="{StaticResource PPO_Checks}" />
 
                         <buttons:IconButton
-                            BackgroundColorCode="{DynamicResource Error}"
-                            Event="{Binding ClearEmployeeHiddedsCommand}"
-                            FontSize="13"
-                            TextContent="Limpar"
-                            Unicode="{DynamicResource FAS_Broom}" />
+                            Grid.Row="1"
+                            Command="{Binding ClearEmployeeHiddedsCommand}"
+                            Style="{StaticResource DeleteButton}"
+                            Text="Limpar"
+                            Unicode="{StaticResource PPO_Broom}" />
 
                     </HorizontalStackLayout>
 
@@ -127,7 +129,7 @@
                             <GridItemsLayout
                                 Orientation="Vertical"
                                 Span="1"
-                                VerticalItemSpacing="5" />
+                                VerticalItemSpacing="2.5" />
                         </CollectionView.ItemsLayout>
 
                     </CollectionView>

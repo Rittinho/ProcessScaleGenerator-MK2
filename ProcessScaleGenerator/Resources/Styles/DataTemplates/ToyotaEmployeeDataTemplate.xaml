@@ -3,16 +3,13 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons;assembly=ProcessScaleGenerator.View"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements;assembly=ProcessScaleGenerator.View"
     xmlns:vm="clr-namespace:ProcessScaleGenerator.ViewModel.Pages.Main.Employeers;assembly=ProcessScaleGenerator.ViewModel">
 
     <DataTemplate x:Key="ToastEmployeeStyle">
 
-        <Border
-            Padding="10,5,10,5"
-            BackgroundColor="{DynamicResource Primary}"
-            StrokeThickness="1"
-            Style="{DynamicResource Border.Radius14}">
+        <Border BackgroundColor="{DynamicResource Tertiary}" Style="{DynamicResource Border.Radius14}">
 
             <FlyoutBase.ContextFlyout>
                 <MenuFlyout>
@@ -36,7 +33,7 @@
                 <!--  Name  -->
                 <Border
                     Margin="5,0,5,0"
-                    BackgroundColor="{DynamicResource Secondary}"
+                    BackgroundColor="{DynamicResource Primary}"
                     Style="{DynamicResource Border.Radius14}">
 
                     <Label
@@ -51,7 +48,7 @@
                 <Border
                     Grid.Column="1"
                     Margin="5,0,5,0"
-                    BackgroundColor="{DynamicResource Secondary}"
+                    BackgroundColor="{DynamicResource Primary}"
                     Style="{DynamicResource Border.Radius14}">
 
                     <Label
@@ -76,7 +73,7 @@
 
             <Border
                 Padding="5"
-                BackgroundColor="{DynamicResource Primary}"
+                BackgroundColor="{DynamicResource Tertiary}"
                 Style="{DynamicResource Border.Radius14}">
 
                 <Border.Triggers>
@@ -88,12 +85,12 @@
                     </DataTrigger>
                 </Border.Triggers>
 
-                <Grid ColumnDefinitions="6*,3*,*">
+                <Grid ColumnDefinitions="2*,*,Auto">
 
                     <!--  Name  -->
                     <Border
                         Margin="5,0,5,0"
-                        BackgroundColor="{DynamicResource Secondary}"
+                        BackgroundColor="{DynamicResource Primary}"
                         Style="{DynamicResource Border.Radius14}">
 
                         <Label
@@ -109,7 +106,7 @@
                     <Border
                         Grid.Column="1"
                         Margin="5,0,5,0"
-                        BackgroundColor="{DynamicResource Secondary}"
+                        BackgroundColor="{DynamicResource Primary}"
                         Style="{DynamicResource Border.Radius14}">
 
                         <Label
@@ -122,11 +119,10 @@
 
                     </Border>
 
-                    <Switch
+                    <buttons:FreshSwitch
                         x:Name="HiddenSwitch"
                         Grid.Column="2"
-                        IsToggled="{Binding Hidded}"
-                        WidthRequest="10" />
+                        IsToggled="{Binding Hidded}" />
 
                 </Grid>
 

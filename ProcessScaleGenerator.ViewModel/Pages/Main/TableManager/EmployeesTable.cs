@@ -1,9 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +22,6 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
 
         public List<ToyotaEmployee> EmployeeList { get; set; } = [];
         public ObservableCollection<ToyotaEmployee> FiltredEmployeeList { get; set; } = [];
-        public List<ToyotaEmployee> HiddenEmployeeList { get; set; } = [];
 
         partial void OnSearchEmployeeTextChanged(string value)
         {
@@ -32,7 +34,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
             FiltredEmployeeList.Clear();
             foreach (var item in filtered)
                 FiltredEmployeeList.Add(item);
+
+            _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
         }
+
         [RelayCommand]
         public async Task ClearEmployeeHiddeds()
         {
@@ -47,7 +52,27 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
 
             foreach (var item in EmployeeList)
                 FiltredEmployeeList.Add(item);
+
+            _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
         }
+        [RelayCommand]
+        public async Task MarkAllEmployeeHiddeds()
+        {
+            _showEmployeeHiddeds = false;
+
+            EmployeeList.ForEach(p =>
+            {
+                p.Hidded = true;
+            });
+
+            FiltredEmployeeList.Clear();
+
+            foreach (var item in EmployeeList)
+                FiltredEmployeeList.Add(item);
+
+            _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
+        }
+
         [RelayCommand]
         public async Task ShowEmployeeHiddeds()
         {
@@ -69,6 +94,7 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
             foreach (var item in hiddeds)
                 FiltredEmployeeList.Add(item);
 
+            _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
         }
     }
 }

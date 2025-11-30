@@ -52,7 +52,7 @@
                             HorizontalOptions="End"
                             Spacing="10">
 
-                            <buttons:IconButton
+                            <!--<buttons:IconButton
                                 BackgroundColorCode="{DynamicResource ToyotaBlue}"
                                 Event="{Binding ShowProcessHiddedsCommand}"
                                 FontSize="13"
@@ -64,7 +64,7 @@
                                 Event="{Binding ClearProcessHiddedsCommand}"
                                 FontSize="13"
                                 TextContent="Limpar"
-                                Unicode="{DynamicResource FAS_Broom}" />
+                                Unicode="{DynamicResource FAS_Broom}" />-->
 
                         </HorizontalStackLayout>
 
@@ -105,7 +105,7 @@
                             HorizontalOptions="End"
                             Spacing="10">
 
-                            <buttons:IconButton
+                            <!--<buttons:IconButton
                                 BackgroundColorCode="{DynamicResource ToyotaBlue}"
                                 Event="{Binding ShowEmployeeHiddedsCommand}"
                                 FontSize="13"
@@ -117,7 +117,7 @@
                                 Event="{Binding ClearEmployeeHiddedsCommand}"
                                 FontSize="13"
                                 TextContent="Limpar"
-                                Unicode="{DynamicResource FAS_Broom}" />
+                                Unicode="{DynamicResource FAS_Broom}" />-->
 
                         </HorizontalStackLayout>
 
@@ -153,11 +153,14 @@
                 Spacing="10">
 
                 <buttons:IconButton
-                    BackgroundColorCode="{DynamicResource ToyotaBlue}"
-                    Event="{Binding BackButtonCommand}"
+                    Padding="5"
+                    Command="{Binding BackButtonCommand}"
+                    CornerRadius="8"
                     FontSize="20"
-                    TextContent="Voltar"
-                    Unicode="{DynamicResource FAS_CircleCheck}" />
+                    Text="Voltar"
+                    TextColor="{DynamicResource InversePrimaryText}"
+                    Unicode="{DynamicResource PPO_ChalkboardSimple}"
+                    UnicodeFamily="PPO" />
 
             </HorizontalStackLayout>
 

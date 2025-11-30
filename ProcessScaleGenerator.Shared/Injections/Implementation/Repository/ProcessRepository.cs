@@ -48,5 +48,38 @@ public partial class RepositoryServices
 
         return true;
     }
+    public async Task<bool> LoadFileProcesses()
+    {
+        var pathResult = await _folderStorage.GetSingleFileInFolder();
+
+        if (string.IsNullOrEmpty(pathResult))
+            return false;
+
+        List<ToyotaProcess> result;
+        try
+        {
+            result = _jsonServices.LoadFileProcessJson(pathResult);
+        }
+        catch (Exception ex) 
+        {
+            _popServices.WaringPopup(ex.Message,"Tentar novamente");
+            return false;
+        }
+
+        if (result is null)
+            return false;
+
+        lock (_locker)
+        {
+            foreach (var process in result)
+            {
+                _processData!.Add(process);
+                _messenger.Send(new ProcessAddedMessage(process));
+            }
+
+            _messenger.Send(new ProcessesCountChanged(_processData.Count));
+            return true;
+        }
+    }
 
 }

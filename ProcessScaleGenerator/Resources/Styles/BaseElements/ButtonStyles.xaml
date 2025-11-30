@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:button="clr-namespace:ProcessScaleGenerator.View.Components.Buttons;assembly=ProcessScaleGenerator.View">
+
+    <Style x:Key="CreateButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Normal}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_Plus}" />
+    </Style>
+
+    <Style x:Key="CancelButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Error}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_X}" />
+    </Style>
+
+    <Style x:Key="AcceptButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Success}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_Check}" />
+    </Style>
+
+    <Style x:Key="DeleteButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Error}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_Check}" />
+    </Style>
+
+    <Style x:Key="SaveButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Success}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_FloppyDiskBack}" />
+    </Style>
+
+    <Style x:Key="OKButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Normal}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_Check}" />
+    </Style>
+
+    <Style x:Key="RefreshButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Normal}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_ArrowsClockwise}" />
+    </Style>
+
+    <Style x:Key="EditButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Normal}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_Pencil}" />
+    </Style>
+
+    <Style x:Key="BackButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Normal}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_ArrowUUpLeft}" />
+    </Style>
+    <Style x:Key="InportButton" TargetType="button:IconButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Normal}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_FileArrowDown}" />
+    </Style>
+
+</ResourceDictionary>

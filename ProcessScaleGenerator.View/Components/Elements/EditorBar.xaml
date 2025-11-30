@@ -17,10 +17,10 @@
 
             <Grid ColumnDefinitions="Auto,*">
 
-                <Border BackgroundColor="{DynamicResource Secondary}" StrokeThickness="0">
+                <Border BackgroundColor="{DynamicResource Tertiary}" StrokeThickness="0">
 
                     <Label
-                        Padding="5"
+                        Padding="0"
                         FontFamily="{Binding Path=UnicodeFamily, Source={x:Reference Root}}"
                         FontSize="20"
                         HorizontalTextAlignment="Center"

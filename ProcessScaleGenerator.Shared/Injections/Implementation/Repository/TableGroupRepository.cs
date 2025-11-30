@@ -39,4 +39,25 @@ public partial class RepositoryServices
 
         return true;
     }
+    public async Task<bool> LoadFileTables()
+    {
+        var pathResult = await _folderStorage.GetSingleFileInFolder();
+
+        if (string.IsNullOrEmpty(pathResult))
+            return false;
+
+        var result = _jsonServices.LoadFileTableGroupJson(pathResult);
+
+        if (result is null)
+            return false;
+
+        lock (_locker)
+        {   
+            _tableData!.Add(result);
+
+            _messenger.Send(new TableGroupAddedMessage(result));
+
+            return true;
+        }
+    }
 }

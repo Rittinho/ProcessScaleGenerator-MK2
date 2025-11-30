@@ -8,6 +8,10 @@
     x:Name="Root"
     NavigationPage.HasNavigationBar="False">
 
-    <VerticalStackLayout />
+    <ScrollView Grid.Row="1">
+
+        <VerticalStackLayout x:Name="TablePresenter" ZIndex="10" />
+
+    </ScrollView>
 
 </ContentView>

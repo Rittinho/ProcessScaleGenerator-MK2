@@ -55,4 +55,39 @@ public partial class RepositoryServices
 
         return true;
     }
+
+    public async Task<bool> LoadFileEmployeers()
+    {
+        var pathResult = await _folderStorage.GetSingleFileInFolder();
+
+        if (string.IsNullOrEmpty(pathResult))
+            return false;
+
+        List<ToyotaEmployee> result;
+
+        try
+        {
+            result = _jsonServices.LoadFileEmployeeJson(pathResult);
+        }
+        catch (Exception ex)
+        {
+            _popServices.WaringPopup(ex.Message, "Tentar novamente");
+            return false;
+        }
+
+        if (result is null)
+            return false;
+
+        lock (_locker)
+        {
+            foreach (var employer in result)
+            {
+                _employeeData!.Add(employer);
+                _messenger.Send(new EmployeeAddedMessage(employer));
+            }
+
+            _messenger.Send(new EmployeesCountChanged(_employeeData.Count));
+            return true;
+        }
+    }
 }

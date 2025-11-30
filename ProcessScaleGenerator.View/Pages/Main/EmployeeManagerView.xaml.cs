@@ -1,4 +1,3 @@
-
 using ProcessScaleGenerator.ViewModel.Pages.Main.Employeers;
 
 namespace ProcessScaleGenerator.View.Pages.Main;

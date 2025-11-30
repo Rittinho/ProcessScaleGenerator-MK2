@@ -7,7 +7,9 @@
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
     xmlns:icon="clr-namespace:ProcessScaleGenerator.Shared.Constants.Fonts;assembly=ProcessScaleGenerator.Shared"
     x:Name="Root"
-    NavigationPage.HasNavigationBar="False">
+    Loaded="Root_Loaded"
+    NavigationPage.HasNavigationBar="False"
+    Unloaded="Root_Unloaded">
 
     <Grid
         Grid.Row="1"
@@ -15,10 +17,7 @@
         ColumnSpacing="6">
 
         <!--  Left  -->
-        <Grid
-            Padding="20,20,0,0"
-            RowDefinitions="Auto,Auto,*"
-            RowSpacing="5">
+        <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5">
 
             <Label
                 FontAttributes="Bold"
@@ -36,7 +35,7 @@
 
                 <elements:TableInfoBlock
                     BarColor="{DynamicResource Normal}"
-                    Count="1"
+                    Count="{Binding ProcessesCount}"
                     Description="Criados"
                     TitleText="Total processos"
                     Unicode="{StaticResource FAS_Clipboard}" />
@@ -44,7 +43,7 @@
                 <elements:TableInfoBlock
                     Grid.Column="1"
                     BarColor="{DynamicResource Normal}"
-                    Count="1"
+                    Count="{Binding EmployeesCount}"
                     Description="Registrados"
                     TitleText="Total colaboradores"
                     Unicode="{StaticResource FAS_Users}" />
@@ -52,7 +51,7 @@
                 <elements:TableInfoBlock
                     Grid.Row="1"
                     BarColor="{DynamicResource Error}"
-                    Count="1"
+                    Count="{Binding HiddenProcessesCount}"
                     Description="Ocultos"
                     TitleText="Total processos"
                     Unicode="{StaticResource FAS_EyeSlash}" />
@@ -60,7 +59,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     BarColor="{DynamicResource Error}"
-                    Count="1"
+                    Count="{Binding HiddenEmployeesCount}"
                     Description="Ocultos"
                     TitleText="Total colaboradores"
                     Unicode="{StaticResource FAS_EyeSlash}" />
@@ -73,22 +72,28 @@
                 BackgroundColor="{DynamicResource Primary}"
                 Style="{DynamicResource Border.Radius14}">
 
-                <CollectionView
-                    HorizontalOptions="Fill"
-                    ItemTemplate="{DynamicResource TablePreviewData}"
-                    ItemsSource="{Binding Tables}"
-                    SelectionMode="None"
-                    VerticalOptions="Fill"
-                    VerticalScrollBarVisibility="Never">
+                <Grid RowDefinitions="Auto,*">
 
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout
-                            Orientation="Vertical"
-                            Span="1"
-                            VerticalItemSpacing="5" />
-                    </CollectionView.ItemsLayout>
+                    <CollectionView
+                        Grid.Row="1"
+                        HorizontalOptions="Fill"
+                        ItemTemplate="{DynamicResource TablePreviewData}"
+                        ItemsSource="{Binding Tables}"
+                        SelectionMode="None"
+                        VerticalOptions="Fill"
+                        VerticalScrollBarVisibility="Never">
 
-                </CollectionView>
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                Orientation="Vertical"
+                                Span="1"
+                                VerticalItemSpacing="2.5" />
+                        </CollectionView.ItemsLayout>
+
+                    </CollectionView>
+
+                </Grid>
+
 
             </Border>
 
@@ -111,29 +116,21 @@
 
                 <buttons:IconButton
                     Grid.Row="1"
-                    BackgroundColorCode="{DynamicResource Normal}"
-                    Event="{Binding CreateTableCommand}"
-                    FontColorCode="{DynamicResource InversePrimaryText}"
-                    FontSize="20"
+                    Command="{Binding CreateTableCommand}"
                     HorizontalOptions="Start"
-                    TextContent="Gerar nova tabela"
-                    Unicode="{StaticResource FAS_ArrowsRotate}"
-                    UnicodeFamily="FAS" />
+                    Style="{StaticResource RefreshButton}"
+                    Text="Gerar nova tabela" />
 
                 <buttons:IconButton
                     Grid.Row="1"
-                    BackgroundColorCode="{DynamicResource Success}"
-                    Event="{Binding SaveTableCommand}"
-                    FontColorCode="{DynamicResource InversePrimaryText}"
-                    FontSize="20"
+                    Command="{Binding SaveTableCommand}"
                     HorizontalOptions="End"
-                    TextContent="Salvar atual"
-                    Unicode="{StaticResource FAS_FloppyDisk}"
-                    UnicodeFamily="FAS" />
+                    Style="{StaticResource SaveButton}"
+                    Text="Salvar atual" />
 
                 <Border
                     Grid.Row="2"
-                    BackgroundColor="{DynamicResource Tertiar}"
+                    BackgroundColor="{DynamicResource Tertiary}"
                     StrokeThickness="0"
                     Style="{DynamicResource Border.Radius8}">
 

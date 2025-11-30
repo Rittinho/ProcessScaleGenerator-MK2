@@ -8,17 +8,16 @@
     x:Name="Root"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid ColumnDefinitions="2*,*">
+    <Grid ColumnDefinitions="2*,*" ColumnSpacing="5">
 
         <!--  forms  -->
-        <VerticalStackLayout Padding="20">
+        <VerticalStackLayout>
 
             <Label
                 FontAttributes="Bold"
                 FontSize="35"
                 Text="Criar novo processo"
                 TextColor="{DynamicResource PrimaryText}" />
-
 
             <Grid
                 ColumnDefinitions="1.5*,*"
@@ -31,17 +30,17 @@
                     <elements:Textbar
                         TextContent="{Binding Title, Mode=TwoWay}"
                         TextTitle="Nome do processo"
-                        Unicode="{DynamicResource FAS_Clipboard}"
-                        UnicodeColor="{DynamicResource Gray400}"
-                        UnicodeFamily="FAO" />
+                        Unicode="{DynamicResource PPO_Clipboard}"
+                        UnicodeColor="{DynamicResource PrimaryText}"
+                        UnicodeFamily="PPO" />
 
                     <elements:EditorBar
                         HeightEditor="300"
                         TextContent="{Binding Description, Mode=TwoWay}"
                         TextTitle="Descrição do processo"
-                        Unicode="{DynamicResource FAO_File}"
-                        UnicodeColor="{DynamicResource Gray400}"
-                        UnicodeFamily="FAO" />
+                        Unicode="{DynamicResource PPO_File}"
+                        UnicodeColor="{DynamicResource PrimaryText}"
+                        UnicodeFamily="PPO" />
 
                 </VerticalStackLayout>
 
@@ -68,11 +67,9 @@
 
                         <buttons:IconButton
                             Grid.Row="2"
-                            BackgroundColorCode="{DynamicResource Secondary}"
-                            Event="{Binding UpdateIconCommand}"
-                            FontSize="20"
-                            TextContent="Selecionar icone"
-                            Unicode="{DynamicResource FAS_CirclePlus}" />
+                            Command="{Binding UpdateIconCommand}"
+                            Style="{StaticResource EditButton}"
+                            Text="Selecionar icone" />
 
                     </Grid>
 
@@ -81,32 +78,27 @@
             </Grid>
 
             <buttons:IconButton
-                BackgroundColorCode="{DynamicResource Normal}"
-                Event="{Binding CreateNewProcessCommand}"
-                FontSize="20"
+                Padding="5"
+                Command="{Binding CreateNewProcessCommand}"
                 IsVisible="{Binding IsInCreateMode}"
-                TextContent="Criar processo"
-                Unicode="{DynamicResource FAS_CirclePlus}" />
+                Style="{StaticResource CreateButton}"
+                Text="Criar" />
 
             <Grid
                 ColumnDefinitions="*,*"
-                ColumnSpacing="6"
+                ColumnSpacing="5"
                 IsVisible="{Binding IsInEditMode}">
 
                 <buttons:IconButton
-                    BackgroundColorCode="{DynamicResource Error}"
-                    Event="{Binding CancelUpdateProcessCommand}"
-                    FontSize="20"
-                    TextContent="Cancelar alterações"
-                    Unicode="{DynamicResource FAS_CircleXmark}" />
+                    Command="{Binding CancelUpdateProcessCommand}"
+                    Style="{StaticResource CancelButton}"
+                    Text="Cancelar alterações" />
 
                 <buttons:IconButton
                     Grid.Column="1"
-                    BackgroundColorCode="{DynamicResource Success}"
-                    Event="{Binding SaveUpdateProcessCommand}"
-                    FontSize="20"
-                    TextContent="Salvar alterações"
-                    Unicode="{DynamicResource FAS_CircleCheck}" />
+                    Command="{Binding SaveUpdateProcessCommand}"
+                    Style="{StaticResource SaveButton}"
+                    Text="Salvar alterações" />
 
             </Grid>
 
@@ -115,10 +107,11 @@
         <!--  List  -->
         <Border
             Grid.Column="1"
+            Padding="5,5,5,0"
             BackgroundColor="{DynamicResource Primary}"
             Style="{DynamicResource Border.Radius14}">
 
-            <Grid RowDefinitions="Auto,*" RowSpacing="10">
+            <Grid RowDefinitions="Auto,*" RowSpacing="5">
 
                 <buttons:SearchBar SearchText="{Binding SearchProcessText, Mode=TwoWay}" />
 
@@ -135,7 +128,7 @@
                         <GridItemsLayout
                             Orientation="Vertical"
                             Span="1"
-                            VerticalItemSpacing="5" />
+                            VerticalItemSpacing="2.5" />
                     </CollectionView.ItemsLayout>
 
                 </CollectionView>

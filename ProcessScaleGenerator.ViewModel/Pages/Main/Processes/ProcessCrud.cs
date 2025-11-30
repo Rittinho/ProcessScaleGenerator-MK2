@@ -42,7 +42,7 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
         {
             var result = await _popServices.IconPickerPopup(Icon);
 
-            Icon = result as IconParameters;
+            Icon = result;
         }
         [RelayCommand]
         public async Task ShowProcess(ToyotaProcess? toyotaProcess)

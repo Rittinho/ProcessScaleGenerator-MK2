@@ -10,7 +10,8 @@
     x:Name="Root"
     Padding="-20"
     x:TypeArguments="local:IconParameters"
-    BackgroundColor="{DynamicResource Tertiary}"
+    BackgroundColor="{AppThemeBinding Light={DynamicResource Primary},
+                                      Dark={DynamicResource Primary}}"
     WidthRequest="1000">
 
     <Grid
@@ -39,6 +40,7 @@
         <Border
             Grid.Row="1"
             Grid.Column="1"
+            Padding="5,0,5,0"
             BackgroundColor="{DynamicResource Secondary}"
             Style="{DynamicResource Border.Radius14}">
 
@@ -74,20 +76,14 @@
             Spacing="8">
 
             <buttons:IconButton
-                BackgroundColorCode="#FF4C4C"
-                Event="{Binding Source={x:Reference Root}, Path=CancelButtonCommand}"
-                FontSize="20"
-                TextContent="Cancelar"
-                Unicode="{DynamicResource FAS_CircleXmark}" />
+                Command="{Binding Source={x:Reference Root}, Path=CancelButtonCommand}"
+                Style="{StaticResource CancelButton}"
+                Text="Cancelar" />
 
             <buttons:IconButton
-                BackgroundColorCode="#4CAF50"
-                Event="{Binding ConfirmCommand}"
-                FontSize="20"
-                TextContent="Salvar"
-                Unicode="{DynamicResource FAS_CircleCheck}" />
-
-            <buttons:IconButton />
+                Command="{Binding ConfirmCommand}"
+                Style="{StaticResource SaveButton}"
+                Text="Salvar" />
 
         </HorizontalStackLayout>
 

@@ -12,6 +12,12 @@ public interface IJsonServices
     List<ToyotaProcess> LoadProcessJson();
     List<ToyotaTableGroup> LoadTableGroupJson();
 
-    void DeleteFileJson(string fileName);
+    List<ToyotaEmployee> LoadFileEmployeeJson(string pathFile);
+    List<ToyotaProcess> LoadFileProcessJson(string pathFile);
+    ToyotaTableGroup LoadFileTableGroupJson(string pathFile);
+
+    void SaveSettingsJson(SystemSettings data);
+
+    //void DeleteFileJson(string fileName);
     void DeleteTableFileJson(string creationDate);
 }

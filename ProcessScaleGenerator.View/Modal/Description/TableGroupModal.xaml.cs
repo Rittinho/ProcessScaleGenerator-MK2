@@ -1,4 +1,6 @@
 using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls.Shapes;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using ProcessScaleGenerator.View.Components.Elements;
@@ -7,19 +9,18 @@ namespace ProcessScaleGenerator.View.Modal.Description;
 
 public partial class TableGroupModal : Popup
 {
-    private ToyotaTableGroup _toyotaTableGroup;
+    public ToyotaTableGroup ToyotaTableGroup { get; set; }
 
     public List<ToyotaProcessTable> Tables;
     public TableGroupModal(ToyotaTableGroup toyotaTableGroup)
     {
         InitializeComponent();
 
-        _toyotaTableGroup = toyotaTableGroup;
+        ToyotaTableGroup = toyotaTableGroup;
 
-        Tables = _toyotaTableGroup.TableGroup;
+        TableGroupRender(ToyotaTableGroup.TableGroup);
 
-        TableGroupRender(Tables);
-
+        BindingContext = this;
     }
     private void TableGroupRender(List<ToyotaProcessTable> processGroups)
     {
@@ -145,4 +146,7 @@ public partial class TableGroupModal : Popup
 
         return border;
     }
+
+    [RelayCommand]
+    private void Cancel() => CloseAsync();
 }

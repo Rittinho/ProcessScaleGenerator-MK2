@@ -5,16 +5,8 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Settings
     public partial class SettingsViewModel
     {
         [ObservableProperty]
-        private string? _processPath;
-
+        public string? _rootPath;
         [ObservableProperty]
-        private string? _employeePath;
-
-        [ObservableProperty]
-        private string? _tablePath;
-
-        [ObservableProperty]
-        private string? _backupPath;
-
+        public string? _backupsPath;
     }
 }

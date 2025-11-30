@@ -2,12 +2,15 @@
 using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
+using ToyotaProcessManager.Services.Injections.Contract;
 
 namespace ProcessScaleGenerator.Shared.Injections.Implementation.Repository;
 
 public partial class RepositoryServices : IRepositoryServices
 {
     private readonly IJsonServices _jsonServices;
+    private readonly IFolderStorage _folderStorage;
+    private readonly IPopServices _popServices;
     private readonly IMessenger _messenger;
 
     private readonly List<ToyotaEmployee>? _employeeData;
@@ -16,9 +19,11 @@ public partial class RepositoryServices : IRepositoryServices
 
     private static readonly object _locker = new object();
 
-    public RepositoryServices(IJsonServices jsonServices, IMessenger messenger)
+    public RepositoryServices(IJsonServices jsonServices, IMessenger messenger, IFolderStorage folderStorage, IPopServices popServices)
     {
         _jsonServices = jsonServices;
+        _popServices = popServices;
+        _folderStorage = folderStorage;
         _messenger = messenger;
 
         lock (_locker)
@@ -61,4 +66,6 @@ public partial class RepositoryServices : IRepositoryServices
             _jsonServices.SaveProcessJson(_processData);
         }
     }
+
+    public void SaveSettings(SystemSettings data) => _jsonServices.SaveSettingsJson(data);
 }

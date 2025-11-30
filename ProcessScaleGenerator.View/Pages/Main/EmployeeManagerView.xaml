@@ -8,10 +8,10 @@
     x:Name="Root"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid ColumnDefinitions="2*,*">
+    <Grid ColumnDefinitions="2*,*" ColumnSpacing="5">
 
         <!--  forms  -->
-        <VerticalStackLayout Padding="20">
+        <VerticalStackLayout>
 
             <Label
                 FontAttributes="Bold"
@@ -30,15 +30,16 @@
                     <elements:Textbar
                         TextContent="{Binding Name, Mode=TwoWay}"
                         TextTitle="Nome do colaborador"
-                        Unicode="{DynamicResource FAS_User}"
-                        UnicodeColor="{DynamicResource Gray400}"
-                        UnicodeFamily="FAS" />
+                        Unicode="{DynamicResource PPO_User}"
+                        UnicodeColor="{DynamicResource PrimaryText}"
+                        UnicodeFamily="PPO" />
 
                     <Picker
                         Title="Cargo/Posição"
                         BackgroundColor="{DynamicResource Primary}"
-                        SelectedItem="{Binding Position}"
-                        TextColor="Black">
+                        SelectedItem="{Binding CurrentTheme}"
+                        TextColor="{DynamicResource PrimaryText}"
+                        TitleColor="{DynamicResource PrimaryText}">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Encarregado</x:String>
@@ -83,12 +84,9 @@
 
                         <buttons:IconButton
                             Grid.Row="2"
-                            BackgroundColorCode="{DynamicResource Secondary}"
-                            Event="{Binding UpdateIconCommand}"
-                            FontSize="20"
-                            TextContent="Selecionar foto"
-                            Unicode="{DynamicResource FAS_Pen}"
-                            UnicodeFamily="FAS" />
+                            Command="{Binding UpdateIconCommand}"
+                            Style="{StaticResource EditButton}"
+                            Text="Alterar foto" />
 
                     </Grid>
 
@@ -97,32 +95,30 @@
             </Grid>
 
             <buttons:IconButton
-                BackgroundColorCode="{DynamicResource Normal}"
-                Event="{Binding CreateNewEmployeeCommand}"
-                FontSize="20"
+                Padding="5"
+                Command="{Binding CreateNewEmployeeCommand}"
                 IsVisible="{Binding IsInCreateMode}"
-                TextContent="Criar processo"
-                Unicode="{DynamicResource FAS_CirclePlus}" />
+                Style="{StaticResource CreateButton}"
+                Text="Crar" />
 
             <Grid
                 ColumnDefinitions="*,*"
                 ColumnSpacing="6"
                 IsVisible="{Binding IsInEditMode}">
 
+
                 <buttons:IconButton
-                    BackgroundColorCode="{DynamicResource Error}"
-                    Event="{Binding CancelUpdateEmployeeCommand}"
-                    FontSize="20"
-                    TextContent="Cancelar alterações"
-                    Unicode="{DynamicResource FAS_CircleXmark}" />
+                    Padding="5"
+                    Command="{Binding CancelUpdateEmployeeCommand}"
+                    Style="{StaticResource CancelButton}"
+                    Text="Cancelar alterações" />
 
                 <buttons:IconButton
                     Grid.Column="1"
-                    BackgroundColorCode="{DynamicResource Success}"
-                    Event="{Binding SaveUpdateEmployeeCommand}"
-                    FontSize="20"
-                    TextContent="Salvar alterações"
-                    Unicode="{DynamicResource FAS_CircleCheck}" />
+                    Command="{Binding SaveUpdateEmployeeCommand}"
+                    Style="{StaticResource SaveButton}"
+                    Text="Salvar alterações" />
+
 
             </Grid>
 
@@ -131,10 +127,11 @@
         <!--  List  -->
         <Border
             Grid.Column="1"
+            Padding="5,5,5,0"
             BackgroundColor="{DynamicResource Primary}"
             Style="{DynamicResource Border.Radius14}">
 
-            <Grid RowDefinitions="Auto,*" RowSpacing="10">
+            <Grid RowDefinitions="Auto,*" RowSpacing="5">
 
                 <buttons:SearchBar SearchText="{Binding SearchProcessText, Mode=TwoWay}" />
 
@@ -151,7 +148,7 @@
                         <GridItemsLayout
                             Orientation="Vertical"
                             Span="1"
-                            VerticalItemSpacing="5" />
+                            VerticalItemSpacing="2.5" />
                     </CollectionView.ItemsLayout>
 
                 </CollectionView>

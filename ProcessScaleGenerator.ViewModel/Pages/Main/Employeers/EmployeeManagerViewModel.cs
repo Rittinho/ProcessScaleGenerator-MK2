@@ -19,7 +19,6 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Employeers
     {
         private readonly IMessenger _messenger;
         private readonly IMessagingServices _messagingServices;
-        private readonly INavigationServices _navigationServices;
         private readonly IPopServices _popServices;
 
         private readonly ToyotaEmployeeModel? _toyotaEmployeeModel;
@@ -33,11 +32,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Employeers
         public bool? _isInCreateMode;
 
         public EmployeeManagerViewModel(ToyotaEmployeeModel toyotaEmployeeModel, IMessenger messenger,
-        IPopServices popServices, IMessagingServices messagingServices, INavigationServices navigationServices)
+        IPopServices popServices, IMessagingServices messagingServices)
         {
             _toyotaEmployeeModel = toyotaEmployeeModel;
             _messagingServices = messagingServices;
-            _navigationServices = navigationServices;
             _popServices = popServices;
             _messenger = messenger;
 
@@ -74,32 +72,6 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Employeers
                 default:
                     break;
             }
-        }
-
-        [RelayCommand]
-        public async Task SwitchToDashboard()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Dashboard);
-        }
-        [RelayCommand]
-        public async Task SwitchToTableManager()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.TableManager);
-        }
-        [RelayCommand]
-        public async Task SwitchToProcessesManager()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Processes);
-        }
-        [RelayCommand]
-        public async Task SwitchToShowTables()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.ShowTable);
-        }
-        [RelayCommand]
-        public async Task SwitchToSettings()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Settings);
         }
     }
 }

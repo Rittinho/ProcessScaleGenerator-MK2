@@ -1,53 +1,72 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProcessScaleGenerator.Shared;
 using ProcessScaleGenerator.Shared.Constants;
 using ProcessScaleGenerator.Shared.Injections.Contract;
+using ProcessScaleGenerator.Shared.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToyotaProcessManager.Services.Injections.Contract;
 
 namespace ProcessScaleGenerator.ViewModel.Pages.Main.Settings
 {
     public partial class SettingsViewModel : ObservableObject
     {
-        private readonly INavigationServices _navigationServices;
         private readonly IRepositoryServices _repositoryServices;
-        public SettingsViewModel(IRepositoryServices repositoryServices, INavigationServices navigationServices)
-        {
-            _navigationServices = navigationServices;
-            _repositoryServices = repositoryServices;
-        }
-        private void LoadSettings()
-        {
-            //ProcessPath = 
-        }
+        private readonly IPopServices _popServices;
+        private readonly IAppSettings _appSettings;
 
-        [RelayCommand]
-        public async Task SwitchToDashboard()
+        [ObservableProperty]
+        public string? _currentTheme;
+        [ObservableProperty]
+        public bool? _autobackup;
+
+        public SettingsViewModel(IRepositoryServices repositoryServices, IPopServices popServices, IAppSettings appSettings)
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.Dashboard);
+            _repositoryServices = repositoryServices;
+            _popServices = popServices;
+            _appSettings = appSettings;
+            LoadSettings();
+        }
+        public void SaveSettings()
+        {
+            var settings = new SystemSettings(RootPath, BackupsPath, CurrentTheme, (bool)Autobackup);
+            _repositoryServices.SaveSettings(settings);
+        }
+        public void LoadSettings()
+        {
+            CurrentTheme = _appSettings.CurrentTheme();
+            RootPath = _appSettings.RootPath();
+            BackupsPath = _appSettings.BackupsPath();
+            Autobackup = _appSettings.Autobackup();
         }
         [RelayCommand]
-        public async Task SwitchToTableManager()
+        private async void LoadProcesses()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.TableManager);
+            if (await _repositoryServices.LoadFileProcesses())
+            {
+                await _popServices.WaringPopup("Arquivos importados", "Verifique a lita");
+            }
         }
         [RelayCommand]
-        public async Task SwitchToProcessesManager()
+        private async void LoadEmployees()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.Processes);
+            if (await _repositoryServices.LoadFileEmployeers())
+            {
+                await _popServices.WaringPopup("Arquivos importados", "Verifique a lita");
+            }
         }
         [RelayCommand]
-        public async Task SwitchToEmployeersManager()
+        private async void LoadTable()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.Employeers);
-        }
-        [RelayCommand]
-        public async Task SwitchToShowTables()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.ShowTable);
+            if (await _repositoryServices.LoadFileTables())
+            {
+                await _popServices.WaringPopup("Arquivos importados", "Verifique a lita");
+            }
         }
     }
 }

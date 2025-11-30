@@ -3,26 +3,28 @@
     x:Class="ProcessScaleGenerator.View.Components.Elements.DirectoryTextBar"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
     x:Name="Root">
 
     <VerticalStackLayout>
 
         <Label FontSize="18" Text="{Binding Path=TextTitle, Source={x:Reference Root}}" />
 
-        <Grid ColumnDefinitions="*,Auto">
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5">
 
             <Border
                 Padding="0"
                 BackgroundColor="{DynamicResource Primary}"
                 HorizontalOptions="Fill"
+                StrokeThickness="0"
                 Style="{DynamicResource Border.Radius8}">
 
                 <Grid ColumnDefinitions="Auto,*">
 
-                    <Border BackgroundColor="{DynamicResource Secondary}" StrokeThickness="0">
+                    <Border BackgroundColor="{DynamicResource Tertiary}" StrokeThickness="0">
 
                         <Label
-                            Padding="5"
+                            Padding="0"
                             FontFamily="{Binding Path=UnicodeFamily, Source={x:Reference Root}}"
                             FontSize="20"
                             HorizontalTextAlignment="Center"
@@ -34,24 +36,20 @@
                     </Border>
 
                     <Entry
+                        x:Name="PathName"
                         Grid.Column="1"
-                        FontSize="20"
+                        FontSize="18"
                         Text="{Binding Path=PathFolder, Source={x:Reference Root}}" />
 
                 </Grid>
 
             </Border>
 
-            <Button
+            <buttons:IconButton
                 Grid.Column="1"
-                Margin="5,0,0,0"
-                Padding="10,0,10,0"
-                BackgroundColor="{DynamicResource Normal}"
-                Command="{Binding DirectoryFolderPickerCommand}"
-                FontFamily="FAS"
-                FontSize="28"
-                Text="{StaticResource FAS_Ellipsis}"
-                TextColor="{DynamicResource InversePrimaryText}" />
+                Command="{Binding Path=DirectoryFolderPickerCommand, Source={x:Reference Root}}"
+                Text="Escolher"
+                Unicode="{StaticResource PPO_FolderNotch}" />
 
         </Grid>
 

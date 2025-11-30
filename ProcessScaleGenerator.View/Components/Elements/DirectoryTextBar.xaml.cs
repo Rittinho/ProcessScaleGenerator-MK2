@@ -7,7 +7,7 @@ namespace ProcessScaleGenerator.View.Components.Elements;
 public partial class DirectoryTextBar : ContentView
 {
     public static readonly BindableProperty PathFolderProperty =
-BindableProperty.Create(nameof(PathFolder), typeof(string), typeof(DirectoryTextBar), default(string));
+BindableProperty.Create(nameof(PathFolder), typeof(string), typeof(DirectoryTextBar), default(string), BindingMode.TwoWay);
 
     public static readonly BindableProperty TextTitleProperty =
     BindableProperty.Create(nameof(TextTitle), typeof(string), typeof(DirectoryTextBar), default(string));
@@ -51,7 +51,6 @@ BindableProperty.Create(nameof(PathFolder), typeof(string), typeof(DirectoryText
     public DirectoryTextBar()
 	{
 		InitializeComponent();
-        BindingContext = this;
 	}
 
     [RelayCommand]

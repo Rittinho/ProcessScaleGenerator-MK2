@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using ProcessScaleGenerator.Shared.Constants;
 using ProcessScaleGenerator.Shared.Injections.Contract;
+using ProcessScaleGenerator.Shared.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,11 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
 {
     public partial class TableManagerViewModel : ObservableObject
     {
-        private readonly INavigationServices _navigationServices;
         private readonly IRepositoryServices _repositoryServices;
         private readonly IMessenger _messenger;
 
-        public TableManagerViewModel(INavigationServices navigationServices, IRepositoryServices repositoryServices, IMessenger messenger)
+        public TableManagerViewModel(IRepositoryServices repositoryServices, IMessenger messenger)
         {
-            _navigationServices = navigationServices;
             _repositoryServices = repositoryServices;
             _messenger = messenger;
 
@@ -29,32 +28,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
             FiltredProcessList = [.. ProcessList];
             FiltredEmployeeList = [.. EmployeeList];
         }
-
-
-        [RelayCommand]
-        public async Task SwitchToDashboard()
+        public void SendMessages()
         {
-            _navigationServices.GoToPageAsync(RegisteredPages.Dashboard);
-        }
-        [RelayCommand]
-        public async Task SwitchToProcessesManager()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Processes);
-        }
-        [RelayCommand]
-        public async Task SwitchToEmployeersManager()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Employeers);
-        }
-        [RelayCommand]
-        public async Task SwitchToShowTables()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.ShowTable);
-        }
-        [RelayCommand]
-        public async Task SwitchToSettings()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Settings);
+            _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
+            _messenger.Send(new HiddedProcessesCountChanged(ProcessList.Where(x => x.Hidded).Count()));
         }
     }
 }

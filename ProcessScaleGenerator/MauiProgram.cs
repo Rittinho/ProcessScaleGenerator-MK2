@@ -44,11 +44,16 @@ namespace ProcessScaleGenerator
                     fonts.AddFont("Fa-Brands.otf", "FAB");
                     fonts.AddFont("Fa-Outlined.otf", "FAO");
 
-                    fonts.AddFont("Segoe UI.ttf", "Segoe");
+                    fonts.AddFont("Phosphor-Solid.ttf", "PPS");
+                    fonts.AddFont("Phosphor-Outlined.ttf", "PPO");
+
+                    fonts.AddFont("Toyota.otf", "Toyota");
                 });
 
             builder.Services.AddSingleton<IMessagingServices, MessagingServices>();
+            builder.Services.AddSingleton<IAppSettings, AppSettings>();
             builder.Services.AddSingleton<INavigationServices, NavigationServices>();
+            builder.Services.AddTransient<IFolderStorage, FolderStorage>();
             builder.Services.AddTransient<IPopServices, PopServices>();
 
             builder.Services.AddSingleton<IRepositoryServices, RepositoryServices>();
@@ -73,7 +78,7 @@ namespace ProcessScaleGenerator
             builder.Services.AddSingleton<ProcessManagerViewModel>();
             builder.Services.AddSingleton<EmployeeManagerViewModel>();
             builder.Services.AddSingleton<TableManagerViewModel>();
-            builder.Services.AddSingleton<ShowTableViewModel>();
+            builder.Services.AddTransient<ShowTableViewModel>();
             builder.Services.AddSingleton<SettingsViewModel>();
 
             builder.Services.AddTransient<TableConfigModalViewModel>();

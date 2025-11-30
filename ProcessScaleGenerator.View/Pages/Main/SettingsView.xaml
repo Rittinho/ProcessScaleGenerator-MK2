@@ -6,9 +6,10 @@
     xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
     x:Name="Root"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    Unloaded="OnUnloaded">
 
-    <ScrollView Padding="20,20,5,5">
+    <ScrollView Padding="5">
 
         <VerticalStackLayout>
 
@@ -25,26 +26,20 @@
                 Text="Aparencia"
                 TextColor="{DynamicResource PrimaryText}" />
 
-            <Border
-                Grid.Column="1"
+            <Picker
+                Title="Tema"
                 BackgroundColor="{DynamicResource Primary}"
-                Style="{StaticResource Border.Radius14}">
-
-                <Picker
-                    Title="Tema"
-                    BackgroundColor="{DynamicResource Primary}"
-                    SelectedItem="{Binding Position}"
-                    TextColor="Black">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Claro</x:String>
-                            <x:String>Escuro</x:String>
-                            <x:String>Sistema</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
-
-            </Border>
+                SelectedItem="{Binding CurrentTheme}"
+                TextColor="{DynamicResource PrimaryText}"
+                TitleColor="{DynamicResource PrimaryText}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Light</x:String>
+                        <x:String>Dark</x:String>
+                        <x:String>System</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
             <Label
                 Margin="0,10,0,0"
@@ -53,47 +48,27 @@
                 Text="Armazenamento"
                 TextColor="{DynamicResource PrimaryText}" />
 
-            <Border
-                Grid.Column="1"
-                BackgroundColor="{DynamicResource Primary}"
-                Style="{StaticResource Border.Radius14}">
+            <VerticalStackLayout>
 
                 <VerticalStackLayout>
 
                     <elements:DirectoryTextBar
-                        PathFolder=""
-                        TextTitle="Local processos"
-                        Unicode="{StaticResource FAO_Clipboard}"
-                        UnicodeColor="{DynamicResource Gray400}"
-                        UnicodeFamily="FAO" />
-
-
-                    <elements:DirectoryTextBar
-                        PathFolder=""
-                        TextTitle="Local colaboradores"
-                        Unicode="{StaticResource FAO_AddressBook}"
-                        UnicodeColor="{DynamicResource Gray400}"
-                        UnicodeFamily="FAO" />
+                        PathFolder="{Binding RootPath}"
+                        TextTitle="Pasta de dados"
+                        Unicode="{StaticResource PPO_FolderNotch}"
+                        UnicodeColor="{DynamicResource PrimaryText}"
+                        UnicodeFamily="PPO" />
 
                     <elements:DirectoryTextBar
-                        PathFolder=""
-                        TextTitle="Local tabelas"
-                        Unicode="{StaticResource FAS_Table}"
-                        UnicodeColor="{DynamicResource Gray400}"
-                        UnicodeFamily="FAS" />
-
-
-                    <elements:DirectoryTextBar
-                        PathFolder=""
-                        TextTitle="Local backups"
-                        Unicode="{StaticResource FAS_ArrowsRotate}"
-                        UnicodeColor="{DynamicResource Gray400}"
-                        UnicodeFamily="FAS" />
-
+                        PathFolder="{Binding BackupsPath}"
+                        TextTitle="Pasta de backup"
+                        Unicode="{StaticResource PPO_FolderNotch}"
+                        UnicodeColor="{DynamicResource PrimaryText}"
+                        UnicodeFamily="PPO" />
 
                 </VerticalStackLayout>
 
-            </Border>
+            </VerticalStackLayout>
 
             <Label
                 Margin="0,10,0,0"
@@ -102,83 +77,71 @@
                 Text="Importar dados"
                 TextColor="{DynamicResource PrimaryText}" />
 
-            <Border
-                Grid.Column="1"
-                BackgroundColor="{DynamicResource Primary}"
-                Style="{StaticResource Border.Radius14}">
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
 
-                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+                <buttons:IconButton
+                    Command="{Binding LoadProcessesCommand}"
+                    Style="{StaticResource InportButton}"
+                    Text="Inportar processos(Json)" />
+                <buttons:IconButton
+                    Grid.Column="1"
+                    Command="{Binding LoadEmployeesCommand}"
+                    Style="{StaticResource InportButton}"
+                    Text="Inportar colaboradores(Json" />
+                <buttons:IconButton
+                    Grid.Column="2"
+                    Command="{Binding LoadTableCommand}"
+                    Style="{StaticResource InportButton}"
+                    Text="Inportar tabelas(Json)" />
 
-                    <buttons:IconButton
-                        BackgroundColorCode="{DynamicResource Normal}"
-                        Event="{Binding SwitchToTableManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Inportar processos(Json)"
-                        Unicode="{StaticResource FAS_FileImport}"
-                        UnicodeFamily="FAS" />
+            </Grid>
 
-                    <buttons:IconButton
-                        Grid.Column="1"
-                        BackgroundColorCode="{DynamicResource Normal}"
-                        Event="{Binding SwitchToTableManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Inportar colaboradores(Json)"
-                        Unicode="{StaticResource FAS_FileImport}"
-                        UnicodeFamily="FAS" />
-
-                    <buttons:IconButton
-                        Grid.Column="2"
-                        BackgroundColorCode="{DynamicResource Normal}"
-                        Event="{Binding SwitchToTableManagerCommand}"
-                        FontColorCode="{DynamicResource InversePrimaryText}"
-                        FontSize="20"
-                        TextContent="Inportar tabelas(Json)"
-                        Unicode="{StaticResource FAS_FileImport}"
-                        UnicodeFamily="FAS" />
-
-                </Grid>
-
-            </Border>
 
             <Label
                 Margin="0,10,0,0"
                 FontAttributes="Bold"
                 FontSize="22"
-                Text="Outras configurações"
+                Text="Sobre o sistema"
                 TextColor="{DynamicResource PrimaryText}" />
 
-            <Border
-                Grid.Column="1"
-                BackgroundColor="{DynamicResource Primary}"
-                Style="{StaticResource Border.Radius14}">
+            <Border BackgroundColor="{DynamicResource Primary}" Style="{StaticResource Border.Radius8}">
 
                 <VerticalStackLayout>
 
-                    <HorizontalStackLayout>
-                        <CheckBox />
-                        <Label
-                            Text="Salvar automaticamente ao feichar"
-                            TextColor="{DynamicResource PrimaryText}"
-                            VerticalTextAlignment="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Toyota Processes Mananger"
+                        TextColor="{DynamicResource PrimaryText}" />
+
+                    <Label Text="Versão 1.1" />
+                    <Label Text="©Dev Ritto, direitos reservados" />
+
+                    <HorizontalStackLayout Spacing="5">
+
+                        <buttons:IconButton
+                            Command="{Binding Source={x:Reference Root}, Path=LinkedinCommand}"
+                            FontSize="14"
+                            Text="Likedin"
+                            Unicode="{StaticResource PPO_LinkedinLogo}" />
+
+                        <buttons:IconButton
+                            Command="{Binding Source={x:Reference Root}, Path=GithubCommand}"
+                            FontSize="14"
+                            Text="GitHub"
+                            Unicode="{StaticResource PPO_GithubLogo}" />
+
                     </HorizontalStackLayout>
 
-                    <HorizontalStackLayout>
-                        <CheckBox />
-                        <Label
-                            Text="Confirmar antes de excluir"
-                            TextColor="{DynamicResource PrimaryText}"
-                            VerticalTextAlignment="Center" />
-                    </HorizontalStackLayout>
+                    <Label
+                        Margin="0,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="Creditos"
+                        TextColor="{DynamicResource PrimaryText}" />
 
-                    <HorizontalStackLayout>
-                        <CheckBox />
-                        <Label
-                            Text="backups altomatico"
-                            TextColor="{DynamicResource PrimaryText}"
-                            VerticalTextAlignment="Center" />
-                    </HorizontalStackLayout>
+                    <Label Text="Feito com .NET MAUI" />
+                    <Label Text="Icone por Phosphor e Font Awasome" />
 
                 </VerticalStackLayout>
 

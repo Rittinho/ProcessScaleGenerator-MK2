@@ -13,7 +13,6 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
     {
         private readonly IMessenger _messenger;
         private readonly IMessagingServices _messagingServices;
-        private readonly INavigationServices _navigationServices;
         private readonly IPopServices _popServices;
 
         private readonly ToyotaProcessModel? _toyotaProcessModel;
@@ -27,13 +26,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
         [ObservableProperty]
         public bool? _isInCreateMode;
 
-
-        public ProcessManagerViewModel(ToyotaProcessModel toyotaProcessModel, IMessenger messenger,
-        IPopServices popServices, IMessagingServices messagingServices, INavigationServices navigationServices)
+        public ProcessManagerViewModel(ToyotaProcessModel toyotaProcessModel, IMessenger messenger, IPopServices popServices, IMessagingServices messagingServices)
         {
             _toyotaProcessModel = toyotaProcessModel;
             _messagingServices = messagingServices;
-            _navigationServices = navigationServices;
             _popServices = popServices;
             _messenger = messenger;
 
@@ -71,32 +67,6 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
                 default:
                     break;
             }
-        }
-
-        [RelayCommand]
-        public async Task SwitchToDashboard()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Dashboard);
-        }
-        [RelayCommand]
-        public async Task SwitchToTableManager()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.TableManager);
-        }
-        [RelayCommand]
-        public async Task SwitchToEmployeersManager()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Employeers);
-        }
-        [RelayCommand]
-        public async Task SwitchToShowTables()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.ShowTable);
-        }
-        [RelayCommand]
-        public async Task SwitchToSettings()
-        {
-            _navigationServices.GoToPageAsync(RegisteredPages.Settings);
         }
     }
 }

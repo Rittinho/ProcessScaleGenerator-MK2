@@ -43,8 +43,8 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
+		<MauiIcon Include="Resources\AppIcon\toyota.svg" ForegroundFile="Resources\AppIcon\toyota.svg" Color="#4BA3E3" />
+		
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\raw\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
@@ -81,7 +81,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Resources\Styles\BaseElements\PopupsStyles.xaml">
+	  <MauiXaml Update="Resources\Styles\BaseElements\ButtonStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\BaseElements\PresenterElements.xaml">
@@ -111,12 +111,22 @@
 	  <MauiXaml Update="Resources\Styles\Icons\FaSolid.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\Icons\PhosphorOutlined.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\Icons\PhosphorSolid.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\LightColors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Styles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\AppIcon\toyota.svg" ForegroundFile="Resources\AppIcon\toyota.svg" Color="#4BA3E3" />
 	</ItemGroup>
 
 </Project>

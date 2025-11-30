@@ -9,4 +9,10 @@ public partial class TableManagerView : ContentView
 		InitializeComponent();
 		BindingContext = tableManagerViewModel;
 	}
+
+    private void OnUnloaded(object sender, EventArgs e)
+    {
+        if (BindingContext is TableManagerViewModel vm)
+            vm.SendMessages();
+    }
 }

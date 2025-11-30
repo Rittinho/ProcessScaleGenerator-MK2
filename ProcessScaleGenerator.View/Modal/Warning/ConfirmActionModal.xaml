@@ -3,11 +3,14 @@
     x:Class="ProcessScaleGenerator.View.Modal.Warning.ConfirmActionModal"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Padding="-20"
     x:TypeArguments="system:Boolean"
-    BackgroundColor="{DynamicResource Tertiary}">
+    BackgroundColor="{AppThemeBinding Light={DynamicResource Primary},
+                                      Dark={DynamicResource Primary}}">
+
 
     <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
 
@@ -17,7 +20,7 @@
             FontAttributes="Bold"
             FontSize="40"
             HorizontalOptions="Center"
-            TextColor="White"
+            TextColor="{DynamicResource PrimaryText}"
             VerticalOptions="Center" />
 
         <!--  Descrição da ação  -->
@@ -26,44 +29,17 @@
             Grid.Row="1"
             FontSize="20"
             HorizontalOptions="Center"
-            TextColor="White"
+            TextColor="{DynamicResource PrimaryText}"
             VerticalOptions="Center" />
 
         <!--  Botão de voltar  -->
-        <Border
+        <buttons:IconButton
             x:Name="BackButton"
             Grid.Row="2"
-            Padding="10"
-            BackgroundColor="#4DA3FF"
+            Command="{Binding CancelCommand}"
             HorizontalOptions="End"
-            StrokeShape="14"
-            StrokeThickness="0">
-
-            <HorizontalStackLayout Spacing="10">
-
-                <Label
-                    FontFamily="FAS"
-                    FontSize="15"
-                    HorizontalOptions="Center"
-                    Text="{DynamicResource FAS_ThumbsUp}"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="15"
-                    HorizontalOptions="Center"
-                    Text="Ok"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-
-            </HorizontalStackLayout>
-
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding CancelCommand}" />
-            </Border.GestureRecognizers>
-
-        </Border>
+            Style="{StaticResource BackButton}"
+            Text="Voltar" />
 
         <!--  Botões de ação  -->
         <HorizontalStackLayout
@@ -72,72 +48,17 @@
             HorizontalOptions="Center"
             Spacing="10">
 
-            <!--  Retornar  -->
-            <Border
-                Padding="10"
-                BackgroundColor="#FF4C4C"
-                StrokeShape="14"
-                StrokeThickness="0">
+            <buttons:IconButton
+                Grid.Row="1"
+                Command="{Binding CancelCommand}"
+                Style="{StaticResource CancelButton}"
+                Text="Cancelar" />
 
-                <HorizontalStackLayout Spacing="10">
-
-                    <Label
-                        FontFamily="FAS"
-                        FontSize="15"
-                        HorizontalOptions="Center"
-                        Text="{DynamicResource FAS_CircleXmark}"
-                        TextColor="White"
-                        VerticalOptions="Center" />
-
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="15"
-                        HorizontalOptions="Center"
-                        Text="Cancelar"
-                        TextColor="White"
-                        VerticalOptions="Center" />
-
-                </HorizontalStackLayout>
-
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding CancelCommand}" />
-                </Border.GestureRecognizers>
-
-            </Border>
-
-            <!--  Confirmar  -->
-            <Border
-                Grid.Column="1"
-                Padding="10"
-                BackgroundColor="#4CAF50"
-                StrokeShape="14"
-                StrokeThickness="0">
-
-                <HorizontalStackLayout Spacing="10">
-
-                    <Label
-                        FontFamily="FAS"
-                        FontSize="15"
-                        HorizontalOptions="Center"
-                        Text="{DynamicResource FAS_CircleCheck}"
-                        TextColor="White"
-                        VerticalOptions="Center" />
-
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="15"
-                        HorizontalOptions="Center"
-                        Text="Aceitar"
-                        TextColor="White"
-                        VerticalOptions="Center" />
-
-                </HorizontalStackLayout>
-
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ConfirmCommand}" />
-                </Border.GestureRecognizers>
-
-            </Border>
+            <buttons:IconButton
+                Grid.Row="1"
+                Command="{Binding ConfirmCommand}"
+                Style="{StaticResource AcceptButton}"
+                Text="Aceitar" />
 
         </HorizontalStackLayout>
 

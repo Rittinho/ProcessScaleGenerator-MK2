@@ -15,7 +15,7 @@
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
                 Text="{Binding .}"
-                TextColor="White"
+                TextColor="{DynamicResource PrimaryText}"
                 VerticalOptions="Center"
                 VerticalTextAlignment="Center" />
 

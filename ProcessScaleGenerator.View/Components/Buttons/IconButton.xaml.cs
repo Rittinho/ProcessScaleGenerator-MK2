@@ -1,85 +1,102 @@
-using ProcessScaleGenerator.View.Components.Elements;
+using ProcessScaleGenerator.View.Components.Buttons.Base;
 using System.Windows.Input;
 
 namespace ProcessScaleGenerator.View.Components.Buttons;
 
-public partial class IconButton : ContentView
+public partial class IconButton : ButtonBaseView
 {
-    public static readonly BindableProperty UnicodeProperty =
-    BindableProperty.Create(nameof(Unicode), typeof(string), typeof(IconButton), default(string));
+    public enum IconAlignment { Left, Right, Top, Bottom }
 
-    public static readonly BindableProperty UnicodeFamilyProperty =
-    BindableProperty.Create(nameof(UnicodeFamily), typeof(string), typeof(IconButton), default(string));
+    public static readonly BindableProperty IconPositionProperty =
+        BindableProperty.Create(nameof(IconPosition), typeof(IconAlignment), typeof(IconButton), defaultValue: IconAlignment.Left, propertyChanged: OnIconPositionChanged);
 
-    public static readonly BindableProperty TextContentProperty =
-    BindableProperty.Create(nameof(TextContent), typeof(string), typeof(IconButton), default(string));
-
-    public static readonly BindableProperty FontSizeProperty =
-    BindableProperty.Create(nameof(FontSize), typeof(int), typeof(IconButton), default(int));
-
-    public static readonly BindableProperty BackgroundColorCodeProperty =
-    BindableProperty.Create(nameof(BackgroundColorCode), typeof(Color), typeof(IconButton), default(Color));
-
-    public static readonly BindableProperty StrokeColorCodeProperty =
-    BindableProperty.Create(nameof(StrokeColorCode), typeof(Color), typeof(IconButton), default(Color));
-
-    public static readonly BindableProperty FontColorCodeProperty =
-    BindableProperty.Create(nameof(FontColorCode), typeof(Color), typeof(IconButton), default(Color));
-
-    public static readonly BindableProperty EventProperty =
-    BindableProperty.Create(nameof(Event), typeof(ICommand), typeof(IconButton), default(ICommand));
-
-    public static readonly BindableProperty EventParameterProperty =
-    BindableProperty.Create(nameof(Event), typeof(object), typeof(IconButton), defaultValue: null);
-
-    public string Unicode
+    public IconAlignment IconPosition
     {
-        get => (string)GetValue(UnicodeProperty);
-        set => SetValue(UnicodeProperty, value);
-    }
-    public string UnicodeFamily
-    {
-        get => (string)GetValue(UnicodeFamilyProperty);
-        set => SetValue(UnicodeFamilyProperty, value);
-    }
-    public string TextContent
-    {
-        get => (string)GetValue(TextContentProperty);
-        set => SetValue(TextContentProperty, value);
-    }
-    public int FontSize
-    {
-        get => (int)GetValue(FontSizeProperty);
-        set => SetValue(FontSizeProperty, value);
-    }
-    public Color BackgroundColorCode
-    {
-        get => (Color)GetValue(BackgroundColorCodeProperty);
-        set => SetValue(BackgroundColorCodeProperty, value);
-    }
-    public Color StrokeColorCode
-    {
-        get => (Color)GetValue(StrokeColorCodeProperty);
-        set => SetValue(StrokeColorCodeProperty, value);
-    }
-    public Color FontColorCode
-    {
-        get => (Color)GetValue(FontColorCodeProperty);
-        set => SetValue(FontColorCodeProperty, value);
-    }
-    public ICommand Event
-    {
-        get => (ICommand)GetValue(EventProperty);
-        set => SetValue(EventProperty, value);
-    }
-    public object EventParameter
-    {
-        get => GetValue(EventParameterProperty);
-        set => SetValue(EventParameterProperty, value);
+        get => (IconAlignment)GetValue(IconPositionProperty);
+        set => SetValue(IconPositionProperty, value);
     }
 
     public IconButton()
     {
         InitializeComponent();
+
+        UpdateGrid();
+    }
+
+    private static void OnIconPositionChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        // Converte o objeto genérico de volta para o nosso botão e roda a lógica
+        if (bindable is IconButton btn)
+        {
+            btn.UpdateGrid();
+        }
+    }
+
+    private void UpdateGrid()
+    {
+        switch (IconPosition)
+        {
+            case IconAlignment.Left:
+                IconLeftButton();
+                break;
+            case IconAlignment.Right:
+                IconRightButton();
+                break;
+            case IconAlignment.Top:
+                IconTopButton();
+                break;
+            case IconAlignment.Bottom:
+                IconBottomButton();
+                break;
+        }
+    }
+
+    private void IconLeftButton()
+    {
+        ButtonGrid.RowDefinitions.Clear();
+        ButtonGrid.ColumnDefinitions.Clear();
+        ButtonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
+        ButtonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        ButtonGrid.RowSpacing = 0;
+        ButtonGrid.ColumnSpacing = 5;
+
+        Grid.SetColumn(Icon, 0);
+        Grid.SetColumn(Text, 1);
+    }
+    private void IconRightButton()
+    {
+        ButtonGrid.RowDefinitions.Clear();
+        ButtonGrid.ColumnDefinitions.Clear();
+        ButtonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        ButtonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
+        ButtonGrid.RowSpacing = 0;
+        ButtonGrid.ColumnSpacing = 5;
+
+        Grid.SetColumn(Text, 0);
+        Grid.SetColumn(Icon, 1);
+    }
+    private void IconTopButton()
+    {
+        ButtonGrid.ColumnDefinitions.Clear();
+        ButtonGrid.RowDefinitions.Clear();
+        ButtonGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        ButtonGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+        ButtonGrid.RowSpacing = 5;
+        ButtonGrid.ColumnSpacing = 0;
+
+        Grid.SetRow(Icon, 0);
+        Grid.SetRow(Text, 1);
+    }
+    private void IconBottomButton()
+    {
+        ButtonGrid.ColumnDefinitions.Clear();
+        ButtonGrid.RowDefinitions.Clear();
+        ButtonGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+        ButtonGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        ButtonGrid.RowSpacing = 5;
+        ButtonGrid.ColumnSpacing = 0;
+
+        Grid.SetRow(Text, 0);
+        Grid.SetRow(Icon, 1);
     }
 }
