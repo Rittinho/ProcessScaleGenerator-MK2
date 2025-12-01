@@ -122,6 +122,7 @@
                     <buttons:FreshSwitch
                         x:Name="HiddenSwitch"
                         Grid.Column="2"
+                        Margin="10"
                         IsToggled="{Binding Hidded}" />
 
                 </Grid>

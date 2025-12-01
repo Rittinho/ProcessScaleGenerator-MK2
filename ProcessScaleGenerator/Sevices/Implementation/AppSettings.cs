@@ -8,7 +8,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ProcessScaleGenerator.Shared.Injections.Implementation
+namespace ProcessScaleGenerator.Sevices.Implementation
 {
     public class AppSettings : IAppSettings
     {
@@ -48,24 +48,35 @@ namespace ProcessScaleGenerator.Shared.Injections.Implementation
                         Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Process scale generator"), "Backups"),
                         "System", true);
             }
-
-            using (StreamReader stream = new(jsonPath))
+            else
             {
-                string json = stream.ReadToEnd();
+                using (StreamReader stream = new(jsonPath))
+                {
+                    string json = stream.ReadToEnd();
 
-                try
-                {
-                    result = JsonSerializer.Deserialize<SystemSettings>(json, options);
-                }
-                catch
-                {
-                    result = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Process scale generator"),
-                        Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Process scale generator"), "Backups"),
-                        "System", true);
+                    try
+                    {
+                        result = JsonSerializer.Deserialize<SystemSettings>(json, options);
+                    }
+                    catch
+                    {
+                        result = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Process scale generator"),
+                            Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Process scale generator"), "Backups"),
+                            "System", true);
+                    }
                 }
             }
 
             return result;
+        }
+
+        public bool ChangeTheme(string theme)
+        {
+            if (Application.Current is App myApp)
+            {
+                myApp.LoadThemeColors(theme);
+            }
+            return true;
         }
     }
 }

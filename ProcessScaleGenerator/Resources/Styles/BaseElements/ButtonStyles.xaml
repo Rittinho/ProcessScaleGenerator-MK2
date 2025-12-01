@@ -22,7 +22,7 @@
 
     <Style x:Key="DeleteButton" TargetType="button:IconButton">
         <Setter Property="BackgroundColor" Value="{DynamicResource Error}" />
-        <Setter Property="Unicode" Value="{StaticResource PPO_Check}" />
+        <Setter Property="Unicode" Value="{StaticResource PPO_Trash}" />
     </Style>
 
     <Style x:Key="SaveButton" TargetType="button:IconButton">

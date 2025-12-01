@@ -7,8 +7,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-
                 <ResourceDictionary Source="/Resources/Styles/Icons/FaOutlined.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/Icons/FaBrands.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/Icons/FaSolid.xaml" />

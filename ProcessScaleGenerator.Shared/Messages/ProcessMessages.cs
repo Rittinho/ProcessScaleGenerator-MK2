@@ -15,3 +15,7 @@ public class ProcessesCountChanged(int processesCount) : ValueChangedMessage<int
 public class HiddedProcessesCountChanged(int hiddedProcessesCount) : ValueChangedMessage<int>(hiddedProcessesCount)
 {
 }
+public class ProcessesCleaned(bool cleaned) : ValueChangedMessage<bool>(cleaned)
+{
+}
+

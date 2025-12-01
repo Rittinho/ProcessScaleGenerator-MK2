@@ -23,9 +23,15 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard
         [RelayCommand]
         public async Task CreateTable()
         {
-            CurrentGrup = _createTableModel.CreateTable();
-
-            await _popServices.WaringPopup("Crio!", "Tabela criada!");
+            try
+            {
+                CurrentGrup = _createTableModel.CreateTable();
+            }
+            catch
+            {
+                await _popServices.WaringPopup("Não á como gerar", "não tem processos ou colaboradores registrados");
+                return;
+            }
 
             OnPreviewTableCreated?.Invoke(CurrentGrup.TableGroup);
         }

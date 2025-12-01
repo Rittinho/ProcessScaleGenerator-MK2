@@ -7,8 +7,8 @@
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
     xmlns:icon="clr-namespace:ProcessScaleGenerator.Shared.Constants.Fonts;assembly=ProcessScaleGenerator.Shared"
     x:Name="Root"
-    Loaded="Root_Loaded"
     NavigationPage.HasNavigationBar="False"
+    Loaded="Root_Loaded"
     Unloaded="Root_Unloaded">
 
     <Grid

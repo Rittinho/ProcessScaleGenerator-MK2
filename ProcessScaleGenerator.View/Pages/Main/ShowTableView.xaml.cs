@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Maui.Controls.Shapes;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using ProcessScaleGenerator.View.Components.Elements;
+using ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard;
 using ProcessScaleGenerator.ViewModel.Pages.Main.ShowTable;
 using System.ComponentModel;
 
@@ -14,11 +15,31 @@ public partial class ShowTableView : ContentView
 		InitializeComponent();
 		BindingContext = showTableViewModel;
 
-        WeakReferenceMessenger.Default.Register<Result>(this, (r, msg) =>
+        this.Loaded += Root_Loaded!;
+        this.Unloaded += Root_Unloaded!;
+    }
+    private void Root_Loaded(object sender, EventArgs e)
+    {
+        if (BindingContext is ShowTableViewModel vm)
         {
-            TableGroupRender(msg.tables);
-            WeakReferenceMessenger.Default.Unregister<Result>(this);
-        });
+            // 1. Assina para receber atualizações FUTURAS (caso os dados mudem depois)
+            vm.OnPreviewTableCreated += TableGroupRender;
+
+            // 2. CORREÇÃO: Pega o que JÁ EXISTE e renderiza agora!
+            // Como o evento do construtor da VM já passou, precisamos pegar os dados manualmente.
+            if (vm.Tables != null && vm.Tables.Count > 0)
+            {
+                TableGroupRender(vm.Tables);
+            }
+        }
+    }
+
+    private void Root_Unloaded(object sender, EventArgs e)
+    {
+        if (BindingContext is ShowTableViewModel vm)
+        {
+            vm.OnPreviewTableCreated -= TableGroupRender;
+        }
     }
     private void TableGroupRender(List<ToyotaProcessTable> processGroups)
     {
@@ -35,7 +56,7 @@ public partial class ShowTableView : ContentView
             tableGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < processGroups.Count; i++)
         {
             tableGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
@@ -43,7 +64,7 @@ public partial class ShowTableView : ContentView
 
         var index = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < processGroups.Count; i++)
         {
             for (int j = 0; j < 5; j++)
             {
@@ -129,6 +150,7 @@ public partial class ShowTableView : ContentView
             Text = employee.Name,
             HorizontalTextAlignment = TextAlignment.Center,
             HorizontalOptions = LayoutOptions.Center,
+            TextColor = Colors.White,
             VerticalOptions = LayoutOptions.Center
         };
 
@@ -144,4 +166,5 @@ public partial class ShowTableView : ContentView
 
         return border;
     }
+
 }

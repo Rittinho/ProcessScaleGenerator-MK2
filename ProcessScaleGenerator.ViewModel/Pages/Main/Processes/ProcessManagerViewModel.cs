@@ -9,7 +9,7 @@ using ToyotaProcessManager.Services.Injections.Contract;
 
 namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
 {
-    public partial class ProcessManagerViewModel : ObservableObject, IRecipient<ProcessAddedMessage>, IRecipient<ProcessRemovedMessage>
+    public partial class ProcessManagerViewModel : ObservableObject, IRecipient<ProcessAddedMessage>, IRecipient<ProcessRemovedMessage>, IRecipient<ProcessesCleaned>
     {
         private readonly IMessenger _messenger;
         private readonly IMessagingServices _messagingServices;

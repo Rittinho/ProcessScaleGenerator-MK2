@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ProcessScaleGenerator;
 using ProcessScaleGenerator.ViewModel.Pages.Main.Settings;
-using ProcessScaleGenerator.ViewModel.Pages.Main.TableManager;
 
 namespace ProcessScaleGenerator.View.Pages.Main;
 
@@ -10,7 +11,8 @@ public partial class SettingsView : ContentView
 	{
 		InitializeComponent();
 		BindingContext = settingsViewModel;
-	}
+
+    }
 
     private void OnUnloaded(object sender, EventArgs e)
     {
@@ -28,9 +30,6 @@ public partial class SettingsView : ContentView
             BrowserLaunchOptions options = new BrowserLaunchOptions()
             {
                 LaunchMode = BrowserLaunchMode.SystemPreferred,
-                TitleMode = BrowserTitleMode.Show,
-                PreferredToolbarColor = Colors.Violet, // Opcional: Personaliza a cor da barra
-                PreferredControlColor = Colors.White   // Opcional: Cor dos botões
             };
 
             await Browser.Default.OpenAsync(uri, options);
@@ -50,9 +49,6 @@ public partial class SettingsView : ContentView
             BrowserLaunchOptions options = new BrowserLaunchOptions()
             {
                 LaunchMode = BrowserLaunchMode.SystemPreferred,
-                TitleMode = BrowserTitleMode.Show,
-                PreferredToolbarColor = Colors.Violet, // Opcional: Personaliza a cor da barra
-                PreferredControlColor = Colors.White   // Opcional: Cor dos botões
             };
 
             await Browser.Default.OpenAsync(uri, options);
@@ -62,4 +58,5 @@ public partial class SettingsView : ContentView
             Console.WriteLine($"Erro ao abrir site: {ex.Message}");
         }
     }
+
 }

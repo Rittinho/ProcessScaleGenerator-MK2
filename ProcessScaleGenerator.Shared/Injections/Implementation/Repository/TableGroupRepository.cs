@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace ProcessScaleGenerator.Shared.Injections.Implementation.Repository;
 
@@ -55,9 +58,51 @@ public partial class RepositoryServices
         {   
             _tableData!.Add(result);
 
+            _jsonServices.SaveTableGroupJson(result);
             _messenger.Send(new TableGroupAddedMessage(result));
 
             return true;
         }
+    }
+    public int RemoveAllTableGroup()
+    {
+        if (_tableData.Count == 0)
+            throw new Exception("Processos já esta vazio!");
+
+        string[] files = Directory.GetFiles(_appSettings.TablesPath(), "*.json");
+
+        if (files.Length == 0)
+            throw new Exception("Processos já esta vazio!");
+
+        List<ToyotaTableGroup> result = [];
+
+        string valide = @"table_group_\d{2}-\d{2}-\d{4}_\d{2}-\d{2}-\d{2}.json";
+
+        int deletedCount = 0;   
+
+        foreach (var json in files)
+        {
+            if (!Regex.IsMatch(json, valide))
+            {
+                continue;
+            }
+            else
+            {
+                try
+                {
+                    File.Delete(json);
+                }
+                catch (IOException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            deletedCount++;
+        }
+
+        _tableData.Clear();
+        _messenger.Send(new TableGroupCleaned(true));
+
+        return deletedCount;
     }
 }

@@ -11,6 +11,7 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.ShowTable;
 
 public partial class ShowTableViewModel : ObservableObject
 {
+    public event Action<List<ToyotaProcessTable>> OnPreviewTableCreated;
     public List<ToyotaProcessTable> Tables { get; set; } = [];
 
     private readonly IRepositoryServices _repositoryServices;
@@ -27,8 +28,6 @@ public partial class ShowTableViewModel : ObservableObject
         {
             Tables = [];
         }
-
-        WeakReferenceMessenger.Default.Send(new Result(Tables));
+        OnPreviewTableCreated?.Invoke(Tables);
     }
 }
-public record Result(List<ToyotaProcessTable> tables);

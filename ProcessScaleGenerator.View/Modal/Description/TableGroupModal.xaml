@@ -9,7 +9,7 @@
     Padding="-20"
     BackgroundColor="{AppThemeBinding Light={DynamicResource Primary},
                                       Dark={DynamicResource Primary}}">
-    <Grid RowDefinitions="Auto,*,Auto">
+    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="5">
 
         <Border BackgroundColor="{DynamicResource Secondary}" Style="{DynamicResource Border.Radius14}">
 

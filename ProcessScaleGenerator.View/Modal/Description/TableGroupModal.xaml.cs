@@ -37,7 +37,7 @@ public partial class TableGroupModal : Popup
             tableGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < processGroups.Count; i++)
         {
             tableGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
@@ -45,7 +45,7 @@ public partial class TableGroupModal : Popup
 
         var index = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < processGroups.Count; i++)
         {
             for (int j = 0; j < 5; j++)
             {
@@ -131,6 +131,7 @@ public partial class TableGroupModal : Popup
             Text = employee.Name,
             HorizontalTextAlignment = TextAlignment.Center,
             HorizontalOptions = LayoutOptions.Center,
+            TextColor = Colors.White,
             VerticalOptions = LayoutOptions.Center
         };
 

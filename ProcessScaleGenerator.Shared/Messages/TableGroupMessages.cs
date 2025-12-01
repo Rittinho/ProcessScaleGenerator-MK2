@@ -9,3 +9,6 @@ public class TableGroupAddedMessage(ToyotaTableGroup addedTableGroup) : ValueCha
 public class TableGroupRemovedMessage(ToyotaTableGroup removedTableGroup) : ValueChangedMessage<ToyotaTableGroup>(removedTableGroup)
 {
 }
+public class TableGroupCleaned(bool cleaned) : ValueChangedMessage<bool>(cleaned)
+{
+}

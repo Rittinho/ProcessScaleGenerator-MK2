@@ -10,7 +10,7 @@
     NavigationPage.HasNavigationBar="False"
     Unloaded="OnUnloaded">
 
-    <Grid Padding="5" RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*">
 
         <Label
             FontAttributes="Bold"

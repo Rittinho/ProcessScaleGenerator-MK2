@@ -46,6 +46,14 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Employeers
             });
         }
 
+        public void Receive(EmployeesCleaned message)
+        {
+            _messagingServices.BeginInvokeOnMainThread(() =>
+            {
+                FiltredEmployeeList.Clear();
+            });
+        }
+
         partial void OnSearchEmployeeTextChanged(string value)
         {
             if (string.IsNullOrWhiteSpace(value))

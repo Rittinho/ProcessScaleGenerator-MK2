@@ -241,7 +241,6 @@ public class JsonServices : IJsonServices
             streamWriter.Write(json);
         }
     }
-    
 
     public void DeleteTableFileJson(string creationDate)
     {

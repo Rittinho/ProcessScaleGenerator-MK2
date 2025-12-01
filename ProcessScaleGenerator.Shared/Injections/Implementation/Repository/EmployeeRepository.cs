@@ -55,15 +55,16 @@ public partial class RepositoryServices
 
         return true;
     }
-
-    public async Task<bool> LoadFileEmployeers()
+    public async Task<int> LoadFileEmployeers()
     {
         var pathResult = await _folderStorage.GetSingleFileInFolder();
 
         if (string.IsNullOrEmpty(pathResult))
-            return false;
+            return -1;
 
         List<ToyotaEmployee> result;
+
+        int addedCount = 0;
 
         try
         {
@@ -72,11 +73,11 @@ public partial class RepositoryServices
         catch (Exception ex)
         {
             _popServices.WaringPopup(ex.Message, "Tentar novamente");
-            return false;
+            return -1;
         }
 
         if (result is null)
-            return false;
+            return -1;
 
         lock (_locker)
         {
@@ -84,10 +85,28 @@ public partial class RepositoryServices
             {
                 _employeeData!.Add(employer);
                 _messenger.Send(new EmployeeAddedMessage(employer));
+                addedCount++;
             }
 
             _messenger.Send(new EmployeesCountChanged(_employeeData.Count));
-            return true;
         }
+
+        return addedCount;
+    }
+
+    public int RemoveAllEmployee()
+    {
+        if (_employeeData.Count == 0)
+            throw new Exception("Processos já esta vazio!");
+
+        int count = _employeeData.Count;
+
+        _employeeData.Clear();
+        _messenger.Send(new EmployeesCleaned(true));
+
+        _jsonServices.SaveEmployeeJson(_employeeData);
+        _messenger.Send(new EmployeesCountChanged(_employeeData.Count));
+
+        return count;
     }
 }

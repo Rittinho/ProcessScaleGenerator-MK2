@@ -15,4 +15,7 @@ public class EmployeesCountChanged(int employeesCount) : ValueChangedMessage<int
 public class HiddedEmployeesCountChanged(int HiddedEmployeesCount) : ValueChangedMessage<int>(HiddedEmployeesCount)
 {
 }
+public class EmployeesCleaned(bool cleaned) : ValueChangedMessage<bool>(cleaned)
+{
+}
 

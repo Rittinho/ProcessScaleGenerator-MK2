@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
+using System;
+using System.Diagnostics;
 
 namespace ProcessScaleGenerator.Shared.Injections.Implementation.Repository;
 
@@ -48,12 +50,14 @@ public partial class RepositoryServices
 
         return true;
     }
-    public async Task<bool> LoadFileProcesses()
+    public async Task<int> LoadFileProcesses()
     {
         var pathResult = await _folderStorage.GetSingleFileInFolder();
 
         if (string.IsNullOrEmpty(pathResult))
-            return false;
+            return -1;
+
+        int addedCount = 0;
 
         List<ToyotaProcess> result;
         try
@@ -63,11 +67,11 @@ public partial class RepositoryServices
         catch (Exception ex) 
         {
             _popServices.WaringPopup(ex.Message,"Tentar novamente");
-            return false;
+            return -1;
         }
 
         if (result is null)
-            return false;
+            return -1;
 
         lock (_locker)
         {
@@ -75,11 +79,28 @@ public partial class RepositoryServices
             {
                 _processData!.Add(process);
                 _messenger.Send(new ProcessAddedMessage(process));
+
+                addedCount++;
             }
 
             _messenger.Send(new ProcessesCountChanged(_processData.Count));
-            return true;
         }
+        return addedCount;
     }
 
+    public int RemoveAllProcess()
+    {
+        if (_processData.Count == 0)
+            throw new Exception("Processos já esta vazio!");
+
+        int count = _processData.Count;
+
+        _processData.Clear();
+        _messenger.Send(new ProcessesCleaned(true));
+
+        _jsonServices.SaveProcessJson(_processData);
+        _messenger.Send(new ProcessesCountChanged(_processData.Count));
+
+        return count;
+    }
 }

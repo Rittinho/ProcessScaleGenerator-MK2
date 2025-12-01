@@ -37,7 +37,7 @@
                     <Picker
                         Title="Cargo/Posição"
                         BackgroundColor="{DynamicResource Primary}"
-                        SelectedItem="{Binding CurrentTheme}"
+                        SelectedItem="{Binding Position}"
                         TextColor="{DynamicResource PrimaryText}"
                         TitleColor="{DynamicResource PrimaryText}">
                         <Picker.ItemsSource>
@@ -85,6 +85,7 @@
                         <buttons:IconButton
                             Grid.Row="2"
                             Command="{Binding UpdateIconCommand}"
+                            Opacity=".4"
                             Style="{StaticResource EditButton}"
                             Text="Alterar foto" />
 
@@ -136,6 +137,7 @@
                 <buttons:SearchBar SearchText="{Binding SearchProcessText, Mode=TwoWay}" />
 
                 <CollectionView
+                    x:Name="testeView"
                     Grid.Row="1"
                     HorizontalOptions="Fill"
                     ItemTemplate="{DynamicResource ToastEmployeeStyle}"

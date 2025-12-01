@@ -31,5 +31,12 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard
         //Processos e funcionarios ocultados
         public void Receive(HiddedEmployeesCountChanged message) => _messagingServices.BeginInvokeOnMainThread(() => { HiddenEmployeesCount = message.Value; });
         public void Receive(HiddedProcessesCountChanged message) => _messagingServices.BeginInvokeOnMainThread(() => { HiddenProcessesCount = message.Value; });
+        public void Receive(TableGroupCleaned message)
+        {
+            _messagingServices.BeginInvokeOnMainThread(() =>
+            {
+                Tables.Clear();
+            });
+        }
     }
 }

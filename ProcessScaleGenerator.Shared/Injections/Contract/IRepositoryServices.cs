@@ -8,8 +8,9 @@ public interface IRepositoryServices
     void SaveSettings(SystemSettings data);
 
     bool SaveNewEmployee(ToyotaEmployee newEmployee);
-    Task<bool> LoadFileEmployeers();
+    Task<int> LoadFileEmployeers();
     bool RemoveEmployee(ToyotaEmployee employee);
+    int RemoveAllEmployee();
     List<ToyotaEmployee> GetAllEmployees();
     ToyotaEmployee GetFirstEmployee();
     ToyotaEmployee GetLastEmployee();
@@ -17,8 +18,9 @@ public interface IRepositoryServices
     List<ToyotaEmployee> GetEmployeeByPosition(string position);
 
     bool SaveNewProcess(ToyotaProcess newProcess);
-    Task<bool> LoadFileProcesses();
+    Task<int> LoadFileProcesses();
     bool RemoveProcess(ToyotaProcess process);
+    int RemoveAllProcess();
     List<ToyotaProcess> GetAllProcesses();
     ToyotaProcess GetFirstProcess();
     ToyotaProcess GetLastProcess();
@@ -27,6 +29,7 @@ public interface IRepositoryServices
     bool SaveNewTableGroup(ToyotaTableGroup newTableGroup);
     Task<bool> LoadFileTables();
     bool RemoveTableGroup(ToyotaTableGroup tableGroup);
+    int RemoveAllTableGroup();
     List<ToyotaTableGroup> GetAllTables();
     ToyotaTableGroup GetFirstTable();
     ToyotaTableGroup GetLastTable();

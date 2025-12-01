@@ -15,7 +15,7 @@ using ToyotaProcessManager.Services.Injections.Contract;
 
 namespace ProcessScaleGenerator.ViewModel.Pages.Main.Employeers
 {
-    public partial class EmployeeManagerViewModel : ObservableObject, IRecipient<EmployeeAddedMessage>, IRecipient<EmployeeRemovedMessage>
+    public partial class EmployeeManagerViewModel : ObservableObject, IRecipient<EmployeeAddedMessage>, IRecipient<EmployeeRemovedMessage>, IRecipient<EmployeesCleaned>
     {
         private readonly IMessenger _messenger;
         private readonly IMessagingServices _messagingServices;

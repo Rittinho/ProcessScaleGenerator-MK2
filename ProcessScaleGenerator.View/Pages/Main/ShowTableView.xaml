@@ -6,11 +6,13 @@
     xmlns:buttons="clr-namespace:ProcessScaleGenerator.View.Components.Buttons"
     xmlns:elements="clr-namespace:ProcessScaleGenerator.View.Components.Elements"
     x:Name="Root"
-    NavigationPage.HasNavigationBar="False">
+    Loaded="Root_Loaded"
+    NavigationPage.HasNavigationBar="False"
+    Unloaded="Root_Unloaded">
 
-    <ScrollView Grid.Row="1">
+    <ScrollView>
 
-        <VerticalStackLayout x:Name="TablePresenter" ZIndex="10" />
+        <VerticalStackLayout x:Name="TablePresenter" />
 
     </ScrollView>
 

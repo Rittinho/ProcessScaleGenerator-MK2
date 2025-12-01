@@ -59,13 +59,6 @@
                         UnicodeColor="{DynamicResource PrimaryText}"
                         UnicodeFamily="PPO" />
 
-                    <elements:DirectoryTextBar
-                        PathFolder="{Binding BackupsPath}"
-                        TextTitle="Pasta de backup"
-                        Unicode="{StaticResource PPO_FolderNotch}"
-                        UnicodeColor="{DynamicResource PrimaryText}"
-                        UnicodeFamily="PPO" />
-
                 </VerticalStackLayout>
 
             </VerticalStackLayout>
@@ -74,28 +67,50 @@
                 Margin="0,10,0,0"
                 FontAttributes="Bold"
                 FontSize="22"
-                Text="Importar dados"
+                Text="Manipulação de dados"
                 TextColor="{DynamicResource PrimaryText}" />
 
-            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+            <VerticalStackLayout Spacing="5">
 
-                <buttons:IconButton
-                    Command="{Binding LoadProcessesCommand}"
-                    Style="{StaticResource InportButton}"
-                    Text="Inportar processos(Json)" />
-                <buttons:IconButton
-                    Grid.Column="1"
-                    Command="{Binding LoadEmployeesCommand}"
-                    Style="{StaticResource InportButton}"
-                    Text="Inportar colaboradores(Json" />
-                <buttons:IconButton
-                    Grid.Column="2"
-                    Command="{Binding LoadTableCommand}"
-                    Style="{StaticResource InportButton}"
-                    Text="Inportar tabelas(Json)" />
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
 
-            </Grid>
+                    <buttons:IconButton
+                        Command="{Binding DeleteAllProcessesCommand}"
+                        Style="{StaticResource DeleteButton}"
+                        Text="Deletar todos processos" />
+                    <buttons:IconButton
+                        Grid.Column="1"
+                        Command="{Binding DeleteAllEmployeesCommand}"
+                        Style="{StaticResource DeleteButton}"
+                        Text="Deletar todos colaboradores" />
+                    <buttons:IconButton
+                        Grid.Column="2"
+                        Command="{Binding DeleteAllTableCommand}"
+                        Style="{StaticResource DeleteButton}"
+                        Text="Deletar todos tabelas" />
 
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+
+                    <buttons:IconButton
+                        Command="{Binding LoadProcessesCommand}"
+                        Style="{StaticResource InportButton}"
+                        Text="Inportar processos(Json)" />
+                    <buttons:IconButton
+                        Grid.Column="1"
+                        Command="{Binding LoadEmployeesCommand}"
+                        Style="{StaticResource InportButton}"
+                        Text="Inportar colaboradores(Json" />
+                    <buttons:IconButton
+                        Grid.Column="2"
+                        Command="{Binding LoadTableCommand}"
+                        Style="{StaticResource InportButton}"
+                        Text="Inportar tabelas(Json)" />
+
+                </Grid>
+
+            </VerticalStackLayout>
 
             <Label
                 Margin="0,10,0,0"

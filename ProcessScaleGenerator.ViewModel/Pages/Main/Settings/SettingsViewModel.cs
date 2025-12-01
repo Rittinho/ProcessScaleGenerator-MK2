@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using ProcessScaleGenerator.Shared;
 using ProcessScaleGenerator.Shared.Constants;
 using ProcessScaleGenerator.Shared.Injections.Contract;
@@ -44,20 +45,28 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Settings
             BackupsPath = _appSettings.BackupsPath();
             Autobackup = _appSettings.Autobackup();
         }
+        partial void OnCurrentThemeChanged(string? value)
+        {
+            _appSettings.ChangeTheme(value);
+        }
         [RelayCommand]
         private async void LoadProcesses()
         {
-            if (await _repositoryServices.LoadFileProcesses())
+            int result = await _repositoryServices.LoadFileProcesses();
+
+            if (result != -1)
             {
-                await _popServices.WaringPopup("Arquivos importados", "Verifique a lita");
+                await _popServices.WaringPopup($"{result} Processos importados", "Verifique a lita");
             }
         }
         [RelayCommand]
         private async void LoadEmployees()
         {
-            if (await _repositoryServices.LoadFileEmployeers())
+            int result = await _repositoryServices.LoadFileEmployeers();
+
+            if (result != -1)
             {
-                await _popServices.WaringPopup("Arquivos importados", "Verifique a lita");
+                await _popServices.WaringPopup($"{result} Colaboradores importados", "Verifique a lita");
             }
         }
         [RelayCommand]
@@ -65,8 +74,69 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Settings
         {
             if (await _repositoryServices.LoadFileTables())
             {
-                await _popServices.WaringPopup("Arquivos importados", "Verifique a lita");
+                await _popServices.WaringPopup("Tabela importada", "Verifique a lita");
             }
+        }
+        [RelayCommand]
+        private async void DeleteAllProcesses()
+        {
+            if (!await _popServices.ConfirmPopup("Deseja apagar todos os processos?","Está ação não tem volta!"))
+                return;
+
+            int result = 0;
+
+            try
+            {
+                result = _repositoryServices.RemoveAllProcess();
+            }
+            catch (Exception ex)
+            {
+                await _popServices.WaringPopup(ex.Message, "Verifique a lita");
+                return;
+            }
+            
+            await _popServices.WaringPopup($"{result} Processos deletados", "Verifique a lita");
+        }
+        [RelayCommand]
+        private async void DeleteAllEmployees()
+        {
+            if (!await _popServices.ConfirmPopup("Deseja apagar todos os Colaboradores?", "Está ação não tem volta!"))
+                return;
+
+            int result = 0;
+
+            try
+            {
+                result = _repositoryServices.RemoveAllEmployee();
+            }
+            catch (Exception ex)
+            {
+                await _popServices.WaringPopup(ex.Message, "Verifique a lita");
+                return;
+            }
+
+            await _popServices.WaringPopup($"{result} Colaboradores deletados", "Verifique a lita");
+        }
+        [RelayCommand]
+        private async void DeleteAllTable()
+        {
+            if (!await _popServices.ConfirmPopup("Deseja apagar todos as tabelas?", "Está ação não tem volta!"))
+                return;
+
+            int result = 0;
+
+            try
+            {
+                result = _repositoryServices.RemoveAllTableGroup();
+            }
+            catch (Exception ex)
+            {
+                await _popServices.WaringPopup(ex.Message, "Verifique a lita");
+                return;
+            }
+            
+            await _popServices.WaringPopup($"{result} tabelas deletadas", "Verifique a lita");
         }
     }
 }
+public record ThemeChanged(string newTheme);

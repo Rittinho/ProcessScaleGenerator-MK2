@@ -11,7 +11,7 @@ using ToyotaProcessManager.Services.Injections.Contract;
 
 namespace ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard
 {
-    public partial class DashboardViewModel : ObservableObject, IRecipient<EmployeesCountChanged>, IRecipient<ProcessesCountChanged>, IRecipient<TableGroupRemovedMessage>, IRecipient<TableGroupAddedMessage>, IRecipient<HiddedEmployeesCountChanged>, IRecipient<HiddedProcessesCountChanged>
+    public partial class DashboardViewModel : ObservableObject, IRecipient<EmployeesCountChanged>, IRecipient<ProcessesCountChanged>, IRecipient<TableGroupRemovedMessage>, IRecipient<TableGroupAddedMessage>, IRecipient<HiddedEmployeesCountChanged>, IRecipient<HiddedProcessesCountChanged>, IRecipient<TableGroupCleaned>
     {
         private readonly CreateTableModel _createTableModel;
 

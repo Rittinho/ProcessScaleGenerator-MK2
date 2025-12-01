@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using ProcessScaleGenerator.Shared.Data_log;
 using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
@@ -10,6 +11,7 @@ public partial class RepositoryServices : IRepositoryServices
 {
     private readonly IJsonServices _jsonServices;
     private readonly IFolderStorage _folderStorage;
+    private readonly IAppSettings _appSettings;
     private readonly IPopServices _popServices;
     private readonly IMessenger _messenger;
 
@@ -19,10 +21,11 @@ public partial class RepositoryServices : IRepositoryServices
 
     private static readonly object _locker = new object();
 
-    public RepositoryServices(IJsonServices jsonServices, IMessenger messenger, IFolderStorage folderStorage, IPopServices popServices)
+    public RepositoryServices(IJsonServices jsonServices, IMessenger messenger, IFolderStorage folderStorage, IPopServices popServices, IAppSettings appSettings)
     {
         _jsonServices = jsonServices;
         _popServices = popServices;
+        _appSettings = appSettings;
         _folderStorage = folderStorage;
         _messenger = messenger;
 
@@ -30,29 +33,15 @@ public partial class RepositoryServices : IRepositoryServices
         {
             try
             {
-                _tableData = _jsonServices.LoadTableGroupJson();
-            }
-            catch
-            {
-                _messenger.Send(new TableGrupsNull(true));
-                _tableData = [];
-            }
-            try
-            {
                 _employeeData = _jsonServices.LoadEmployeeJson();
-            }
-            catch
-            {
-                _messenger.Send(new EmployeesNull(true));
-                _employeeData = [];
-            }
-            try
-            {
+                _tableData = _jsonServices.LoadTableGroupJson();
                 _processData = _jsonServices.LoadProcessJson();
             }
-            catch
+            catch(Exception ex)
             {
-                _messenger.Send(new ProcessesNull(true));
+                SendLog.Log(new { content = ex.Message});
+                _employeeData = [];
+                _tableData = [];
                 _processData = [];
             }
         }

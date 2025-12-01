@@ -18,7 +18,7 @@
         <Label
             x:Name="TitleLabel"
             FontAttributes="Bold"
-            FontSize="40"
+            FontSize="35"
             HorizontalOptions="Center"
             TextColor="{DynamicResource PrimaryText}"
             VerticalOptions="Center" />

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
+using ProcessScaleGenerator.ViewModel.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +22,7 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
         private bool _showEmployeeHiddeds = false;
 
         public List<ToyotaEmployee> EmployeeList { get; set; } = [];
-        public ObservableCollection<ToyotaEmployee> FiltredEmployeeList { get; set; } = [];
+        public ObservableCollection<ToyotaEmployeeWrapper> FiltredEmployeeList { get; set; } = [];
 
         partial void OnSearchEmployeeTextChanged(string value)
         {
@@ -29,6 +30,7 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
 
             var filtered = EmployeeList
                 .Where(x => x.Name.StartsWith(value, StringComparison.OrdinalIgnoreCase))
+                .Select(emp => new ToyotaEmployeeWrapper(emp))
                 .ToList();
 
             FiltredEmployeeList.Clear();
@@ -51,7 +53,7 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
             FiltredEmployeeList.Clear();
 
             foreach (var item in EmployeeList)
-                FiltredEmployeeList.Add(item);
+                FiltredEmployeeList.Add(new (item));
 
             _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
         }
@@ -68,7 +70,7 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
             FiltredEmployeeList.Clear();
 
             foreach (var item in EmployeeList)
-                FiltredEmployeeList.Add(item);
+                FiltredEmployeeList.Add(new (item));
 
             _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
         }
@@ -92,9 +94,40 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.TableManager
             FiltredEmployeeList.Clear();
 
             foreach (var item in hiddeds)
-                FiltredEmployeeList.Add(item);
+                FiltredEmployeeList.Add(new(item));
 
             _messenger.Send(new HiddedEmployeesCountChanged(EmployeeList.Where(x => x.Hidded).Count()));
+        }
+        public void Receive(EmployeeAddedMessage message)
+        {
+            _messagingServices.BeginInvokeOnMainThread(() =>
+            {
+                EmployeeList.Add(message.Value);
+                FiltredEmployeeList.Add(new (message.Value));
+            });
+        }
+
+        public void Receive(EmployeeRemovedMessage message)
+        {
+            _messagingServices.BeginInvokeOnMainThread(() =>
+            {
+                EmployeeList.Remove(message.Value);
+
+                var wrapperParaRemover = FiltredEmployeeList.FirstOrDefault(w => w.Model == message.Value);
+                if (wrapperParaRemover != null)
+                {
+                    FiltredEmployeeList.Remove(wrapperParaRemover);
+                }
+            });
+        }
+
+        public void Receive(EmployeesCleaned message)
+        {
+            _messagingServices.BeginInvokeOnMainThread(() =>
+            {
+                EmployeeList.Clear();
+                FiltredEmployeeList.Clear();
+            });
         }
     }
 }

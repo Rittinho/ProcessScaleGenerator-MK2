@@ -15,5 +15,6 @@ namespace ProcessScaleGenerator.Shared.Injections.Contract
         string BackupsPath();
         string CurrentTheme();
         bool Autobackup();
+        bool ChangeTheme(string theme);
     }
 }

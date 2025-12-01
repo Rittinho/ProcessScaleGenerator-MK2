@@ -48,6 +48,14 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
             });
         }
 
+        public void Receive(ProcessesCleaned message)
+        {
+            _messagingServices.BeginInvokeOnMainThread(() =>
+            {
+                FiltredProcessList.Clear();
+            });
+        }
+
         partial void OnSearchProcessTextChanged(string value)
         {
             if (string.IsNullOrWhiteSpace(value))

@@ -47,7 +47,7 @@ public partial class DashboardView : ContentView
             tableGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < processGroups.Count; i++)
         {
             tableGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
@@ -55,7 +55,7 @@ public partial class DashboardView : ContentView
 
         var index = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < processGroups.Count; i++)
         {
             for (int j = 0; j < 5; j++)
             {
@@ -140,6 +140,7 @@ public partial class DashboardView : ContentView
         {
             Text = employee.Name,
             HorizontalTextAlignment = TextAlignment.Center,
+            TextColor = Colors.White,
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center
         };

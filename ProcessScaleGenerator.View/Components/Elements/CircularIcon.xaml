@@ -14,7 +14,7 @@
         WidthRequest="{Binding Path=IconSize, Source={x:Reference Root}}">
 
         <Border
-            Background="{DynamicResource Primary}"
+            Background="{DynamicResource Tertiary}"
             StrokeShape="1000000000000"
             StrokeThickness="0">
 
