@@ -20,8 +20,8 @@ public class ToyotaEmployeeModel
 
     public void CreateEmployee(ToyotaEmployee toyotaEmployee)
     {
-        if (toyotaEmployee == null)
-            throw new Exception("Valor nulo!");
+        if (toyotaEmployee is null)
+            throw new NullReferenceException();
 
         if (CheckSameEmployee(toyotaEmployee))
             throw new Exception("Já existe esse processo!");
@@ -30,11 +30,11 @@ public class ToyotaEmployeeModel
     }
     public void UpdateEmployee(ToyotaEmployee oldToyotaEmployee, ToyotaEmployee newToyotaEmployee)
     {
-        if (oldToyotaEmployee == null)
-            throw new Exception("Valor nulo!");
+        if (oldToyotaEmployee is null)
+            throw new NullReferenceException();
 
-        if (newToyotaEmployee == null)
-            throw new Exception("Valor nulo!");
+        if (newToyotaEmployee is null)
+            throw new NullReferenceException();
 
         if (CheckSameEmployee(newToyotaEmployee))
             throw new Exception("Já existe esse Colaborador!");
@@ -42,10 +42,11 @@ public class ToyotaEmployeeModel
         _repositoryServices.RemoveEmployee(oldToyotaEmployee);
         _repositoryServices.SaveNewEmployee(newToyotaEmployee);
     }
+
     public bool DeleteEmployee(ToyotaEmployee toyotaEmployee)
     {
-        if (toyotaEmployee == null)
-            return false;
+        if (toyotaEmployee is null)
+            throw new NullReferenceException();
 
         return _repositoryServices.RemoveEmployee(toyotaEmployee);
     }

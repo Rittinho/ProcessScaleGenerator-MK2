@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using ProcessScaleGenerator.Model.Process;
 using ProcessScaleGenerator.Shared.Constants;
+using ProcessScaleGenerator.Shared.Data_log;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
             {
                 _toyotaProcessModel!.CreateProcess(new(Icon, DateTime.Now.ToString(), Title, Description ?? "Sem descrição"));
             }
-            catch
+            catch(Exception ex)
             {
                 await _popServices.WaringPopup(WarningTokens.ExistingProcess);
+                SendLog.Log(ex);
                 return;
             }
 
@@ -108,9 +110,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
             {
                 _toyotaProcessModel!.UpdateProcess(_currentProcessInEdit, new(Icon, _currentProcessInEdit.CreationDate, Title, Description ?? "Sem descrição"));
             }
-            catch
+            catch(Exception ex)
             {
                 await _popServices.WaringPopup(WarningTokens.ExistingProcess);
+                SendLog.Log(ex);
                 return;
             }
 

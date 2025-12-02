@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using ProcessScaleGenerator.Model.Table;
 using ProcessScaleGenerator.Shared.Constants;
+using ProcessScaleGenerator.Shared.Data_log;
 using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System.Collections.ObjectModel;
@@ -24,9 +25,10 @@ public partial class ShowTableViewModel : ObservableObject
         {
             Tables = _repositoryServices.GetLastTable().TableGroup;
         }
-        catch
+        catch(Exception ex)
         {
             Tables = [];
+            SendLog.Log(ex);
         }
         OnPreviewTableCreated?.Invoke(Tables);
     }

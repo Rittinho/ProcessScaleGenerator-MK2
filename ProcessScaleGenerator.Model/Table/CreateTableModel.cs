@@ -20,14 +20,14 @@ public class CreateTableModel
     public bool SaveTable(ToyotaTableGroup table)
     {
         if (table is null)
-            return true;
+            throw new NullReferenceException();
 
         return _repositoryServices.SaveNewTableGroup(table);
     }
     public bool DeleteTable(ToyotaTableGroup toyotaTableGroup)
     {
-        if (toyotaTableGroup == null)
-            return false;
+        if (toyotaTableGroup is null)
+            throw new NullReferenceException();
 
         return _repositoryServices.RemoveTableGroup(toyotaTableGroup);
     }

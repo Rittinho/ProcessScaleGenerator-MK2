@@ -1,13 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProcessScaleGenerator.ViewModel.Pages.Main.Processes
 {

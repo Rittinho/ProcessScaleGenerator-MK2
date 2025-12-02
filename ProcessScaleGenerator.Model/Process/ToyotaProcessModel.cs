@@ -19,8 +19,8 @@ public class ToyotaProcessModel
 
     public void CreateProcess(ToyotaProcess toyotaProcess)
     {
-        if (toyotaProcess == null)
-            throw new Exception("Valor nulo!");
+        if (toyotaProcess is null)
+            throw new NullReferenceException();
 
         if (CheckSameProcess(toyotaProcess))
             throw new Exception("Já existe esse processo!");
@@ -29,11 +29,11 @@ public class ToyotaProcessModel
     }
     public void UpdateProcess(ToyotaProcess oldToyotaProcess, ToyotaProcess newToyotaProcess)
     {
-        if (oldToyotaProcess == null)
-            throw new Exception("Valor nulo!");
+        if (oldToyotaProcess is null)
+            throw new NullReferenceException();
 
-        if (newToyotaProcess == null)
-            throw new Exception("Valor nulo!");
+        if (newToyotaProcess is null)
+            throw new NullReferenceException();
 
         if (CheckSameProcess(newToyotaProcess))
             throw new Exception("Já existe esse processo!");
@@ -43,8 +43,8 @@ public class ToyotaProcessModel
     }
     public bool DeleteProcess(ToyotaProcess toyotaProcess)
     {
-        if (toyotaProcess == null)
-            return false;
+        if (toyotaProcess is null)
+            throw new NullReferenceException();
 
         return _repositoryServices.RemoveProcess(toyotaProcess);
     }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using ProcessScaleGenerator.Shared.Data_log;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
 
@@ -27,9 +28,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Dashboard
             {
                 CurrentGrup = _createTableModel.CreateTable();
             }
-            catch
+            catch(Exception ex)
             {
                 await _popServices.WaringPopup("Não á como gerar", "não tem processos ou colaboradores registrados");
+                SendLog.Log(ex);
                 return;
             }
 

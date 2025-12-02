@@ -18,6 +18,5 @@ public interface IJsonServices
 
     void SaveSettingsJson(SystemSettings data);
 
-    //void DeleteFileJson(string fileName);
     void DeleteTableFileJson(string creationDate);
 }

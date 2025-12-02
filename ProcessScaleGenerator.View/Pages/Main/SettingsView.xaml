@@ -96,17 +96,17 @@
                     <buttons:IconButton
                         Command="{Binding LoadProcessesCommand}"
                         Style="{StaticResource InportButton}"
-                        Text="Inportar processos(Json)" />
+                        Text="Inportar processos" />
                     <buttons:IconButton
                         Grid.Column="1"
                         Command="{Binding LoadEmployeesCommand}"
                         Style="{StaticResource InportButton}"
-                        Text="Inportar colaboradores(Json" />
+                        Text="Inportar colaboradores" />
                     <buttons:IconButton
                         Grid.Column="2"
                         Command="{Binding LoadTableCommand}"
                         Style="{StaticResource InportButton}"
-                        Text="Inportar tabelas(Json)" />
+                        Text="Inportar tabelas" />
 
                 </Grid>
 

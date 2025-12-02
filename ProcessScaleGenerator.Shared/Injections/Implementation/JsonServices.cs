@@ -90,7 +90,7 @@ public class JsonServices : IJsonServices
             }
             catch
             {
-                return null;
+                throw new JsonException();
             }
         }
 
@@ -112,11 +112,11 @@ public class JsonServices : IJsonServices
             string json = stream.ReadToEnd();
             try
             {
-                result = JsonSerializer.Deserialize<List<ToyotaProcess>>(json, options);
+                result = JsonSerializer.Deserialize<List<ToyotaProcess>>(json, options)!;
             }
             catch
             {
-                return [];
+                throw new JsonException();
             }
         }
 
@@ -173,7 +173,7 @@ public class JsonServices : IJsonServices
             }
             catch
             {
-                return null;
+                throw new JsonException();
             }
         }
 
@@ -196,11 +196,11 @@ public class JsonServices : IJsonServices
             string json = stream.ReadToEnd();
             try
             {
-                result = JsonSerializer.Deserialize<List<ToyotaProcess>>(json, options);
+                result = JsonSerializer.Deserialize<List<ToyotaProcess>>(json, options)!;
             }
             catch
             {
-                return [];
+                throw new JsonException();
             }
         }
 
@@ -220,11 +220,11 @@ public class JsonServices : IJsonServices
             string jsonToRead = stream.ReadToEnd();
             try
             {
-                result = JsonSerializer.Deserialize<ToyotaTableGroup>(jsonToRead, options);
+                result = JsonSerializer.Deserialize<ToyotaTableGroup>(jsonToRead, options)!;
             }
             catch
             {
-                return null;
+                throw new JsonException();
             }
         }
 
@@ -249,7 +249,7 @@ public class JsonServices : IJsonServices
         var jsonPath = Path.Combine(_appSettings.TablesPath(), $"table_group_{date:dd-MM-yyyy_HH-mm-ss}.json");
 
         if (!File.Exists(jsonPath))
-            throw new Exception("Arquivo não existe!");
+            throw new FileLoadException();
 
         try
         {
@@ -260,23 +260,6 @@ public class JsonServices : IJsonServices
             throw new Exception(ex.Message);
         }
     }
-
-    //public void DeleteFileJson(string fileName)
-    //{
-    //    var jsonPath = Path.Combine(_filePath, $"{fileName}.json");
-
-    //    if (!File.Exists(jsonPath))
-    //        throw new Exception("Arquivo não existe!");
-
-    //    try
-    //    {
-    //        File.Delete(jsonPath);
-    //    }
-    //    catch (IOException ex)
-    //    {
-    //        throw new Exception(ex.Message);
-    //    }
-    //}
 
     #region Utils
     public void CheckProcessesFolder()

@@ -3,7 +3,9 @@ using ProcessScaleGenerator.Shared.Data_log;
 using ProcessScaleGenerator.Shared.Injections.Contract;
 using ProcessScaleGenerator.Shared.Messages;
 using ProcessScaleGenerator.Shared.ValueObjects;
+using System.Collections.Generic;
 using ToyotaProcessManager.Services.Injections.Contract;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProcessScaleGenerator.Shared.Injections.Implementation.Repository;
 
@@ -33,16 +35,33 @@ public partial class RepositoryServices : IRepositoryServices
         {
             try
             {
-                _employeeData = _jsonServices.LoadEmployeeJson();
-                _tableData = _jsonServices.LoadTableGroupJson();
                 _processData = _jsonServices.LoadProcessJson();
             }
             catch(Exception ex)
             {
-                SendLog.Log(new { content = ex.Message});
-                _employeeData = [];
-                _tableData = [];
                 _processData = [];
+
+                SendLog.Log(ex);
+            }
+            try
+            {
+                _employeeData = _jsonServices.LoadEmployeeJson();
+            }
+            catch(Exception ex)
+            {
+                _employeeData = [];
+
+                SendLog.Log(ex);
+            }
+            try
+            {
+                _tableData = _jsonServices.LoadTableGroupJson();
+            }
+            catch(Exception ex)
+            {
+                _tableData = [];
+
+                SendLog.Log(ex);
             }
         }
     }

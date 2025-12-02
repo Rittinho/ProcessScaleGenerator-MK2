@@ -20,11 +20,13 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
+		<SatelliteResourceLanguages>pt-BR</SatelliteResourceLanguages>
+
 		<!-- Display name -->
-		<ApplicationTitle>ProcessScaleGenerator</ApplicationTitle>
+		<ApplicationTitle>Process Scale Generator</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.processscalegenerator</ApplicationId>
+		<ApplicationId>com.devritto.processscalegenerator</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

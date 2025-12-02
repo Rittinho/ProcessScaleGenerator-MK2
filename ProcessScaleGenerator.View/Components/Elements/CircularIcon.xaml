@@ -9,14 +9,18 @@
         x:Name="externalBorder"
         BackgroundColor="{DynamicResource PrimaryText}"
         HeightRequest="{Binding Path=IconSize, Source={x:Reference Root}}"
-        StrokeShape="1000000000000"
         StrokeThickness="0"
         WidthRequest="{Binding Path=IconSize, Source={x:Reference Root}}">
 
-        <Border
-            Background="{DynamicResource Tertiary}"
-            StrokeShape="1000000000000"
-            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="9999" />
+        </Border.StrokeShape>
+
+        <Border Background="{DynamicResource Tertiary}" StrokeThickness="0">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="9999" />
+            </Border.StrokeShape>
 
             <Label
                 x:Name="icon"

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using ProcessScaleGenerator.Model.Employee;
 using ProcessScaleGenerator.Shared.Constants;
+using ProcessScaleGenerator.Shared.Data_log;
 using ProcessScaleGenerator.Shared.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -33,9 +34,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Employeers
             {
                 _toyotaEmployeeModel.CreateEmployee(new(DateTime.Now.ToString(), Name, Position));
             }
-            catch
+            catch(Exception ex)
             {
                 await _popServices.WaringPopup(WarningTokens.ExistingProcess);
+                SendLog.Log(ex);
                 return;
             }
 
@@ -114,9 +116,10 @@ namespace ProcessScaleGenerator.ViewModel.Pages.Main.Employeers
             {
                 _toyotaEmployeeModel!.UpdateEmployee(_currentEmployeeInEdit!, new(_currentEmployeeInEdit.CreationDate, Name, Position));
             }
-            catch
+            catch (Exception ex)
             {
                 await _popServices.WaringPopup(WarningTokens.ExistingEmployee);
+                SendLog.Log(ex);
                 return;
             }
 

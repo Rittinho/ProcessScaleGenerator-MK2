@@ -28,7 +28,6 @@ namespace ProcessScaleGenerator
             window.Width = 1280;
             window.MinimumWidth = 1280;
             return window;
-            //return new Window(new AppShell());
         }
         private void OnWindowDestroying(object? sender, EventArgs e)
         {
